@@ -1,3 +1,4 @@
+//importing the workout model from the models folder
 import { Workout } from "../models/WorkoutModel.models.js";
 
 //? get all workouts

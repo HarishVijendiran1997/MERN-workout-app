@@ -1,6 +1,10 @@
 import express from "express";
 import dotenv from "dotenv";
+
+//importing the routes
 import workoutRoutes from "./routes/workouts.routes.js";
+
+//importing the database connection function
 import { connectToDatabase } from "./database/db.js";
 
 //configuring the dotenv to use the .env file
@@ -25,8 +29,6 @@ app.use((req, res, next) => {
 //? routes
 //routes for the workouts
 app.use("/api/workouts", workoutRoutes);
-
-
 
 //? server
 //starting the server

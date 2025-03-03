@@ -1,18 +1,23 @@
 import mongoose from "mongoose";
 
-const workoutSchema = new mongoose.Schema({
+//create a new schema for the workout
+const workoutSchema = new mongoose.Schema(
+  {
     title: {
-        type: String,
-        required: true,
+      type: String,
+      required: true,
     },
     reps: {
-        type: Number,
-        required: true,
+      type: Number,
+      required: true,
     },
     load: {
-        type: Number,
-        required: true,
-    }
-}, {timestamps: true});
+      type: Number,
+      required: true,
+    },
+  },
+  { timestamps: true }
+);
 
+//export the model as Workout
 export const Workout = mongoose.model("Workout", workoutSchema);
