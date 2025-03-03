@@ -1,4 +1,4 @@
-# 
+# MERN stack Workout App
 
 ## The MERN Workout App is a full-stack fitness tracking application built using MongoDB, Express.js, React, and Node.js (MERN stack). It allows users to log, track, and manage their workouts efficiently.
 
