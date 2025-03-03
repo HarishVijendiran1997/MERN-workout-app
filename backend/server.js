@@ -1,6 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import workoutRoutes from "./routes/workouts.routes.js";
+import { connectToDatabase } from "./database/db.js";
 
 //configuring the dotenv to use the .env file
 dotenv.config();
@@ -8,22 +9,35 @@ dotenv.config();
 //declaring the express app
 const app = express();
 
+//defining the port
+const PORT = process.env.PORT || 5000;
+
+//? middleware
 //middleware to parse the request body
 app.use(express.json());
 
 //middleware to log the request path and method
 app.use((req, res, next) => {
-    console.log(req.path, req.method);
-    next();
-})
+  console.log(req.path, req.method);
+  next();
+});
 
+//? routes
 //routes for the workouts
-app.use('/api/workouts', workoutRoutes);
+app.use("/api/workouts", workoutRoutes);
 
-//defining the port
-const PORT = process.env.PORT || 5000;
 
+
+//? server
 //starting the server
-app.listen(PORT, () => {
+const startServer = async () => {
+  //connecting to the database before starting the server
+  await connectToDatabase();
+  //starting the server
+  app.listen(PORT, () => {
     console.log(`Server started on ${PORT}`);
-})
+  });
+};
+
+//! starting the server
+startServer();
