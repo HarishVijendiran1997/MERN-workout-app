@@ -1,5 +1,5 @@
-const WorkoutDetails = ({workout}) => {
-    
+const WorkoutDetails = ({ workout }) => {
+
     return (
         <div className="flex items-start bg-white max-w-screen rounded-lg font-Poppins ml-4  pb-5  pl-5 pt-5 flex-col shadow-md mb-5 ">
             <h4 className="text-2xl font-extrabold text-blue-900">{workout.title}</h4>

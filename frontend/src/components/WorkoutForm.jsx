@@ -1,8 +1,11 @@
 import { useState } from "react";
 import axios from "axios";
+import { useWorkoutsContext } from "../../hooks/useWorkoutsContext";
 
 const WorkoutForm = () => {
-   
+
+    const { dispatch } = useWorkoutsContext()
+    const [success, setSuccess] = useState('')
     const [title, setTitle] = useState('');
     const [load, setLoad] = useState('');
     const [reps, setReps] = useState('');
@@ -13,16 +16,18 @@ const WorkoutForm = () => {
         try {
             const response = await axios.post("http://localhost:4000/api/workouts", {
                 title,
-                load,
-                reps
+                load: Number(load),
+                reps: Number(reps)
             })
+            dispatch({ type: 'CREATE_WORKOUT', payload: response.data.newWorkout })
             setTitle('')
             setLoad('')
             setReps('')
             setError(null)
-            console.log(response.data)
+            setSuccess(response.data.message)
         } catch (error) {
             setError(error.response?.data?.message || "Failed to create workout")
+            setSuccess('')
         }
     }
 
@@ -32,27 +37,28 @@ const WorkoutForm = () => {
 ">
                 <h2 className="text-2xl font-bold text-blue-900 mb-4">Add a new workout</h2>
                 <input
-                className="w-full p-2 mb-4 border border-gray-300 rounded-lg" 
-                type="text"
-                onChange={(e)=>setTitle(e.target.value)}
-                value={title}
-                placeholder="Workout Title"
+                    className="w-full p-2 mb-4 border border-gray-300 rounded-lg"
+                    type="text"
+                    onChange={(e) => setTitle(e.target.value)}
+                    value={title}
+                    placeholder="Workout Title"
                 />
-                <input 
-                className="w-full p-2 mb-4 border border-gray-300 rounded-lg"
-                type="number"
-                onChange={(e)=>setLoad(e.target.value)}
-                value={load}
-                placeholder="Load (kg)"
+                <input
+                    className="w-full p-2 mb-4 border border-gray-300 rounded-lg"
+                    type="number"
+                    onChange={(e) => setLoad(e.target.value)}
+                    value={load}
+                    placeholder="Load (kg)"
                 />
-                <input 
-                className="w-full p-2 mb-4 border border-gray-300 rounded-lg"
-                type="number"
-                onChange={(e)=>setReps(e.target.value)}
-                value={reps}
-                placeholder="Reps"
+                <input
+                    className="w-full p-2 mb-4 border border-gray-300 rounded-lg"
+                    type="number"
+                    onChange={(e) => setReps(e.target.value)}
+                    value={reps}
+                    placeholder="Reps"
                 />
                 {error && <p className="w-full p-2 mb-4 text-red-600">{error}</p>}
+                {success && <p className="text-xl mb-2 text-green-500">{success}</p>}
                 <button className="w-full bg-green-600 hover:bg-green-500 active:bg-green-600 text-white p-2 rounded">Add workout</button>
             </form>
         </div>
