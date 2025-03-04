@@ -14,6 +14,7 @@ dotenv.config();
 //declaring the express app
 const app = express();
 
+//cors configuration to allow only the frontend to access the api
 app.use(cors({ origin: "http://localhost:3000" }));
 
 //defining the port
