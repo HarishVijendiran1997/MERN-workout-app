@@ -14,7 +14,7 @@ const WorkoutForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            const response = await axios.post("http://localhost:4000/api/workouts", {
+            const response = await axios.post("http://localhost:4000/api/workouts/", {
                 title,
                 load: Number(load),
                 reps: Number(reps)

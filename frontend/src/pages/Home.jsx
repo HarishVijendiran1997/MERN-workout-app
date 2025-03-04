@@ -13,7 +13,7 @@ const Home = () => {
     useEffect(() => {
         const fetchWorkouts = async () => {
             try {
-                const response = await axios.get("http://localhost:4000/api/workouts")
+                const response = await axios.get("http://localhost:4000/api/workouts/")
                 dispatch({ type: "SET_WORKOUTS", payload: response.data })
                 setError(null);
             } catch (error) {
