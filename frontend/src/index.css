@@ -3,8 +3,6 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  --color-midnight: #121063;
-  --color-tahiti: #3ab7bf;
-  --color-bermuda: #78dcca;
   --color-darkBackground: #1a1a1a;
+  --font-primary: 'Poppins', sans-serif;
 }

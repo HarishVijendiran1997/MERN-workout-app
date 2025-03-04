@@ -7,7 +7,7 @@ import Test from "./pages/Test.jsx"
 function App() {
 
   return (
-    <div className="App">
+    <div className="font-primary">
       <BrowserRouter>
         <NavBar />
         <div className="pages">
