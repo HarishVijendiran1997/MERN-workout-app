@@ -1,5 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
+import cors from "cors";
 
 //importing the routes
 import workoutRoutes from "./routes/workouts.routes.js";
@@ -12,6 +13,8 @@ dotenv.config();
 
 //declaring the express app
 const app = express();
+
+app.use(cors({ origin: "http://localhost:3000" }));
 
 //defining the port
 const PORT = process.env.PORT || 5000;
