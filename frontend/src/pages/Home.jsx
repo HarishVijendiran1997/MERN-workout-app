@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 import axios from "axios"
 import WorkoutDetails from "../components/WorkoutDetails"
+import WorkoutForm from "../components/WorkoutForm.jsx"
 
 const Home = () => {
 
@@ -31,11 +32,12 @@ const Home = () => {
                     <WorkoutDetails key={workout._id} workout={workout} />
                 ))}
             </ul>
-            <div className="z-50 absolute w-2/3 h-screen p-2 text-primary text-2xl flex justify-center items-center">
+            <div className=" absolute w-3/5 top-5 ml-2 rounded-lg h-screen p-2 text-primary text-2xl flex justify-center items-center bg-white shadow-md">
                 {/* Error state handling*/}
-                {loading && <p className="">Loading workouts...</p>}
-                {error && <h1>{error}</h1>}
+                {loading && <p className="text-4xl text-blue-950">Loading workouts...</p>}
+                {error && <h1 className="text-4xl text-blue-950">{error} :P</h1>}
             </div>
+            <WorkoutForm />
         </div>
     )
 }
