@@ -13,7 +13,7 @@ const Home = () => {
     useEffect(() => {
         const fetchWorkouts = async () => {
             try {
-                const response = await axios.get("http://localhost:4000/api/workouts/")
+                const response = await axios.get("http://localhost:4000/api/workouts")
                 dispatch({ type: "SET_WORKOUTS", payload: response.data })
                 setError(null);
             } catch (error) {
@@ -24,21 +24,24 @@ const Home = () => {
         }
 
         fetchWorkouts()
-    }, [])
+    }, [dispatch])
     return (
-        <div className="grid grid-cols-[3fr_2fr] text-center bg-gray-200 w-full min-h-screen pt-5  relative gap-4">
-            <ul>
-                {workouts && workouts.map(workout => (
-                    //? Using the WorkoutDetails component to display the workout details
+        <div className="grid grid-cols-[3fr_2fr] text-center bg-gray-200 w-full min-h-screen pt-5 gap-4">
+
+            <div className="px-4">
+                {loading && <p className="mt-50 text-4xl text-blue-950">Loading workouts...</p>}
+                {error && <h1 className="mt-50 text-4xl text-red-600">{error} OOPS...</h1>}
+                {!loading && !error && workouts?.length === 0 && (
+                    <p className="text-2xl text-gray-600">No workouts found. Add a new one!</p>
+                )}
+                {workouts && workouts.map((workout) => (
                     <WorkoutDetails key={workout._id} workout={workout} />
                 ))}
-            </ul>
-            <div className=" absolute w-3/5 top-5 ml-2 rounded-lg h-screen p-2 text-primary text-2xl flex justify-center items-center ">
-                {/* Error state handling*/}
-                {loading && <p className="text-4xl text-blue-950">Loading workouts...</p>}
-                {error && <h1 className="text-4xl text-blue-950">{error} :P</h1>}
             </div>
-            <WorkoutForm />
+
+            <div className="px-4">
+                <WorkoutForm />
+            </div>
         </div>
     )
 }

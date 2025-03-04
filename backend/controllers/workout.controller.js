@@ -7,7 +7,7 @@ const getWorkouts = async (req, res) => {
     const workouts = await Workout.find().sort({ createdAt: -1 });
     res.status(200).json(workouts);
   } catch (error) {
-    res.status(500).json({ message: "Server error" });
+    res.status(500).json({ message: error.message || "Server error" });
   }
 };
 
@@ -20,7 +20,7 @@ const getSingleWorkout = async (req, res) => {
     }
     res.status(200).json(workout);
   } catch (error) {
-    res.status(400).json({ message: "Invalid ID format" });
+    res.status(400).json({ message: error.message || "Invalid ID format" });
   }
 };
 
@@ -28,13 +28,31 @@ const getSingleWorkout = async (req, res) => {
 const createWorkout = async (req, res) => {
   const { title, reps, load } = req.body;
 
+  let emptyFields = [];
+
+  if (!title) {
+    emptyFields.push("title");
+  }
+  if (!load) {
+    emptyFields.push("load");
+  }
+  if (!reps) {
+    emptyFields.push("reps");
+  }
+  if (emptyFields.length > 0) {
+    return res.status(400).json({
+      message: `Please fill in the following fields: ${emptyFields.join(", ")}`,
+      emptyFields,
+    });
+  }
+
   try {
     const newWorkout = await Workout.create({ title, reps, load });
     res
       .status(201)
       .json({ message: "Workout created successfully", newWorkout });
   } catch (error) {
-    res.status(400).json({ message: "Invalid workout data" });
+    res.status(400).json({ message: error.message || "Invalid workout data" });
   }
 };
 
@@ -53,7 +71,7 @@ const updateWorkout = async (req, res) => {
     }
     res.status(200).json({ message: "Workout updated successfully", workout });
   } catch (error) {
-    res.status(400).json({ message: "Invalid ID format" });
+    res.status(400).json({ message: error.message || "Invalid ID format" });
   }
 };
 
@@ -66,7 +84,7 @@ const deleteWorkout = async (req, res) => {
     }
     res.status(200).json({ message: "Workout deleted successfully", workout });
   } catch (error) {
-    res.status(400).json({ message: "Invalid ID format" });
+    res.status(400).json({ message: error.message || "Invalid ID format" });
   }
 };
 

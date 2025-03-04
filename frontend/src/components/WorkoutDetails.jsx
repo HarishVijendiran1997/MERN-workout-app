@@ -21,9 +21,7 @@ const WorkoutDetails = ({ workout }) => {
                 <p><strong>Load (kg) : </strong>{workout.load}</p>
                 <p><strong>Reps : </strong>{workout.reps}</p>
                 <p><strong>Created : </strong>{new Date(workout.createdAt).toLocaleString()}</p>
-                <div className="flex justify-between mr-5 gap-2 items-center">
-                    <span onClick={handleDelete} className="bg-red-600 text-white rounded-lg p-1 mt-3 px-3 py-1 cursor-pointer hover:bg-red-500 transition">Delete</span>
-                </div>
+                <span onClick={handleDelete} className="bg-red-600 text-white rounded-lg p-1 mt-3 px-3 py-1 cursor-pointer hover:bg-red-500 transition">Delete</span>
             </div>
         </div>
     )
