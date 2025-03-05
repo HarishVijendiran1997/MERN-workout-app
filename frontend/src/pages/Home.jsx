@@ -30,7 +30,7 @@ const Home = () => {
             <div className="px-4 flex flex-col h-full">
                 {loading ? (
                     <div className="flex flex-grow justify-center items-center">
-                        <p className="text-4xl text-blue-950">Loading workouts...</p>
+                        <div className="w-24 h-24 border-8 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
                     </div>
                 ) : error ? (
                     <div className="flex flex-grow justify-center items-center">
