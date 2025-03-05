@@ -25,8 +25,9 @@ const Home = () => {
 
         fetchWorkouts()
     }, [dispatch])
+
     return (
-        <div className="grid grid-cols-[3fr_2fr] text-center bg-gray-200 w-full min-h-screen pt-5 gap-4">
+        <div className="grid grid-cols-[3fr_2fr] text-center bg-gray-200 w-full pt-5 gap-4">
 
             <div className="px-4">
                 {loading && <p className="mt-50 text-4xl text-blue-950">Loading workouts...</p>}

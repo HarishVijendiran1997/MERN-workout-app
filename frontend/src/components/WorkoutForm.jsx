@@ -60,9 +60,9 @@ const WorkoutForm = () => {
                     value={reps}
                     placeholder="Reps"
                 />
-                {error && <p className="w-full p-2 mb-4 text-red-600">{error}</p>}
-                {success && <p className="text-xl mb-2 text-green-500">{success}</p>}
-                <button className="w-full bg-green-600 hover:bg-green-500 active:bg-green-600 text-white p-2 rounded">Add workout</button>
+                <button className="w-full bg-green-600 hover:bg-green-500 active:bg-green-600 text-white p-2 rounded transition">Add workout</button>
+                {success && <p className="text-xl mt-4 mb-2 text-green-500">{success}</p>}
+                {error && <p className="w-full p-2 mb-4 text-red-600 border bg-red-100 rounded-lg mt-4 flex justify-center items-center">{error}</p>}
             </form>
         </div>
     )
