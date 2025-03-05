@@ -33,11 +33,17 @@ const createWorkout = async (req, res) => {
   if (!title) {
     emptyFields.push("title");
   }
-  if (!load) {
+  if (load === undefined || load < 0) {
     emptyFields.push("load");
+    return res.status(400).json({
+      message: `load cannot be less than 0`,
+    });
   }
-  if (!reps) {
+  if (reps === undefined || reps < 1) {
     emptyFields.push("reps");
+    return res.status(400).json({
+      message: `reps cannot be less than 1`,
+    });
   }
   if (emptyFields.length > 0) {
     return res.status(400).json({
@@ -58,6 +64,15 @@ const createWorkout = async (req, res) => {
 
 //? update a workout
 const updateWorkout = async (req, res) => {
+  const { title, reps, load } = req.body;
+
+  if (load !== undefined && load < 0) {
+    return res.status(400).json({ message: "Load must be 0 or greater" });
+  }
+  if (reps !== undefined && reps < 0) {
+    return res.status(400).json({ message: "Reps must be 0 or greater" });
+  }
+
   try {
     const updateWorkout = await Workout.findByIdAndUpdate(
       req.params.id,

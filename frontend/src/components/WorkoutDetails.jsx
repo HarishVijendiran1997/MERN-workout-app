@@ -12,9 +12,10 @@ const WorkoutDetails = ({ workout }) => {
     const [title, setTitle] = useState(workout.title)
     const [load, setLoad] = useState(workout.load);
     const [reps, setReps] = useState(workout.reps);
+    const [error, setError] = useState(null);
 
     const handleTitleClick = () => {
-        navigate("/test", { state: { workout } }); // Pass workout data
+        navigate("/test", { state: { workout } });
     }
 
     const handleDelete = async () => {
@@ -29,6 +30,10 @@ const WorkoutDetails = ({ workout }) => {
     }
 
     const handleUpdate = async () => {
+        if (load < 0 || reps < 0) {
+            return setError("Load and reps cannot be negative!");
+        }
+
         try {
             const response = await axios.patch(`http://localhost:4000/api/workouts/${workout._id}`, {
                 title,
@@ -37,6 +42,7 @@ const WorkoutDetails = ({ workout }) => {
             })
             dispatch({ type: 'UPDATE_WORKOUT', payload: response.data.updateWorkout })
             setIsEditing(false)
+            setError(null)
             console.log(response.data);
         } catch (error) {
             throw new Error(error?.response?.data?.message || error.message)
@@ -46,19 +52,25 @@ const WorkoutDetails = ({ workout }) => {
     return (
         <div className="flex items-start bg-white max-w-screen rounded-lg font-Poppins ml-4  pb-5  pl-5 pt-5 flex-col shadow-md mb-5">
             {isEditing ? (
-                <div className="flex flex-wrap gap-2.5 justify-between">
-                    <input className="border p-1 rounded-lg border-gray-300 mr-2" value={title} onChange={(e) => setTitle(e.target.value)} />
-                    <input className="border p-1 rounded-lg border-gray-300 mr-2" type="number" value={load} onChange={(e) => setLoad(e.target.value)} />
-                    <input className="border p-1 rounded-lg border-gray-300 mr-2" type="number" value={reps} onChange={(e) => setReps(e.target.value)} />
-                    <p className="">Last updated: {formatDistanceToNow(new Date(workout.updatedAt), { addSuffix: true })} ago</p>
-                    <div className="flex mr-3">
-                        <svg onClick={handleUpdate} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="p-1 rounded-lg bg-green-600 text-white hover:bg-green-500 active:bg-green-600 mr-2 size-10">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" />
-                        </svg>
-                        {/* cancel button */}
-                        <svg onClick={() => { setIsEditing(false) }} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="p-1 rounded-full bg-gray-600 text-white hover:bg-gray-500 active:bg-gray-600 mr-2 size-10">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
-                        </svg>
+                <div>
+                    {error && <p className="text-red-600 text-s mb-4">{error}</p>}
+
+                    <div className="flex flex-wrap gap-2.5 justify-between">
+
+
+                        <input className="border p-1 rounded-lg border-gray-300 mr-2" value={title} onChange={(e) => setTitle(e.target.value)} />
+                        <input className="border p-1 rounded-lg border-gray-300 mr-2" type="number" value={load} onChange={(e) => setLoad(e.target.value)} />
+                        <input className="border p-1 rounded-lg border-gray-300 mr-2" type="number" value={reps} onChange={(e) => setReps(e.target.value)} />
+                        <p className="">Last updated: {formatDistanceToNow(new Date(workout.updatedAt), { addSuffix: true })} ago</p>
+                        <div className="flex mr-3">
+                            <svg onClick={handleUpdate} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="p-1 rounded-lg bg-green-600 text-white hover:bg-green-500 active:bg-green-600 mr-2 size-10">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+                            </svg>
+                            {/* cancel button */}
+                            <svg onClick={() => { setIsEditing(false) }} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="p-1 rounded-full bg-gray-600 text-white hover:bg-gray-500 active:bg-gray-600 mr-2 size-10">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
+                            </svg>
+                        </div>
                     </div>
                 </div>
             ) : (<>
