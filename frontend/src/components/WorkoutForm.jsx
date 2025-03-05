@@ -34,6 +34,29 @@ const WorkoutForm = () => {
         }
     }
 
+    const handleRepsChange = (e) => {
+        e.preventDefault();
+        let value = e.target.value
+        if (value < 0) return
+        if (value === 0) {
+            if (!window.confirm("Are you sure you want to set Reps to 0?")) {
+                return;
+            }
+        }
+        setReps(value)
+    }
+    const handleLoadChange = (e) => {
+        e.preventDefault();
+        let value = e.target.value
+        if (value < 0) return
+        if (value === 0) {
+            if (!window.confirm("Are you sure you want to set Reps to 0?")) {
+                return;
+            }
+        }
+        setLoad(value)
+    }
+
     return (
         <div>
             <form onSubmit={handleSubmit} className="max-w-lg mx-auto p-6 bg-white shadow-md rounded-lg
@@ -47,13 +70,13 @@ const WorkoutForm = () => {
                 />
                 <input className={`w-full p-2 mb-4 border border-gray-300 rounded-lg ${emptyFields.includes('load') ? "border-red-500" : "border-gray-300"}`}
                     type="number"
-                    onChange={(e) => setLoad(e.target.value)}
+                    onChange={handleLoadChange}
                     value={load}
                     placeholder="Load (kg)"
                 />
                 <input className={`w-full p-2 mb-4 border border-gray-300 rounded-lg ${emptyFields.includes('reps') ? "border-red-500" : "border-gray-300"}`}
                     type="number"
-                    onChange={(e) => setReps(e.target.value)}
+                    onChange={handleRepsChange}
                     value={reps}
                     placeholder="Reps"
                 />
