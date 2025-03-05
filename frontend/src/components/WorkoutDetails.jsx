@@ -2,14 +2,20 @@ import axios from "axios"
 import { useWorkoutsContext } from "../../hooks/useWorkoutsContext"
 import { formatDistanceToNow } from 'date-fns'
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const WorkoutDetails = ({ workout }) => {
 
+    const navigate = useNavigate();
     const { dispatch } = useWorkoutsContext()
     const [isEditing, setIsEditing] = useState(false)
     const [title, setTitle] = useState(workout.title)
     const [load, setLoad] = useState(workout.load);
     const [reps, setReps] = useState(workout.reps);
+
+    const handleTitleClick = () => {
+        navigate("/test", { state: { workout } }); // Pass workout data
+    }
 
     const handleDelete = async () => {
         try {
@@ -56,7 +62,7 @@ const WorkoutDetails = ({ workout }) => {
                     </div>
                 </div>
             ) : (<>
-                <h4 className="text-2xl font-extrabold text-blue-900">{workout.title}</h4>
+                <h4 className="text-2xl font-extrabold text-blue-900 cursor-pointer hover:text-blue-700" onClick={handleTitleClick}>{workout.title}</h4>
                 <div className="flex justify-between w-full pr-5 items-center">
                     <p><strong>Load (kg) : </strong>{workout.load}</p>
                     <p><strong>Reps : </strong>{workout.reps}</p>
