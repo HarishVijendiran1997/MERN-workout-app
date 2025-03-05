@@ -35,15 +35,12 @@ const createWorkout = async (req, res) => {
   }
   if (load === undefined || load < 0) {
     emptyFields.push("load");
-    return res.status(400).json({
-      message: `load cannot be less than 0`,
-    });
   }
   if (reps === undefined || reps < 1) {
     emptyFields.push("reps");
-    return res.status(400).json({
-      message: `reps cannot be less than 1`,
-    });
+    if (reps === 0) {
+      return res.status(400).json({ message: "Reps must be greater than 0" });
+    }
   }
   if (emptyFields.length > 0) {
     return res.status(400).json({
