@@ -58,22 +58,20 @@ const createWorkout = async (req, res) => {
 
 //? update a workout
 const updateWorkout = async (req, res) => {
-  const { title, reps, load } = req.body;
-
   try {
     const updateWorkout = await Workout.findByIdAndUpdate(
       req.params.id,
-      { title, reps, load },
-      { new: true, runValidators: true }
+      req.body,
+      { new: true }
     );
     if (!updateWorkout) {
       return res.status(404).json({ message: "Workout not found" });
     }
     res
       .status(200)
-      .json({ message: "Workout updated successfully", updateWorkout });
+      .json({ message: "Workout created successfully", updateWorkout });
   } catch (error) {
-    res.status(400).json({ message: error.message || "Invalid ID format" });
+    res.status(400).json({ message: error.message || "Server error" });
   }
 };
 

@@ -39,22 +39,19 @@ const WorkoutForm = () => {
             <form onSubmit={handleSubmit} className="max-w-lg mx-auto p-6 bg-white shadow-md rounded-lg
 ">
                 <h2 className="text-2xl font-bold text-blue-900 mb-4">Add a new workout</h2>
-                <input
-                    className={`w-full p-2 mb-4 border border-gray-300 rounded-lg ${emptyFields.includes('title') ? "border-red-500" : "border-gray-300"}`}
+                <input className={`w-full p-2 mb-4 border border-gray-300 rounded-lg ${emptyFields.includes('title') ? "border-red-500" : "border-gray-300"}`}
                     type="text"
                     onChange={(e) => setTitle(e.target.value)}
                     value={title}
                     placeholder="Workout Title"
                 />
-                <input
-                    className={`w-full p-2 mb-4 border border-gray-300 rounded-lg ${emptyFields.includes('load') ? "border-red-500" : "border-gray-300"}`}
+                <input className={`w-full p-2 mb-4 border border-gray-300 rounded-lg ${emptyFields.includes('load') ? "border-red-500" : "border-gray-300"}`}
                     type="number"
                     onChange={(e) => setLoad(e.target.value)}
                     value={load}
                     placeholder="Load (kg)"
                 />
-                <input
-                    className={`w-full p-2 mb-4 border border-gray-300 rounded-lg ${emptyFields.includes('reps') ? "border-red-500" : "border-gray-300"}`}
+                <input className={`w-full p-2 mb-4 border border-gray-300 rounded-lg ${emptyFields.includes('reps') ? "border-red-500" : "border-gray-300"}`}
                     type="number"
                     onChange={(e) => setReps(e.target.value)}
                     value={reps}
