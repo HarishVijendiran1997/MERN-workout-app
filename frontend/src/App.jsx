@@ -4,12 +4,14 @@ import NavBar from "./components/NavBar.jsx"
 import Test from "./pages/Test.jsx"
 import { Slide, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { ThemeProvider, useTheme } from "../contexts/ThemeContext.jsx";
 
-function App() {
+function AppContent() {
+  const { themeMode } = useTheme()  
   return (
       <div className="font-primary min-h-screen flex flex-col">
         <BrowserRouter>
-          <ToastContainer position="bottom-right" closeOnClick={true} theme="light" transition={Slide} autoClose={3000} />
+          <ToastContainer theme={themeMode} position="bottom-right" closeOnClick={true} transition={Slide} autoClose={3000} />
           <NavBar />
           <div className="flex-grow">
             <Routes>
@@ -20,6 +22,14 @@ function App() {
         </BrowserRouter>
       </div>
   )
+} 
+
+function App() {
+  return (
+    <ThemeProvider>
+      <AppContent />
+    </ThemeProvider>
+  );
 }
 
 export default App
