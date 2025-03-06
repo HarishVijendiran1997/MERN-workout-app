@@ -6,8 +6,8 @@ import { WorkoutsContextProvider } from '../contexts/WorkoutContext.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <WorkoutsContextProvider>
-      <App />
-    </WorkoutsContextProvider>
+      <WorkoutsContextProvider>
+        <App />
+      </WorkoutsContextProvider>
   </StrictMode>,
 )

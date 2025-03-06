@@ -3,6 +3,38 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  --color-darkBackground: #1a1a1a;
+  --color-darkPrimary: #262626;
+  --color-darkSecondary: #404040;
+  --color-darkTertiary: #666666;
+/*background*/
+  --color-darkTextPrimary: #155dfc;
+  --color-darkTextPrimaryHover:#1447e6;
+
+  --color-darkTextSecondary: #a1a1a1;
+  --color-darkTextResult: #e5e5e5;
+
+  --color-darkInputText: #ffffff;
+  --color-darkInputBackground: #333333;
+  --color-darkBorder: #6a7282;
+
+  --color-darkEditButton: #155dfc;
+  --color-darkEditButtonHover: #193cb8;
+  --color-darkDeleteButton: #fb2c36;
+  --color-darkDeleteButtonHover: #e7000b;
+  --color-darkSaveButton: #ad46ff;
+  --color-darkSaveButtonHover: #9810fa;
+  --color-darkCancelButton: #d1d5dc;
+  --color-darkCancelButtonHover: #99a1af;
+  --color-darkCancelButtonText: #1a1a1a;
+  --color-darkAddButton: #00a63e;
+  --color-darkAddButtonHover: #00c950;
+  --color-darkButtonText: #ffffff;
+  
+  --color-darkTestButton: #0d46ff;
+  --color-darkTestButtonHover: #0d20f0;
+
+  --color-errorText: #fb2c36;
+  --color-errorBackground: #252525;
+  
   --font-primary: 'Poppins', sans-serif;
 }
