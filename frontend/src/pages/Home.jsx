@@ -24,7 +24,7 @@ const Home = () => {
                 setError(null);
             } catch (error) {
                 const errorMessage = error.response?.data?.message || "Couldn't load workouts. Try refreshing the page!"
-                toast.error("Try reloading the page", { position: "bottom-right" })
+                toast.error(errorMessage, { position: "bottom-right" })
                 setError(errorMessage);
             } finally {
                 setLoading(false);

@@ -17,24 +17,45 @@ const WorkoutForm = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
+        
+        if (!title.trim() && !load && !reps) {
+            setError("All fields are required", emptyFields);
+            return;
+        }
+        
+        if (!load && !reps) {
+            toast.warn("All fields are required");
+            setError("Fill in the fields load & reps");
+            toast.warn("All fields are required");
+            return;
+        }
+        if (!title.trim() && !load) {
+            setError("Fill in the fields title & load");
+            toast.warn("All fields are required");
+            return;
+        }
+        if (!title.trim() && !reps) {
+            setError("Fill in the fields title & reps");
+            toast.warn("All fields are required");
+            return;
+        }
+
         if (!title.trim()) {
-            setError("Fill in all title");
-            toast.warn("Fill in all title");
+            setError("Fill in the title");
+            toast.warn("Fill in the title");
             return;
         }
         if (!load) {
-            setError("Fill in all load");
-            toast.warn("Fill in all load");
+            setError("Fill in the load");
+            toast.warn("Fill in the load");
             return;
         }
         if (!reps) {
-            setError("Fill in all reps");
-            toast.error("Fill in all reps");
+            setError("Fill in the reps");
+            toast.error("Fill in the reps");
             return;
         }
-
-        intlFormatDistance
-
+        
         if (isSubmitting) return
         setIsSubmitting(true)
         setError(null)
