@@ -1,11 +1,13 @@
 import { useState } from "react";
 import axios from "axios";
 import { useWorkoutsContext } from "../../hooks/useWorkoutsContext";
+import { intlFormatDistance } from "date-fns";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const WorkoutForm = () => {
 
     const { dispatch } = useWorkoutsContext()
-    const [success, setSuccess] = useState('')
     const [title, setTitle] = useState('');
     const [load, setLoad] = useState('');
     const [reps, setReps] = useState('');
@@ -15,6 +17,24 @@ const WorkoutForm = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
+        if (!title.trim()) {
+            setError("Fill in all title");
+            toast.warn("Fill in all title");
+            return;
+        }
+        if (!load) {
+            setError("Fill in all load");
+            toast.warn("Fill in all load");
+            return;
+        }
+        if (!reps) {
+            setError("Fill in all reps");
+            toast.error("Fill in all reps");
+            return;
+        }
+
+        intlFormatDistance
+
         if (isSubmitting) return
         setIsSubmitting(true)
         setError(null)
@@ -29,11 +49,10 @@ const WorkoutForm = () => {
             setLoad('')
             setReps('')
             setEmptyFields([]);
-            setSuccess(response.data.message)
+            toast.success(response.data.message, { position: "bottom-right" });
         } catch (error) {
             setError(error.response?.data?.message || "Failed to create workout")
             setEmptyFields(error.response?.data?.emptyFields || []);
-            setSuccess('')
         } finally {
             setIsSubmitting(false);
         }
@@ -66,7 +85,7 @@ const WorkoutForm = () => {
         <div>
             <form onSubmit={handleSubmit} className="max-w-lg mx-auto p-6 bg-white shadow-md rounded-lg
 ">
-                <h2 className="text-2xl font-bold text-blue-900 mb-4">Add a new workout</h2>
+                <h2 className="text-2xl font-bold text-blue-600 mb-4">Add a new workout</h2>
                 <input className={`w-full p-2 mb-4 border border-gray-300 rounded-lg ${emptyFields.includes('title') ? "border-red-500" : "border-gray-300"}`}
                     type="text"
                     onChange={(e) => setTitle(e.target.value)}
@@ -87,7 +106,7 @@ const WorkoutForm = () => {
                 />
                 <button className={`w-full bg-green-600 hover:bg-green-500 active:bg-green-600 text-white p-2 rounded transition ${isSubmitting ? "bg-gray-400 cursor-not-allowed" : "bg-blue-600 hover:bg-blue-700"
                     }`} disabled={isSubmitting}>{isSubmitting ? "Adding..." : "Add Workout"}</button>
-                {success && <p className="text-xl mt-4 mb-2 text-green-500">{success}</p>}
+                {/* {success && <p className="text-xl mt-4 mb-2 text-green-500">{success}</p>} */}
                 {error && <p className="w-full p-2 mb-4 text-red-600 border bg-red-100 rounded-lg mt-4 flex justify-center items-center">{error}</p>}
             </form>
         </div>

@@ -5,7 +5,7 @@ import { Workout } from "../models/WorkoutModel.models.js";
 const getWorkouts = async (req, res) => {
   try {
     const workouts = await Workout.find().sort({ createdAt: -1 });
-    res.status(200).json(workouts);
+    res.status(200).json({message: "Workouts loaded successfully!", workouts});
   } catch (error) {
     res.status(500).json({ message: error.message || "Server error" });
   }
@@ -18,7 +18,7 @@ const getSingleWorkout = async (req, res) => {
     if (!workout) {
       return res.status(404).json({ message: "Workout not found" });
     }
-    res.status(200).json(workout);
+    res.status(200).json({message: `${workout.title} loaded successfully!`,workout});
   } catch (error) {
     res.status(400).json({ message: error.message || "Invalid ID format" });
   }
@@ -81,7 +81,7 @@ const updateWorkout = async (req, res) => {
     }
     res
       .status(200)
-      .json({ message: "Workout created successfully", updateWorkout });
+      .json({ message: "Workout  successfully", updateWorkout });
   } catch (error) {
     res.status(400).json({ message: error.message || "Server error" });
   }

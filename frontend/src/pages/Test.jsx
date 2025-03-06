@@ -1,9 +1,18 @@
+import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Test = () => {
     const location = useLocation();
     const workout = location.state?.workout;
+
+    useEffect(()=>{
+        if(workout?.title){
+            toast.info(`Redirected to ${workout.title} workout details`)
+        }
+    },[workout])
 
     return (
         <div className="flex flex-col justify-center items-center w-screen p-6">
