@@ -103,31 +103,31 @@ const WorkoutForm = () => {
     return (
         <div>
             <form onSubmit={handleSubmit} className="max-w-lg mx-auto p-6 bg-white dark:bg-darkSecondary dark:text-darkInputText  shadow-md rounded-lg
-">
-                <h2 className="text-2xl font-bold text-blue-600 dark:text-darkTextPrimary mb-4">Add a new workout</h2>
-                <input className={`w-full p-2 mb-4 border dark:border-darkBorder rounded-lg dark:bg-darkInputBackground ${emptyFields.includes('title') ? "border-red-500" : "border-gray-300"}`}
+transition-colors duration-200">
+                <h2 className="text-2xl font-bold text-blue-600 dark:text-darkTextPrimary mb-4 transition-colors duration-200">Add a new workout</h2>
+                <input className={`w-full p-2 mb-4 border dark:border-darkBorder rounded-lg dark:bg-darkInputBackground transition-colors duration-200 ${emptyFields.includes('title') ? "border-red-500" : "border-gray-300"}`}
                     type="text"
                     onChange={(e) => setTitle(e.target.value)}
                     value={title}
                     placeholder="Workout Title"
                 />
-                <input className={`w-full p-2 mb-4 border dark:border-darkBorder rounded-lg dark:bg-darkInputBackground ${emptyFields.includes('load') ? "border-red-500" : "border-gray-300"}`}
+                <input className={`w-full p-2 mb-4 border dark:border-darkBorder rounded-lg dark:bg-darkInputBackground transition-colors duration-200 ${emptyFields.includes('load') ? "border-red-500" : "border-gray-300"}`}
                     type="number"
                     onChange={handleLoadChange}
                     value={load}
                     placeholder="Load (kg)"
                 />
-                <input className={`w-full p-2 mb-4 border dark:border-darkBorder rounded-lg dark:bg-darkInputBackground ${emptyFields.includes('reps') ? "border-red-500" : "border-gray-300"}`}
+                <input className={`w-full p-2 mb-4 border dark:border-darkBorder rounded-lg dark:bg-darkInputBackground transition-colors duration-200 ${emptyFields.includes('reps') ? "border-red-500" : "border-gray-300"}`}
                     type="number"
                     onChange={handleRepsChange}
                     value={reps}
                     placeholder="Reps"
                 />
                 <button className="
-                    w-full bg-green-600 hover:bg-green-500 active:bg-green-600 cursor-pointer text-white p-2 rounded dark:text-ButtonText dark:bg-darkAddButton dark:hover:bg-darkAddButtonHover dark:active:bg-darkAddButton not-[]:transition duration-200" disabled={isSubmitting}>
+                    w-full bg-green-600 hover:bg-green-500 active:bg-green-600 cursor-pointer text-white p-2 rounded dark:text-ButtonText dark:bg-darkAddButton dark:hover:bg-darkAddButtonHover dark:active:bg-darkAddButton transition-colors duration-200" disabled={isSubmitting}>
                     {isSubmitting ? "Adding..." : "Add Workout"}
                 </button>
-                {error && <p className="w-full p-2 mb-4 text-red-500 dark:text-errorText border bg-red-100 dark:bg-errorBackground rounded-lg mt-4 flex justify-center items-center">{error}</p>}
+                {error && <p className="w-full p-2 mb-4 text-red-500 dark:text-errorText border bg-red-100 dark:bg-errorBackground rounded-lg mt-4 flex justify-center items-center transition-colors duration-200">{error}</p>}
             </form>
         </div>
     )

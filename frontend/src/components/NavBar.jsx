@@ -12,9 +12,7 @@ const NavBar = () => {
                 <nav>
                     <ul className="flex space-x-4">
                     <li>
-                    <div>
                     <ThemeBtn/>
-                    </div>
                     </li>
                         <li >
                             <Link to='/test' className="rounded-lg p-1.5 text-white bg-green-600 hover:bg-green-500 active:bg-green-600 dark:bg-darkTestButton dark:hover:bg-darkTestButtonHover dark:active:bg-darkTestButton dark:text-darkButtonText font-semibold transition duration-200">

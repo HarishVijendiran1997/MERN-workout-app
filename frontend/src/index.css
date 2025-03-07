@@ -3,38 +3,137 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  --color-darkPrimary: #262626;
-  --color-darkSecondary: #404040;
-  --color-darkTertiary: #666666;
-/*background*/
-  --color-darkTextPrimary: #155dfc;
-  --color-darkTextPrimaryHover:#1447e6;
 
-  --color-darkTextSecondary: #a1a1a1;
-  --color-darkTextResult: #e5e5e5;
+  /*Purple-Mode*/
+  /* --color-dark: #2a1a3a; 
+  --color-darkHover: #1a0f2a;
+
+  --color-darkPrimary: #1a0f2a; 
+  --color-darkSecondary: #241537; 
+  --color-darkTertiary: #2e1a45; 
+
+  --color-darkTextPrimary: #bb86fc; 
+  --color-darkTextPrimaryHover: #9b6de6;
+
+  --color-darkTextSecondary: #c7a2ff;
+  --color-darkTextResult: #e0caff;
+
+  --color-darkInputText: #e5e5e5;
+  --color-darkInputBackground: #3a1e5a;
+  --color-darkBorder: #5c3c8c;
+
+  --color-darkEditButton: #bb86fc;
+  --color-darkEditButtonHover: #9b6de6;
+
+  --color-darkDeleteButton: #e05696;
+  --color-darkDeleteButtonHover: #c3467c;
+
+  --color-darkSaveButton: #a970ff;
+  --color-darkSaveButtonHover: #8448ff;
+
+  --color-darkCancelButton: #865ea6;
+  --color-darkCancelButtonHover: #6b4691;
+  --color-darkCancelButtonText: #e5e5e5;
+
+  --color-darkAddButton: #9b59b6;
+  --color-darkAddButtonHover: #8a46a6;
+
+  --color-darkButtonText: #ffffff;
+
+  --color-darkTestButton: #6a5acd;
+  --color-darkTestButtonHover: #5743b3;
+
+  --color-errorText: #ff6b6b;
+  --color-errorBackground: #3a002a;
+
+  --font-primary: 'Poppins', sans-serif; */
+
+  /*Dark-Mode*/
+  /* --color-dark:#2c2c2c; 
+  --color-darkHover:#181818;
+  
+ --color-darkPrimary: #181818;
+ --color-darkSecondary: #222222;
+ --color-darkTertiary: #2c2c2c; 
+
+ --color-darkTextPrimary: #58a6ff;
+ --color-darkTextPrimaryHover: #3794ff;
+
+ --color-darkTextSecondary: #a1a1a1;
+ --color-darkTextResult: #d4d4d4;
+
+ --color-darkInputText: #e5e5e5;
+ --color-darkInputBackground: #2d2d2d;
+ --color-darkBorder: #444444;
+
+ --color-darkEditButton: #58a6ff;
+ --color-darkEditButtonHover: #1f76e6;
+
+ --color-darkDeleteButton: #ff4d4d;
+ --color-darkDeleteButtonHover: #d93636;
+
+ --color-darkSaveButton: #a970ff;
+ --color-darkSaveButtonHover: #8448ff;
+
+ --color-darkCancelButton: #747474;
+ --color-darkCancelButtonHover: #5a5a5a;
+ --color-darkCancelButtonText: #e5e5e5;
+
+ --color-darkAddButton: #27ae60;
+ --color-darkAddButtonHover: #219653;
+
+ --color-darkButtonText: #ffffff;
+
+ --color-darkTestButton: #6a5acd;
+ --color-darkTestButtonHover: #5743b3;
+
+ --color-errorText: #ff6b6b;
+ --color-errorBackground: #2a0000;
+
+  --font-primary: 'Poppins', sans-serif; */
+
+  /*Colorful-Mode*/
+  --color-dark: #1e1e2e; 
+  --color-darkHover: #151526;
+
+  --color-darkPrimary: #282a36;
+  --color-darkSecondary: #3a3d58;
+  --color-darkTertiary: #4f5372;
+
+  --color-darkTextPrimary: #ffcc00;
+  --color-darkTextPrimaryHover: #ffdb4d;
+
+  --color-darkTextSecondary: #ff6699;
+  --color-darkTextResult: #66ffcc;
 
   --color-darkInputText: #ffffff;
-  --color-darkInputBackground: #333333;
-  --color-darkBorder: #6a7282;
+  --color-darkInputBackground: #2d2d46;
+  --color-darkBorder: #5c5f87;
 
-  --color-darkEditButton: #155dfc;
-  --color-darkEditButtonHover: #193cb8;
-  --color-darkDeleteButton: #fb2c36;
-  --color-darkDeleteButtonHover: #e7000b;
-  --color-darkSaveButton: #ad46ff;
-  --color-darkSaveButtonHover: #9810fa;
-  --color-darkCancelButton: #d1d5dc;
-  --color-darkCancelButtonHover: #99a1af;
-  --color-darkCancelButtonText: #1a1a1a;
-  --color-darkAddButton: #00a63e;
-  --color-darkAddButtonHover: #00c950;
+  --color-darkEditButton: #ff6699;
+  --color-darkEditButtonHover: #ff3385;
+
+  --color-darkDeleteButton: #ff4d4d;
+  --color-darkDeleteButtonHover: #e60000;
+
+  --color-darkSaveButton: #33ccff;
+  --color-darkSaveButtonHover: #00aaff;
+
+  --color-darkCancelButton: #ffcc00;
+  --color-darkCancelButtonHover: #ffdb4d;
+  --color-darkCancelButtonText: #1e1e2e;
+
+  --color-darkAddButton: #66ff66;
+  --color-darkAddButtonHover: #33cc33;
+
   --color-darkButtonText: #ffffff;
-  
-  --color-darkTestButton: #0d46ff;
-  --color-darkTestButtonHover: #0d20f0;
 
-  --color-errorText: #fb2c36;
-  --color-errorBackground: #252525;
-  
+  --color-darkTestButton: #ff9900;
+  --color-darkTestButtonHover: #ff8000;
+
+  --color-errorText: #ff4444;
+  --color-errorBackground: #330000;
+
   --font-primary: 'Poppins', sans-serif;
+
 }
