@@ -4,10 +4,11 @@ import NavBar from "./components/NavBar.jsx"
 import Test from "./pages/Test.jsx"
 import { Slide, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { ThemeProvider, useTheme } from "../contexts/ThemeContext.jsx";
+import { ThemeContextProvider } from "../contexts/ThemeContext.jsx";
+import { useThemeContext } from "../hooks/useThemeContext.jsx";
 
 function AppContent() {
-  const { themeMode } = useTheme()  
+  const { themeMode } = useThemeContext()  
   return (
       <div className="font-primary min-h-screen flex flex-col">
         <BrowserRouter>
@@ -26,9 +27,9 @@ function AppContent() {
 
 function App() {
   return (
-    <ThemeProvider>
+    <ThemeContextProvider>
       <AppContent />
-    </ThemeProvider>
+    </ThemeContextProvider>
   );
 }
 
