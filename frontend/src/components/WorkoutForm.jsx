@@ -117,19 +117,19 @@ const WorkoutForm = () => {
             <form onSubmit={handleSubmit} className="max-w-lg mx-auto p-6 bg-white dark:bg-darkSecondary dark:text-darkInputText  shadow-md rounded-lg
 transition-colors duration-200">
                 <h2 className="text-2xl font-bold text-blue-600 dark:text-darkTextPrimary mb-4 transition-colors duration-200">Add a new workout</h2>
-                <input className={`w-full p-2 mb-4 border  rounded-lg dark:bg-darkInputBackground transition-colors duration-200 ${emptyFields.includes('title') ? "border-red-500 dark:border-red-500" : "border-gray-300 dark:border-darkBorder"}`}
+                <input className={`w-full p-2 mb-4 border  rounded-lg placeholder:text-gray-500 dark:placeholder:text-darkTextPlaceholder dark:bg-darkInputBackground transition-colors duration-200 ${emptyFields.includes('title') ? "border-red-500 dark:border-red-500" : "border-gray-300 dark:border-darkBorder"}`}
                     type="text"
                     onChange={(e) => setTitle(e.target.value)}
                     value={title}
                     placeholder="Workout Title"
                 />
-                <input className={`w-full p-2 mb-4 border dark:border-darkBorder rounded-lg dark:bg-darkInputBackground transition-colors duration-200 ${emptyFields.includes('load') ? "border-red-500 dark:border-red-500" : "border-gray-300 dark:border-darkBorder"}`}
+                <input className={`w-full p-2 mb-4 placeholder:text-gray-500 dark:placeholder:text-darkTextPlaceholder border dark:border-darkBorder rounded-lg dark:bg-darkInputBackground transition-colors duration-200 ${emptyFields.includes('load') ? "border-red-500 dark:border-red-500" : "border-gray-300 dark:border-darkBorder"}`}
                     type="number"
                     onChange={handleLoadChange}
                     value={load}
                     placeholder="Load (kg)"
                 />
-                <input className={`w-full p-2 mb-4 border dark:border-darkBorder rounded-lg dark:bg-darkInputBackground transition-colors duration-200 ${emptyFields.includes('reps') ? "border-red-500 dark:border-red-500" : "border-gray-300 dark:border-darkBorder"}`}
+                <input className={`w-full p-2 mb-4 placeholder:text-gray-500 dark:placeholder:text-darkTextPlaceholder border dark:border-darkBorder rounded-lg dark:bg-darkInputBackground transition-colors duration-200 ${emptyFields.includes('reps') ? "border-red-500 dark:border-red-500" : "border-gray-300 dark:border-darkBorder"}`}
                     type="number"
                     onChange={handleRepsChange}
                     value={reps}

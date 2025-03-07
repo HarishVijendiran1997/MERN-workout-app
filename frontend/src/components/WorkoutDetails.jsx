@@ -61,9 +61,15 @@ const WorkoutDetails = ({ workout }) => {
             toast.error("Title cannot be empty!");
             return setError("Title cannot be empty!");
         }
-        if (load < 0 || reps < 0) {
-            toast.error("Load and reps cannot be negative!");
-            return setError("Load and reps cannot be negative!");
+        if (load < 0 || reps < 1) {
+            if (load < 0) {
+                toast.error("Load cannot be negative!");
+                return setError("Load cannot be negative!");
+            }
+            if (reps < 1) {
+                toast.error("Reps cannot be less than 1!");
+                return setError("Reps cannot be less than 1!");
+            }
         }
 
         try {
@@ -99,8 +105,10 @@ const WorkoutDetails = ({ workout }) => {
     return (
         <div className="flex items-start bg-white dark:bg-darkSecondary max-w-screen rounded-lg font-Poppins ml-4  pb-5  pl-5 pt-5 flex-col shadow-md mb-5 transition-colors duration-200">
             {isEditing ? (
-                <div>
-                    {error && <p className="text-red-600 text-s mb-4">{error}</p>}
+                <div><div className="flex justify-center">
+
+                    {error && <p className="w-1/2 p-2 mr-3 mb-4 text-red-500 dark:text-errorText border bg-red-100 dark:bg-errorBackground rounded-lg mt-4 flex justify-center items-center transition-colors duration-200">{error}</p>}
+                </div>
 
                     <div className="flex flex-wrap gap-2.5 justify-between">
 

@@ -8,12 +8,13 @@ export const ThemeProvider = ({ children }) => {
 
     const toggleTheme = () => {
         setThemeMode((prevTheme) => (prevTheme === "light" ? "dark" : "light"))
+        setTimeout(() => setThemeMode(prevTheme))
     }
     useEffect(() => {
         const htmlElement = document.documentElement;
         htmlElement.classList.remove("dark", "light");
         htmlElement.classList.add(themeMode);
-      }, [themeMode]);
+    }, [themeMode]);
 
     return (
         <ThemeContext.Provider value={{ themeMode, toggleTheme }}>
