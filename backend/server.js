@@ -4,6 +4,7 @@ import cors from "cors";
 
 //importing the routes
 import workoutRoutes from "./routes/workouts.routes.js";
+import userRoutes from "./routes/user.routes.js"
 
 //importing the database connection function
 import { connectToDatabase } from "./database/db.js";
@@ -33,6 +34,7 @@ app.use((req, res, next) => {
 //? routes
 //routes for the workouts
 app.use("/api/workouts", workoutRoutes);
+app.use("/api/user", userRoutes);
 
 //? server
 //starting the server
