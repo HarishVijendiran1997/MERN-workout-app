@@ -131,10 +131,10 @@ const WorkoutDetails = ({ workout }) => {
                     </div>
                 </div>
             ) : (<>
-                <h4 className="cursor-pointer text-2xl font-extrabold text-blue-600 hover:text-darkTextPrimaryHover dark:text-darkTextPrimary transition-colors duration-200" onClick={handleTitleClick}>{workout.title}</h4>
+                <h4 className="cursor-pointer text-2xl font-extrabold text-blue-600 hover:text-blue-500 dark:hover:text-darkTextPrimaryHover dark:text-darkTextPrimary transition-colors duration-200" onClick={handleTitleClick}>{workout.title}</h4>
                 <div className="flex justify-between w-full pr-5 items-center dark:text-darkTextResult transition-colors duration-200">
                     <p><strong className="dark:text-darkTextSecondary transition-colors duration-200">Load (kg) : </strong>{workout.load}</p>
-                    <p><strong className="dark:text-darkTextSecondary transition-colors duration-200">Reps : </strong>{workout.reps}</p>
+                    <p><strong className="dark:text-darkTextSecondary transition-colors duration-200">Reps : </strong>{workout.reps}</p>    
                     <p><strong className="dark:text-darkTextSecondary transition-colors duration-200">Created : </strong>{formatDistanceToNow(new Date(workout.createdAt), { addSuffix: true })}</p>
 
 

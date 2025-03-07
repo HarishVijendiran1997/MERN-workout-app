@@ -4,11 +4,12 @@ export const ThemeContext = createContext()
 
 export const ThemeProvider = ({ children }) => {
 
-    const [themeMode, setThemeMode] = useState("light")
+    const [themeMode, setThemeMode] = useState(localStorage.getItem("theme") || "light")
 
     const toggleTheme = () => {
-        setThemeMode((prevTheme) => (prevTheme === "light" ? "dark" : "light"))
-        setTimeout(() => setThemeMode(prevTheme))
+        const newTheme = themeMode === "light"? "dark" : "light";
+        setThemeMode(newTheme)
+        localStorage.setItem("theme", newTheme);
     }
     useEffect(() => {
         const htmlElement = document.documentElement;
