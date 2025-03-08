@@ -6,12 +6,15 @@ import {
   updateWorkout,
   deleteWorkout,
 } from "../controllers/workout.controller.js";
+import { requireAuth } from "../middlewares/requireAuth.middleware.js";
 
 //importing the middleware to validate the workout ID
 import validateId from "../middlewares/validId.middleware.js";
 
 //declaring the express router
 const router = express.Router();
+
+router.use(requireAuth)
 
 //routes for the workouts
 router.get("/", getWorkouts);

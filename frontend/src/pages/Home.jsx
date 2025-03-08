@@ -46,11 +46,11 @@ const Home = () => {
                     </div>
                 ) : error ? (
                     <div className="flex flex-grow justify-center items-center">
-                        <h1 className="text-2xl text-red-600 font-semibold">{error}</h1>
+                        <h1 className="w-6/7 p-2 mb-4 text-2xl text-red-500 dark:text-errorText border bg-red-100 dark:bg-errorBackground rounded-lg mt-4 flex justify-center items-center transition-colors duration-200">{error}</h1>
                     </div>
                 ) : workouts?.length === 0 ? (
                     <div className="flex flex-grow justify-center items-center">
-                        <p className="text-2xl text-gray-600">No workouts found. Add a new one!</p>
+                        <p className="text-2xl text-gray-500">No workouts found. Add a new one!</p>
                     </div>
                 ) : (
                     <div className="flex flex-col ">
