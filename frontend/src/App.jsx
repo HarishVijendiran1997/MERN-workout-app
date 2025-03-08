@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom"
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
 import Home from "./pages/Home.jsx"
 import NavBar from "./components/NavBar.jsx"
 import Test from "./pages/Test.jsx"
@@ -8,8 +8,10 @@ import { ThemeContextProvider } from "../contexts/ThemeContext.jsx";
 import { useThemeContext } from "../hooks/useThemeContext.jsx";
 import Login from "./pages/Login.jsx"
 import Signup from "./pages/Signup.jsx"
+import { useAuthContext } from "../hooks/useAuthContext.jsx";
 
 function AppContent() {
+  const { user } = useAuthContext()
   const { themeMode } = useThemeContext()
   return (
     <div className="font-primary min-h-screen flex flex-col">
@@ -18,10 +20,10 @@ function AppContent() {
         <NavBar />
         <div className="flex-grow">
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<Signup />} />
-            <Route path="/test" element={<Test />} />
+            <Route path="/" element={user ? <Home /> : <Navigate to="/login" />} />
+            <Route path="/test" element={user ? <Test /> : <Navigate to="/login" />} />
+            <Route path="/login" element={!user ? <Login /> : <Navigate to="/" />} />
+            <Route path="/signup" element={!user ? <Signup /> : <Navigate to="/" />} />
           </Routes>
         </div>
       </BrowserRouter>
