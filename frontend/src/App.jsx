@@ -6,24 +6,28 @@ import { Slide, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ThemeContextProvider } from "../contexts/ThemeContext.jsx";
 import { useThemeContext } from "../hooks/useThemeContext.jsx";
+import Login from "./pages/Login.jsx"
+import Signup from "./pages/Signup.jsx"
 
 function AppContent() {
-  const { themeMode } = useThemeContext()  
+  const { themeMode } = useThemeContext()
   return (
-      <div className="font-primary min-h-screen flex flex-col">
-        <BrowserRouter>
-          <ToastContainer theme={themeMode} position="bottom-right" closeOnClick={true} transition={Slide} autoClose={3000} />
-          <NavBar />
-          <div className="flex-grow">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/test" element={<Test />} />
-            </Routes>
-          </div>
-        </BrowserRouter>
-      </div>
+    <div className="font-primary min-h-screen flex flex-col">
+      <BrowserRouter>
+        <ToastContainer theme={themeMode} position="bottom-right" closeOnClick={true} transition={Slide} autoClose={3000} />
+        <NavBar />
+        <div className="flex-grow">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/test" element={<Test />} />
+          </Routes>
+        </div>
+      </BrowserRouter>
+    </div>
   )
-} 
+}
 
 function App() {
   return (
