@@ -5,17 +5,23 @@ import WorkoutForm from "../components/WorkoutForm.jsx";
 import { useWorkoutsContext } from "../../hooks/useWorkoutsContext.jsx";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useAuthContext } from "../../hooks/useAuthContext.jsx";
 
 const Home = () => {
     const { workouts, dispatch } = useWorkoutsContext();
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
     const [showToast, setShowToast] = useState(true);
+    const { user } = useAuthContext();
 
     useEffect(() => {
         const fetchWorkouts = async () => {
             try {
-                const response = await axios.get("http://localhost:4000/api/workouts");
+                const response = await axios.get("http://localhost:4000/api/workouts", {
+                    headers: {
+                        Authorization: `Bearer ${user.token}`
+                    }
+                });
                 dispatch({ type: "SET_WORKOUTS", payload: response.data.workouts });
                 if (showToast) {
                     toast.info(response?.data?.message || "Workouts loaded successfully!", { position: "bottom-right" });
@@ -31,7 +37,9 @@ const Home = () => {
             }
         };
 
-        fetchWorkouts();
+        if (user) {
+            fetchWorkouts();
+        }
     }, []);
 
     return (

@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Bounce, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useAuthContext } from "../../hooks/useAuthContext"
 
 const WorkoutDetails = ({ workout }) => {
 
@@ -17,6 +18,7 @@ const WorkoutDetails = ({ workout }) => {
     const [load, setLoad] = useState(workout.load);
     const [reps, setReps] = useState(workout.reps);
     const [error, setError] = useState(null);
+    const { user } = useAuthContext();
 
     const handleTitleClick = () => {
         navigate("/test", { state: { workout } });
@@ -41,11 +43,19 @@ const WorkoutDetails = ({ workout }) => {
     };
 
     const handleDelete = async () => {
+        if (!user) {
+            toast.error("You must be logged in to delete workouts.");
+            return;
+        }
         if (isDeleting) return
         setIsDeleting(true);
         try {
             console.log("Deleting workout with ID:", workout._id);
-            const response = await axios.delete(`http://localhost:4000/api/workouts/${workout._id}`)
+            const response = await axios.delete(`http://localhost:4000/api/workouts/${workout._id}`, {
+                headers: {
+                    Authorization: `Bearer ${user.token}`
+                }
+            })
             dispatch({ type: 'DELETE_WORKOUT', payload: workout._id })
             toast.success(response.data.message);
         } catch (error) {
@@ -57,6 +67,10 @@ const WorkoutDetails = ({ workout }) => {
     }
 
     const handleUpdate = async () => {
+        if (!user) {
+            toast.error("You must be logged in to update workouts.");
+            return;
+        }
         if (title.trim() === '') {
             toast.error("Title cannot be empty!");
             return setError("Title cannot be empty!");
@@ -77,6 +91,10 @@ const WorkoutDetails = ({ workout }) => {
                 title,
                 load: Number(load),
                 reps: Number(reps)
+            }, {
+                headers: {
+                    Authorization: `Bearer ${user.token}`
+                }
             })
             dispatch({ type: 'UPDATE_WORKOUT', payload: response.data.updateWorkout })
             setIsEditing(false)
@@ -134,7 +152,7 @@ const WorkoutDetails = ({ workout }) => {
                 <h4 className="cursor-pointer text-2xl font-extrabold text-blue-600 hover:text-blue-500 dark:hover:text-darkTextPrimaryHover dark:text-darkTextPrimary transition-colors duration-200" onClick={handleTitleClick}>{workout.title}</h4>
                 <div className="flex justify-between w-full pr-5 items-center dark:text-darkTextResult transition-colors duration-200">
                     <p><strong className="dark:text-darkTextSecondary transition-colors duration-200">Load (kg) : </strong>{workout.load}</p>
-                    <p><strong className="dark:text-darkTextSecondary transition-colors duration-200">Reps : </strong>{workout.reps}</p>    
+                    <p><strong className="dark:text-darkTextSecondary transition-colors duration-200">Reps : </strong>{workout.reps}</p>
                     <p><strong className="dark:text-darkTextSecondary transition-colors duration-200">Created : </strong>{formatDistanceToNow(new Date(workout.createdAt), { addSuffix: true })}</p>
 
 

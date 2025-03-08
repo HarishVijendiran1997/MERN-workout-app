@@ -3,7 +3,7 @@ import axios from "axios";
 import { useWorkoutsContext } from "../../hooks/useWorkoutsContext";
 import { Bounce, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import { useAuthContext } from "../../hooks/useAuthContext";
 const WorkoutForm = () => {
 
     const { dispatch } = useWorkoutsContext()
@@ -13,9 +13,15 @@ const WorkoutForm = () => {
     const [error, setError] = useState(null);
     const [emptyFields, setEmptyFields] = useState([]);
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const { user } = useAuthContext();
 
     const handleSubmit = async (e) => {
         e.preventDefault()
+        if(!user){
+            setError("Please log in to add a workout");
+            toast.error("Please log in to add a workout", { transition: Bounce });
+            return;
+        }
 
         let missingFields = [];
 
@@ -74,6 +80,10 @@ const WorkoutForm = () => {
                 title,
                 load: Number(load),
                 reps: Number(reps)
+            }, {
+                headers: {
+                    Authorization: `Bearer ${user.token}`
+                }
             })
             dispatch({ type: 'CREATE_WORKOUT', payload: response.data.newWorkout })
             setTitle('')
