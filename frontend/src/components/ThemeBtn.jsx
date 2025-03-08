@@ -7,9 +7,9 @@ export function ThemeBtn() {
     return (
         <button
             onClick={toggleTheme}
-            className={`p-1 rounded-full transition-colors duration-500 shadow-md border 
+            className={`cursor-pointer p-1 rounded-full transition-colors duration-500 shadow-md border 
                 ${themeMode === "light" 
-                    ? "bg-dark hover:bg-darkHover border-gray-600" 
+                    ? "bg-dark hover:border-darkButtonText border-gray-600" 
                     : "bg-white hover:bg-neutral-700 border-gray-300"
                 }`}
         >

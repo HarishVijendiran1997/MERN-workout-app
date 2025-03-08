@@ -1,21 +1,12 @@
 import { Link } from "react-router-dom";
 import { ThemeBtn } from "../components/ThemeBtn"
 import { useLogout } from "../../hooks/useLogout";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { useAuthContext } from "../../hooks/useAuthContext";
 
 const NavBar = () => {
 
-    const {logout} = useLogout()
+    const { logout } = useLogout()
     const { user } = useAuthContext()
-
-    const handleLogout = () => {
-
-            logout();
-            toast.success("Logged out successfully");
-        }
-
 
     return (
         <header className="bg-blue-900 dark:bg-darkTertiary shadow-md">
@@ -24,16 +15,16 @@ const NavBar = () => {
                     <h1 className="dark:text-darkTextPrimary text-3xl font-bold" >Workout Planner</h1>
                 </Link>
                 <nav className="flex space-x-4">
-                    <div>
-                        <h4 className="text-lg dark:text-darkTextUser transition-colors duration-200">{user?.email}</h4>
-                    </div>
-                    <div>
-                        <button className="rounded-lg p-1.5 text-white bg-green-600 hover:bg-green-500 active:bg-green-600 dark:bg-darkTestButton dark:hover:bg-darkTestButtonHover dark:active:bg-darkTestButton dark:text-darkButtonText transition duration-200 cursor-pointer" onClick={handleLogout}>Log out</button>
-                    </div>
-                    <div className="flex space-x-4">
+                    {user && (
+                        <div className="flex space-x-4">
+                            <span className="text-lg dark:text-darkTextUser transition-colors duration-200">{user?.email}</span>
+                            <button className="rounded-lg p-1.5 text-white bg-green-600 hover:bg-green-500 active:bg-green-600 dark:bg-darkTestButton dark:hover:bg-darkTestButtonHover dark:active:bg-darkTestButton dark:text-darkButtonText transition duration-200 cursor-pointer" onClick={logout}>Log out</button>
+                        </div>)}
+                    {!user && (
+                        <div className="flex space-x-4">
                             <Link to='/login' className="rounded-lg p-1.5 text-white bg-green-600 hover:bg-green-500 active:bg-green-600 dark:bg-darkEditButton dark:hover:bg-darkEditButtonHover dark:active:bg-darkEditButton dark:text-darkButtonText transition duration-200 cursor-pointer">Login</Link>
                             <Link to='/signup' className="rounded-lg p-1.5 text-white bg-green-600 hover:bg-green-500 active:bg-green-600 dark:bg-darkSaveButton dark:hover:bg-darkSaveButtonHover dark:active:bg-darkSaveButton dark:text-darkButtonText transition duration-200 cursor-pointer">Signup</Link>
-                    </div>
+                        </div>)}
                     <div>
                         <ThemeBtn />
                     </div>
