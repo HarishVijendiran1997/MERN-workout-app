@@ -1,13 +1,15 @@
 import { useState } from "react"
+import { useLogin } from "../../hooks/useLogin"
 
 const Login = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [showPassword, setShowPassword] = useState(false)
+    const { login, isLoading, error } = useLogin()
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        console.log(email, password);
+        await login(email, password)
     }
     return (
         <div className="flex text-center bg-gray-200 dark:bg-darkPrimary w-full min-h-[calc(100vh-5.5rem)] pt-5 transition-colors duration-200">
@@ -44,9 +46,9 @@ transition-colors duration-200 py-10">
                         Show password
                     </label>
                 </div>
-                <button className="
+                <button disabled={isLoading}  className="
                     w-full bg-green-600 hover:bg-green-500 active:bg-green-600 cursor-pointer text-white p-2 rounded dark:text-ButtonText dark:bg-darkAddButton dark:hover:bg-darkAddButtonHover dark:active:bg-darkAddButton transition-colors duration-200">Login</button>
-
+                {error && <p className="w-full p-2 mb-4 text-red-500 dark:text-errorText border bg-red-100 dark:bg-errorBackground rounded-lg mt-4 flex justify-center items-center transition-colors duration-200">{error}</p>}
             </form>
         </div>
     )
