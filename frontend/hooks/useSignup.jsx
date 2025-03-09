@@ -24,5 +24,5 @@ export const useSignup = () => {
         }
     }
     
-    return { signup, error, isLoading }
+    return { signup, error, isLoading, setError }
 }
