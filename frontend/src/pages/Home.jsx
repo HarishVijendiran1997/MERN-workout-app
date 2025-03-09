@@ -45,7 +45,7 @@ const Home = () => {
     }, []);
 
     return (
-        <div className="grid grid-cols-[3fr_2fr] text-center bg-gray-200 dark:bg-darkPrimary w-full min-h-[calc(100vh-5.5rem)] pt-5 gap-4 transition-colors duration-200">
+        <div className="grid grid-cols-[4fr_2fr] text-center bg-gray-200 dark:bg-darkPrimary w-full min-h-[calc(100vh-5.5rem)] pt-5 gap-4 transition-colors duration-200">
             <div className="px-4 flex flex-col h-full">
                 {loading ? (
                     <div className="flex flex-grow justify-center items-center">
