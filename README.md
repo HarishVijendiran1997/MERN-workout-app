@@ -16,6 +16,7 @@ The **Workout Planner App** is a full-stack web application built using the **ME
 - **Add Workouts**: Users can add new workout sessions with details like title, reps, and load.
 - **Edit Workouts**: Users can update existing workouts.
 - **Delete Workouts**: Users can remove workouts from their list.
+- **Workout Title Suggestions**: Provides a list of suggested workout titles based on common exercises.
 
 ### 🎨 Theme Toggle
 - **Light & Dark Mode**: Users can switch between light and dark themes.
@@ -78,6 +79,7 @@ npm start
 ## Future Enhancements
 - User progress tracking
 - Responsive design mobile-friendly UI
+- AI-based workout recommendations
 
 ## Contributing
 Feel free to fork and contribute to this project by opening a pull request! 🚀

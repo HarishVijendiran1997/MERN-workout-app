@@ -169,7 +169,7 @@ const WorkoutDetails = ({ workout }) => {
                 </div>
             </>)}
             {deleteConfirm && (
-                <div className="fixed inset-0 flex items-center justify-center backdrop-blur-lg bg-black/80">
+                <div className="fixed inset-0 flex items-center justify-center backdrop-blur-lg bg-black/80 z-10">
                     <div className="bg-white dark:bg-darkSecondary p-6 rounded-lg shadow-lg transition-colors duration-200">
                         <p className="text-lg font-semibold dark:text-darkTextResult transition-colors duration-200">
                             Are you sure you want to delete this workout?

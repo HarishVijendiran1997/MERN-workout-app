@@ -6,11 +6,9 @@ import { WorkoutsContextProvider } from '../contexts/WorkoutContext.jsx'
 import { AuthContextProvider } from '../contexts/AuthContext.jsx'
 
 createRoot(document.getElementById('root')).render(
-  // <>
   <AuthContextProvider>
     <WorkoutsContextProvider>
       <App />
     </WorkoutsContextProvider>
   </AuthContextProvider>
-  // </StrictMode>,
 )
