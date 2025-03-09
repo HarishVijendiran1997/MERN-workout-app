@@ -16,20 +16,29 @@ const WorkoutStatus = ({ workout }) => {
         }
 
         try {
-            const response = await axios.get("http://localhost:4000/api/workouts", {
-                headers: {
-                    Authorization: `Bearer ${user.token}`
+            if (newStatus === "in progress") {
+                const response = await axios.get("http://localhost:4000/api/workouts", {
+                    headers: {
+                        Authorization: `Bearer ${user.token}`
+                    }
+                });
+                const allWorkouts = response.data.workouts;
+                const currentlyInProgress = allWorkouts.find(w => w.status === "in progress");
+
+                if (currentlyInProgress && currentlyInProgress._id !== workout._id) {
+                    await axios.patch(
+                        `http://localhost:4000/api/workouts/${currentlyInProgress._id}`,
+                        { status: "pending" },
+                        { headers: { Authorization: `Bearer ${user.token}` } }
+                    );
+
+                    dispatch({
+                        type: "UPDATE_WORKOUT",
+                        payload: { ...currentlyInProgress, status: "pending" }
+                    });
                 }
-            });
-            const allWorkouts = response.data.workouts
-            const currentlyInProgress = allWorkouts.find(w => w.status === "in progress")
-            if (currentlyInProgress) {
-                await axios.patch(`http://localhost:4000/api/workouts/${currentlyInProgress._id}`,
-                    { status: "pending" },
-                    { headers: { Authorization: `Bearer ${user.token}` } }
-                );
-                dispatch({ type: "UPDATE_WORKOUT", payload: { ...currentlyInProgress, status: "pending" } });
             }
+
             const updateResponse = await axios.patch(
                 `http://localhost:4000/api/workouts/${workout._id}`,
                 { status: newStatus },
