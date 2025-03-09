@@ -78,7 +78,6 @@ const WorkoutDetails = ({ workout }) => {
         }
     }
 
-
     const handleLoadOnChange = (e) => {
         setLoad(e.target.value)
     }
@@ -88,7 +87,6 @@ const WorkoutDetails = ({ workout }) => {
     const handleTitleOnChange = (e) => {
         setTitle(e.target.value)
     }
-
 
 
     return (
