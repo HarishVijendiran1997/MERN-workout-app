@@ -20,6 +20,7 @@ const WorkoutDetails = ({ workout }) => {
     const [error, setError] = useState(null);
     const { user } = useAuthContext();
     const isCompleted = workout.status === 'completed';
+    const inProgress = workout.status === 'in progress';
 
     const handleUpdate = async () => {
         if (!user) {
@@ -86,7 +87,7 @@ const WorkoutDetails = ({ workout }) => {
     };
 
     return (
-        <div className={`flex items-start max-w-screen rounded-lg font-Poppins ml-4 pb-5 pl-5 pt-5 flex-col shadow-md mb-5 transition-colors duration-200 ${isCompleted?"bg-neutral-200 dark:bg-darkDisabledCard":" bg-white dark:bg-darkSecondary"}`}>
+        <div className={`flex items-start max-w-screen rounded-lg font-Poppins ml-4 pb-5 pl-5 pt-5 flex-col shadow-md mb-5 transition-colors duration-200 ${isCompleted ? "bg-neutral-300 dark:bg-darkDisabledCard" : inProgress ? "bg-blue-200 dark:bg-darkProgress " : "bg-white dark:bg-darkSecondary"}`}>
             {isEditing ? (
                 <div>
                     <div className="flex justify-center">
@@ -110,7 +111,22 @@ const WorkoutDetails = ({ workout }) => {
                 </div>
             ) : (
                 <>
-                    <h4 className={`text-2xl font-extrabold transition-colors duration-200 ${isCompleted ? "text-neutral-800 dark:text-darkDisabledText cursor-not-allowed line-through" : " text-blue-600 hover:text-blue-500 dark:hover:text-darkTextPrimaryHover dark:text-darkTextPrimary  cursor-pointer "}`} onClick={() => !isCompleted && navigate("/test", { state: { workout } })}>{workout.title}</h4>
+                    <div className="flex">
+                        <h4 className={` text-2xl font-extrabold transition-colors duration-200 ${isCompleted ? "text-neutral-800 dark:text-darkDisabledText cursor-not-allowed line-through" : " text-blue-600 hover:text-blue-500 dark:hover:text-darkTextPrimaryHover dark:text-darkTextPrimary  cursor-pointer "} `} onClick={() => !isCompleted && navigate("/test", { state: { workout } })}>{workout.title}</h4>
+                        {inProgress && <div className="flex items-center justify-center">
+                            <span className="dark:text-darkAddButtonHover p-2 animate-ping">
+                                <div className="border border-green-400 dark:border-darkAddButton w-3 h-3 bg-green-500 dark:bg-darkAddButtonHover rounded-full overflow-hidden">
+                                </div>
+                            </span>
+                        </div>}
+                        {isCompleted && <div className="flex items-center justify-center -translate-y-1">
+                            <span className="text-blue-600 dark:text-darkAddButtonHover p-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-6">
+                                    <path fillRule="evenodd" d="M8.603 3.799A4.49 4.49 0 0 1 12 2.25c1.357 0 2.573.6 3.397 1.549a4.49 4.49 0 0 1 3.498 1.307 4.491 4.491 0 0 1 1.307 3.497A4.49 4.49 0 0 1 21.75 12a4.49 4.49 0 0 1-1.549 3.397 4.491 4.491 0 0 1-1.307 3.497 4.491 4.491 0 0 1-3.497 1.307A4.49 4.49 0 0 1 12 21.75a4.49 4.49 0 0 1-3.397-1.549 4.49 4.49 0 0 1-3.498-1.306 4.491 4.491 0 0 1-1.307-3.498A4.49 4.49 0 0 1 2.25 12c0-1.357.6-2.573 1.549-3.397a4.49 4.49 0 0 1 1.307-3.497 4.49 4.49 0 0 1 3.497-1.307Zm7.007 6.387a.75.75 0 1 0-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 0 0-1.06 1.06l2.25 2.25a.75.75 0 0 0 1.14-.094l3.75-5.25Z" clipRule="evenodd" />
+                                </svg>
+                            </span>
+                        </div>}
+                    </div>
                     <div className={`flex justify-between w-full pr-5 items-center transition-colors duration-200 ${isCompleted ? "text-neutral-800 dark:text-darkDisabledText cursor-not-allowed" : "dark:text-darkTextResult"}`}>
                         <p><strong className={`transition-colors duration-200 ${isCompleted ? "text-neutral-800 dark:text-darkDisabledText cursor-not-allowed line-through" : "dark:text-darkTextSecondary"}`}>Load (kg): </strong><span className={`${isCompleted ? "line-through" : ""}`}>{workout.load}</span></p>
                         <p><strong className={`transition-colors duration-200 ${isCompleted ? "text-neutral-800 dark:text-darkDisabledText cursor-not-allowed line-through" : "dark:text-darkTextSecondary"}`}>Reps: </strong><span className={`${isCompleted ? "line-through" : ""}`}>{workout.reps}</span></p>
@@ -118,7 +134,7 @@ const WorkoutDetails = ({ workout }) => {
                         <div className="flex gap-2 mt-3">
                             <WorkoutStatus workout={workout} />
 
-                            <svg onClick={isCompleted ? null : handleEnableEdit} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={` rounded-lg p-2  transition-colors duration-200 size-10 ${isCompleted ? "text-white bg-neutral-300 dark:bg-darkDisabledButton dark:text-darkDisabledText cursor-not-allowed" : "text-white cursor-pointer bg-blue-600 hover:bg-blue-800 dark:bg-darkEditButton dark:hover:bg-darkEditButtonHover dark:text-darkButtonText "}`}>
+                            <svg onClick={isCompleted ? null : handleEnableEdit} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={` rounded-lg p-2  transition-colors duration-200 size-10 ${isCompleted ? "text-white bg-neutral-400 dark:bg-darkDisabledButton dark:text-darkDisabledText cursor-not-allowed" : "text-white cursor-pointer bg-blue-600 hover:bg-blue-800 dark:bg-darkEditButton dark:hover:bg-darkEditButtonHover dark:text-darkButtonText "}`}>
                                 <path strokeLinecap="round" strokeLinejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
                             </svg>
                             <DeleteWorkout workoutId={workout._id} user={user} dispatch={dispatch} />
