@@ -7,18 +7,19 @@ import { Bounce, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useAuthContext } from "../../hooks/useAuthContext"
 import DeleteWorkout from "./DeleteWorkout";
+import WorkoutStatus from "./WorkoutStatus";
 
 const WorkoutDetails = ({ workout }) => {
 
     const navigate = useNavigate();
     const { dispatch } = useWorkoutsContext()
     const [isEditing, setIsEditing] = useState(false)
-    const [workoutStatus, setWorkoutStatus] = useState("")
     const [title, setTitle] = useState(workout.title)
     const [load, setLoad] = useState(workout.load);
     const [reps, setReps] = useState(workout.reps);
     const [error, setError] = useState(null);
     const { user } = useAuthContext();
+    const isCompleted = workout.status === 'completed';
 
     const handleUpdate = async () => {
         if (!user) {
@@ -84,13 +85,8 @@ const WorkoutDetails = ({ workout }) => {
         toast.info("Editing canceled", { autoClose: 2000, hideProgressBar: true, transition: Bounce });
     };
 
-    const handleWorkoutStatus = (e) => {
-        const value = e.target.value;
-        setWorkoutStatus(value)
-    }
-
     return (
-        <div className="flex items-start bg-white dark:bg-darkSecondary max-w-screen rounded-lg font-Poppins ml-4 pb-5 pl-5 pt-5 flex-col shadow-md mb-5 transition-colors duration-200">
+        <div className={`flex items-start max-w-screen rounded-lg font-Poppins ml-4 pb-5 pl-5 pt-5 flex-col shadow-md mb-5 transition-colors duration-200 ${isCompleted?"bg-neutral-200 dark:bg-darkDisabledCard":" bg-white dark:bg-darkSecondary"}`}>
             {isEditing ? (
                 <div>
                     <div className="flex justify-center">
@@ -114,25 +110,15 @@ const WorkoutDetails = ({ workout }) => {
                 </div>
             ) : (
                 <>
-                    <h4 className="cursor-pointer text-2xl font-extrabold text-blue-600 hover:text-blue-500 dark:hover:text-darkTextPrimaryHover dark:text-darkTextPrimary transition-colors duration-200" onClick={() => navigate("/test", { state: { workout } })}>{workout.title}</h4>
-                    <div className="flex justify-between w-full pr-5 items-center dark:text-darkTextResult transition-colors duration-200">
-                        <p><strong className="dark:text-darkTextSecondary transition-colors duration-200">Load (kg): </strong>{workout.load}</p>
-                        <p><strong className="dark:text-darkTextSecondary transition-colors duration-200">Reps: </strong>{workout.reps}</p>
-                        <p><strong className="dark:text-darkTextSecondary transition-colors duration-200">Created: </strong>{formatDistanceToNow(new Date(workout.createdAt), { addSuffix: true })}</p>
+                    <h4 className={`text-2xl font-extrabold transition-colors duration-200 ${isCompleted ? "text-neutral-800 dark:text-darkDisabledText cursor-not-allowed line-through" : " text-blue-600 hover:text-blue-500 dark:hover:text-darkTextPrimaryHover dark:text-darkTextPrimary  cursor-pointer "}`} onClick={() => !isCompleted && navigate("/test", { state: { workout } })}>{workout.title}</h4>
+                    <div className={`flex justify-between w-full pr-5 items-center transition-colors duration-200 ${isCompleted ? "text-neutral-800 dark:text-darkDisabledText cursor-not-allowed" : "dark:text-darkTextResult"}`}>
+                        <p><strong className={`transition-colors duration-200 ${isCompleted ? "text-neutral-800 dark:text-darkDisabledText cursor-not-allowed line-through" : "dark:text-darkTextSecondary"}`}>Load (kg): </strong><span className={`${isCompleted ? "line-through" : ""}`}>{workout.load}</span></p>
+                        <p><strong className={`transition-colors duration-200 ${isCompleted ? "text-neutral-800 dark:text-darkDisabledText cursor-not-allowed line-through" : "dark:text-darkTextSecondary"}`}>Reps: </strong><span className={`${isCompleted ? "line-through" : ""}`}>{workout.reps}</span></p>
+                        <p><strong className={`transition-colors duration-200 ${isCompleted ? "text-neutral-800 dark:text-darkDisabledText cursor-not-allowed line-through" : "dark:text-darkTextSecondary"}`}>Created: </strong><span className={`${isCompleted ? "line-through" : ""}`}>{formatDistanceToNow(new Date(workout.createdAt), { addSuffix: true })}</span></p>
                         <div className="flex gap-2 mt-3">
-                            <div className="flex space-x-2 translate-y-1">
-                                <div>
-                                    <p><strong className="dark:text-darkTextSecondary transition-colors duration-200">Status :</strong></p>
-                                </div>
-                                <div>
-                                    <select className={`flex border border-gray-300 dark:border-darkBorder p-1 rounded-lg transition-colors duration-200 ${workoutStatus === "Completed" ? "bg-white text-neutral-800 dark:bg-darkAddButtonHover dark:text-darkInputText" : "bg-white text-neutral-800 dark:bg-darkInputBackground dark:text-darkTextResult"}`} value={workoutStatus} onChange={handleWorkoutStatus} >
-                                        <option value="" disabled>Select Status</option>
-                                        <option value="On Progress">On Progress</option>
-                                        <option value="Completed">Completed</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <svg onClick={handleEnableEdit} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="text-white rounded-lg p-2 cursor-pointer bg-blue-600 hover:bg-blue-800 dark:bg-darkEditButton dark:hover:bg-darkEditButtonHover dark:text-darkButtonText transition-colors duration-200 size-10">
+                            <WorkoutStatus workout={workout} />
+
+                            <svg onClick={isCompleted ? null : handleEnableEdit} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={` rounded-lg p-2  transition-colors duration-200 size-10 ${isCompleted ? "text-white bg-neutral-300 dark:bg-darkDisabledButton dark:text-darkDisabledText cursor-not-allowed" : "text-white cursor-pointer bg-blue-600 hover:bg-blue-800 dark:bg-darkEditButton dark:hover:bg-darkEditButtonHover dark:text-darkButtonText "}`}>
                                 <path strokeLinecap="round" strokeLinejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
                             </svg>
                             <DeleteWorkout workoutId={workout._id} user={user} dispatch={dispatch} />

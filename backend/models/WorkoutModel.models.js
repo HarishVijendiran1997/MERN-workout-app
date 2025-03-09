@@ -18,6 +18,11 @@ const workoutSchema = new mongoose.Schema(
     user_id: {
       type: String,
       required: true,
+    },
+    status: {
+      type: String,
+      default: "pending",
+      enum: ["pending", "in progress", "completed"]
     }
   },
   { timestamps: true }

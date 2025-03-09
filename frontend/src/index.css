@@ -133,6 +133,10 @@
   --color-darkTestButton: #ff9900;
   --color-darkTestButtonHover: #ff8000;
 
+  --color-darkDisabledText: #525252;
+  --color-darkDisabledButton: #282a36;
+  --color-darkDisabledCard: #303341;
+
   --color-errorText: #ff4444;
   --color-errorBackground: #330000;
 

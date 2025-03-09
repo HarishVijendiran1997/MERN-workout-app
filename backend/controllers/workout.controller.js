@@ -79,7 +79,7 @@ const updateWorkout = async (req, res) => {
   try {
     const updateWorkout = await Workout.findByIdAndUpdate(
       req.params.id,
-      req.body,
+      {...req.body},
       { new: true }
     );
     if (!updateWorkout) {
