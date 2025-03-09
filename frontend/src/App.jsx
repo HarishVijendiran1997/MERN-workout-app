@@ -18,7 +18,7 @@ function AppContent() {
       <BrowserRouter>
         <ToastContainer theme={themeMode} position="bottom-right" closeOnClick={true} transition={Slide} autoClose={3000} />
         <NavBar />
-        <div className="flex-grow">
+        <div className="flex flex-grow">
           <Routes>
             <Route path="/" element={user ? <Home /> : <Navigate to="/login" />} />
             <Route path="/test" element={user ? <Test /> : <Navigate to="/login" />} />
