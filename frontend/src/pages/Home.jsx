@@ -44,19 +44,28 @@ const Home = () => {
         }
     }, []);
 
+    //Home page style
+    const homePageStyle = `grid grid-cols-[4fr_2fr] text-center bg-gray-200 dark:bg-darkPrimary w-full min-h-[calc(100vh-5.5rem)] pt-5 gap-4 transition-colors duration-200`
+
+    //loading spinner style
+    const loadingSpinnerStyle = `w-16 h-16 border-4 border-blue-600 border-t-transparent rounded-full animate-spin`
+
+    //error message style
+    const errorMessageStyle = `w-6/7 p-2 mb-4 text-2xl text-red-500 dark:text-errorText border bg-red-100 dark:bg-errorBackground rounded-lg mt-4 flex justify-center items-center transition-colors duration-200`
+
     return (
-        <div className="grid grid-cols-[4fr_2fr] text-center bg-gray-200 dark:bg-darkPrimary w-full min-h-[calc(100vh-5.5rem)] pt-5 gap-4 transition-colors duration-200">
+        <div className={homePageStyle}>
             <div className="px-4 flex flex-col h-full">
                 {loading ? (
                     <div className="flex flex-grow justify-center items-center">
                         <div className="flex flex-col items-center">
-                            <div className="w-16 h-16 border-4 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
+                            <div className={loadingSpinnerStyle}></div>
                             <p className="mt-4 text-lg text-blue-600 ">Loading workouts...</p>
                         </div>
                     </div>
                 ) : error ? (
                     <div className="flex flex-grow justify-center items-center">
-                        <h1 className="w-6/7 p-2 mb-4 text-2xl text-red-500 dark:text-errorText border bg-red-100 dark:bg-errorBackground rounded-lg mt-4 flex justify-center items-center transition-colors duration-200">{error}</h1>
+                        <h1 className={errorMessageStyle}>{error}</h1>
                     </div>
                 ) : workouts?.length === 0 ? (
                     <div className="flex flex-grow justify-center items-center">
