@@ -55,7 +55,7 @@ const Home = () => {
 
     return (
         <div className={homePageStyle}>
-            <div className="px-4 flex flex-col h-full">
+            <div className="px-4 flex flex-col">
                 {loading ? (
                     <div className="flex flex-grow justify-center items-center">
                         <div className="flex flex-col items-center">
@@ -72,11 +72,11 @@ const Home = () => {
                         <p className="text-2xl text-gray-500">No workouts found. Add a new one!</p>
                     </div>
                 ) : (
-                    <div className="flex flex-col ">
+                    <>
                         {workouts.map((workout) => (
                             <WorkoutDetails key={workout._id} workout={workout} />
                         ))}
-                    </div>
+                    </>
                 )}
             </div>
             <div className="px-4">
