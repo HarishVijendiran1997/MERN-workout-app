@@ -1,5 +1,4 @@
 import axios from "axios";
-import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import { useWorkoutsContext } from "../../hooks/useWorkoutsContext";
 import { useAuthContext } from "../../hooks/useAuthContext";
@@ -59,14 +58,14 @@ const WorkoutStatus = ({ workout }) => {
             <div>
                 <select
                     className={`flex text-center border border-gray-400 dark:border-darkBorder p-1 rounded-lg transition-colors duration-200 
-                        ${workout.status === "completed" ? "bg-green-400 text-neutral-700 dark:bg-darkAddButtonHover dark:text-darkInputText" : workout.status === "in progress" ? "bg-white text-neutral-800 dark:bg-darkTestButton dark:text-darkInputBackground " : "bg-white text-neutral-800 dark:bg-darkInputBackground dark:text-darkTextResult"}`}
+                        ${workout.status === "completed" ? "bg-green-400 text-neutral-700 dark:bg-darkAddButtonHover dark:text-darkInputText" : workout.status === "in progress" ? "bg-blue-400 text-neutral-800 dark:bg-darkTestButton dark:text-darkInputBackground " : "bg-white text-neutral-800 dark:bg-darkInputBackground dark:text-darkTextResult"}`}
                     value={workout.status}
                     onChange={handleWorkoutStatus}
                 >
-                    <option value="" disabled className={`${status === "completed" ? "bg-white  dark:bg-darkInputBackground" : status === "in progress" ? "bg-white  dark:bg-darkInputBackground" : ""}`}>Select Status</option>
-                    <option value="pending" className={`${workout.status === "completed" ? "bg-white dark:text-darkTextResult dark:bg-darkInputBackground" : status === "in progress" ? "bg-white dark:text-darkTextResult dark:bg-darkInputBackground" : ""}`}>Pending</option>
-                    <option value="in progress" className={`${workout.status === "completed" ? "bg-white dark:text-darkTextResult dark:bg-darkInputBackground" : status === "in progress" ? "bg-white dark:text-darkTextResult dark:bg-darkInputBackground" : ""}`}>On Progress</option>
-                    <option value="completed" className={`${workout.status === "completed" ? "bg-white dark:text-darkTextResult dark:bg-darkInputBackground" : status === "in progress" ? "bg-white dark:text-darkTextResult dark:bg-darkInputBackground" : ""}`}>Completed</option>
+                    <option value="" disabled className={`${workout.status === "completed" ? "bg-white  dark:bg-darkInputBackground" : workout.status === "in progress" ? "bg-white  dark:bg-darkInputBackground" : ""}`}>Select Status</option>
+                    <option value="pending" className={`${workout.status === "completed" ? "bg-white dark:text-darkTextResult dark:bg-darkInputBackground" : workout.status === "in progress" ? "bg-white dark:text-darkTextResult dark:bg-darkInputBackground" : ""}`}>Pending</option>
+                    <option value="in progress" className={`${workout.status === "completed" ? "bg-white dark:text-darkTextResult dark:bg-darkInputBackground" : workout.status === "in progress" ? "bg-white dark:text-darkTextResult dark:bg-darkInputBackground" : ""}`}>On Progress</option>
+                    <option value="completed" className={`${workout.status === "completed" ? "bg-white dark:text-darkTextResult dark:bg-darkInputBackground" : workout.status === "in progress" ? "bg-white dark:text-darkTextResult dark:bg-darkInputBackground" : ""}`}>Completed</option>
                 </select>
             </div>
         </div>

@@ -42,6 +42,12 @@
 
   --color-darkTestButton: #6a5acd;
   --color-darkTestButtonHover: #5743b3;
+  
+  --color-darkDisabledText: #525252;
+  --color-darkDisabledButton: #282a36;
+  --color-darkDisabledCard: #303341;
+
+  --color-darkProgress: #6421AF;
 
   --color-errorText: #ff6b6b;
   --color-errorBackground: #3a002a;
@@ -86,6 +92,12 @@
 
  --color-darkTestButton: #6a5acd;
  --color-darkTestButtonHover: #5743b3;
+ 
+  --color-darkDisabledText: #525252;
+  --color-darkDisabledButton: #282a36;
+  --color-darkDisabledCard: #303341;
+
+  --color-darkProgress: #6421AF;
 
  --color-errorText: #ff6b6b;
  --color-errorBackground: #2a0000;
