@@ -91,15 +91,33 @@ const WorkoutForm = () => {
         setLoad(value)
     }
 
+    //workout form style
+    const addFormStyle = `max-w-lg mx-auto p-6 bg-white dark:bg-darkSecondary dark:text-darkInputText  shadow-md rounded-lg
+transition-colors duration-200`
+
+    //workout form title style
+    const addFormTitleStyle = `text-2xl font-bold text-blue-600 dark:text-darkTextPrimary mb-4 transition-colors duration-200`
+
+    //workout form load input style
+    const addFormLoadInputStyle = `w-full p-2 mb-4 placeholder:text-gray-500 dark:placeholder:text-darkTextPlaceholder border dark:border-darkBorder rounded-lg dark:bg-darkInputBackground transition-colors duration-200 ${emptyFields.includes('load') ? "border-red-500 dark:border-red-500" : "border-gray-300 dark:border-darkBorder"}`
+    //workout form reps input style
+    const addFormRepsInputStyle = `w-full p-2 mb-4 placeholder:text-gray-500 dark:placeholder:text-darkTextPlaceholder border dark:border-darkBorder rounded-lg dark:bg-darkInputBackground transition-colors duration-200 ${emptyFields.includes('reps') ? "border-red-500 dark:border-red-500" : "border-gray-300 dark:border-darkBorder"}`
+    //workout form submit button style
+    const addFormSubmitButtonStyle = `
+                    w-full bg-green-600 hover:bg-green-500 active:bg-green-600 cursor-pointer text-white p-2 rounded dark:text-ButtonText dark:bg-darkAddButton dark:hover:bg-darkAddButtonHover dark:active:bg-darkAddButton transition-colors duration-200`
+
+    //workout form error message style
+    const addFormErrorMessageStyle = `w-full p-2 mb-4 text-red-500 dark:text-errorText border bg-red-100 dark:bg-errorBackground rounded-lg mt-4 flex justify-center items-center transition-colors duration-200`
+
+
     return (
         <div>
-            <form onSubmit={handleSubmit} className="max-w-lg mx-auto p-6 bg-white dark:bg-darkSecondary dark:text-darkInputText  shadow-md rounded-lg
-transition-colors duration-200">
-                <h2 className="text-2xl font-bold text-blue-600 dark:text-darkTextPrimary mb-4 transition-colors duration-200">Add a new workout</h2>
+            <form onSubmit={handleSubmit} className={addFormStyle}>
+                <h2 className={addFormTitleStyle}>Add a new workout</h2>
 
                 <WorkoutSuggestions emptyFields={emptyFields} title={title} setTitle={setTitle} />
                 {/* Load Input */}
-                <input className={`w-full p-2 mb-4 placeholder:text-gray-500 dark:placeholder:text-darkTextPlaceholder border dark:border-darkBorder rounded-lg dark:bg-darkInputBackground transition-colors duration-200 ${emptyFields.includes('load') ? "border-red-500 dark:border-red-500" : "border-gray-300 dark:border-darkBorder"}`}
+                <input className={addFormLoadInputStyle}
                     type="number"
                     onChange={handleLoadChange}
                     value={load}
@@ -107,17 +125,16 @@ transition-colors duration-200">
                 />
 
                 {/* Reps Input */}
-                <input className={`w-full p-2 mb-4 placeholder:text-gray-500 dark:placeholder:text-darkTextPlaceholder border dark:border-darkBorder rounded-lg dark:bg-darkInputBackground transition-colors duration-200 ${emptyFields.includes('reps') ? "border-red-500 dark:border-red-500" : "border-gray-300 dark:border-darkBorder"}`}
+                <input className={addFormRepsInputStyle}
                     type="number"
                     onChange={handleRepsChange}
                     value={reps}
                     placeholder="Reps"
                 />
-                <button className="
-                    w-full bg-green-600 hover:bg-green-500 active:bg-green-600 cursor-pointer text-white p-2 rounded dark:text-ButtonText dark:bg-darkAddButton dark:hover:bg-darkAddButtonHover dark:active:bg-darkAddButton transition-colors duration-200" disabled={isSubmitting}>
+                <button className={addFormSubmitButtonStyle} disabled={isSubmitting}>
                     {isSubmitting ? "Adding..." : "Add Workout"}
                 </button>
-                {error && <p className="w-full p-2 mb-4 text-red-500 dark:text-errorText border bg-red-100 dark:bg-errorBackground rounded-lg mt-4 flex justify-center items-center transition-colors duration-200">{error}</p>}
+                {error && <p className={addFormErrorMessageStyle}>{error}</p>}
             </form>
         </div>
     )
