@@ -50,10 +50,15 @@ const WorkoutStatus = ({ workout }) => {
         }
     };
 
+    //styles for status update
+
+    //Status title style
+    const statusTitleStyle = `transition-colors duration-200 ${workout.status === "completed" ? "text-neutral-800 dark:text-darkDisabledText cursor-not-allowed line-through" : "dark:text-darkTextSecondary"}`
+
     return (
         <div className="flex space-x-2 translate-y-1">
             <div>
-                <p><strong className={`transition-colors duration-200 ${workout.status === "completed" ? "text-neutral-800 dark:text-darkDisabledText cursor-not-allowed line-through" : "dark:text-darkTextSecondary"}`}>Status :</strong></p>
+                <p><strong className={statusTitleStyle}>Status :</strong></p>
             </div>
             <div>
                 <select

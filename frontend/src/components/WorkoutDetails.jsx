@@ -111,11 +111,13 @@ const WorkoutDetails = ({ workout }) => {
     const workoutLoadRepsCreatedAtStyle = `transition-colors duration-200 ${isCompleted ? "text-neutral-800 dark:text-darkDisabledText cursor-not-allowed line-through" : "dark:text-darkTextSecondary"}`
 
     //workout status in progress active dot animate styles
-    const workoutInProgressAnimateDotStyle = "dark:text-darkAddButtonHover pl-2 py-2 translate-y-1 animate-bounce"
+    const workoutInProgressAnimateDotStyle = "dark:text-darkAddButtonHover ml-2 py-2 animate-bounce translate-y-1"
     //workout status in progress active dot styles
-    const workoutInProgressActiveDot1Style = "border border-green-700 dark:border-darkAddButton w-3 h-3 bg-green-500 dark:bg-darkAddButtonHover rounded-full overflow-hidden"
+    const workoutInProgressActiveDot1Style = "border border-green-700 dark:border-darkAddButton w-2 h-2 bg-green-500 dark:bg-darkAddButtonHover rounded-full overflow-hidden"
     const workoutInProgressActiveDot2Style = "border border-green-700 dark:border-darkAddButton w-2 h-2 bg-green-500 dark:bg-darkAddButtonHover rounded-full overflow-hidden"
-    const workoutInProgressActiveDot3Style = "border border-green-700 dark:border-darkAddButton w-1 h-1 bg-green-500 dark:bg-darkAddButtonHover rounded-full overflow-hidden"
+    const workoutInProgressActiveDot3Style = "border border-green-700 dark:border-darkAddButton w-2 h-2 bg-green-500 dark:bg-darkAddButtonHover rounded-full overflow-hidden"
+    const workoutInProgressActiveDot4Style = "border border-green-700 dark:border-darkAddButton w-2 h-2 bg-green-500 dark:bg-darkAddButtonHover rounded-full overflow-hidden"
+    const workoutInProgressActiveDot5Style = "border border-green-700 dark:border-darkAddButton w-2 h-2 bg-green-500 dark:bg-darkAddButtonHover rounded-full overflow-hidden"
 
     //workout info container
     const workoutInfoContainerStyle = `flex justify-between w-full pr-5 items-center transition-colors duration-200 ${isCompleted ? "text-neutral-800 dark:text-darkDisabledText cursor-not-allowed" : "dark:text-darkTextResult"}`
@@ -150,16 +152,24 @@ const WorkoutDetails = ({ workout }) => {
                     <div className="flex">
                         <h4 className={workoutTitleStyle} onClick={() => !isCompleted && navigate("/test", { state: { workout } })}>{workout.title}</h4>
                         {inProgress && <div className="flex items-center justify-center">
-                            <span className={workoutInProgressAnimateDotStyle} style={{ animationDelay: "0ms" }}>
+                            <span className={workoutInProgressAnimateDotStyle} style={{ animationDelay: "200ms" }}>
                                 <div className={workoutInProgressActiveDot1Style}>
                                 </div>
                             </span>
-                            <span className={workoutInProgressAnimateDotStyle}  style={{ animationDelay: "200ms" }}>
+                            <span className={workoutInProgressAnimateDotStyle} style={{ animationDelay: "400ms" }}>
                                 <div className={workoutInProgressActiveDot2Style}>
                                 </div>
                             </span>
-                            <span className={workoutInProgressAnimateDotStyle}  style={{ animationDelay: "250ms" }}>
+                            <span className={workoutInProgressAnimateDotStyle} style={{ animationDelay: "600ms" }}>
                                 <div className={workoutInProgressActiveDot3Style}>
+                                </div>
+                            </span>
+                            <span className={workoutInProgressAnimateDotStyle} style={{ animationDelay: "800ms" }}>
+                                <div className={workoutInProgressActiveDot4Style}>
+                                </div>
+                            </span>
+                            <span className={workoutInProgressAnimateDotStyle} style={{ animationDelay: "1000ms" }}>
+                                <div className={workoutInProgressActiveDot5Style}>
                                 </div>
                             </span>
                         </div>}
