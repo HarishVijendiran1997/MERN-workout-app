@@ -16,6 +16,7 @@ The **Workout Planner App** is a full-stack web application built using the **ME
 - **Add Workouts**: Users can add new workout sessions with details like title, reps, and load.
 - **Edit Workouts**: Users can update existing workouts.
 - **Delete Workouts**: Users can remove workouts from their list.
+- **Workout Status**: Users can mark workouts as **Pending, In Progress, or Completed**.
 - **Workout Title Suggestions**: Provides a list of suggested workout titles based on common exercises.
 
 ### 🎨 Theme Toggle
@@ -28,6 +29,7 @@ The **Workout Planner App** is a full-stack web application built using the **ME
 ### ⚡ Performance & Optimization
 - **React Context API**: Manages global state for authentication and theme.
 - **Axios for API Requests**: Efficient API handling with error management.
+- **Modular Component Structure**: Code is structured for better readability and reusability.
 
 ## Tech Stack
 - **Frontend**: React, React Router, Tailwind CSS, Axios
@@ -60,7 +62,7 @@ npm install
 Create a `.env` file in the backend directory and add:
 ```
 MONGO_URI=your_mongodb_connection_string
-JWT_SECRET=your_jwt_secret_key
+SECRET=your_jwt_secret_key
 ```
 
 ### 4️⃣ Start the Application
@@ -77,9 +79,8 @@ npm start
 ```
 
 ## Future Enhancements
-- User progress tracking
-- Responsive design mobile-friendly UI
-- AI-based workout recommendations
+- **AI-based Workout Recommendations**: Suggest workouts based on user history.
+- **Responsive Design**: Ensure a mobile-friendly UI for better accessibility.
 
 ## Contributing
 Feel free to fork and contribute to this project by opening a pull request! 🚀
