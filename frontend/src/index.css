@@ -3,7 +3,6 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-
   /*Purple-Mode*/
   /* --color-dark: #2a1a3a; 
   --color-darkHover: #1a0f2a;
@@ -31,8 +30,8 @@
   --color-darkSaveButton: #a970ff;
   --color-darkSaveButtonHover: #8448ff;
 
-  --color-darkCancelButton: #865ea6;
-  --color-darkCancelButtonHover: #6b4691;
+  --color-darkCancelButton: #6b4691;
+  --color-darkCancelButtonHover: #865ea6;
   --color-darkCancelButtonText: #e5e5e5;
 
   --color-darkAddButton: #9b59b6;
@@ -81,8 +80,8 @@
  --color-darkSaveButton: #a970ff;
  --color-darkSaveButtonHover: #8448ff;
 
- --color-darkCancelButton: #747474;
- --color-darkCancelButtonHover: #5a5a5a;
+ --color-darkCancelButton: #5a5a5a;
+ --color-darkCancelButtonHover: #747474;
  --color-darkCancelButtonText: #e5e5e5;
 
  --color-darkAddButton: #27ae60;
@@ -105,7 +104,7 @@
   --font-primary: 'Poppins', sans-serif; */
 
   /*Colorful-Mode*/
-  --color-dark: #1e1e2e; 
+  --color-dark: #1e1e2e;
   --color-darkHover: #151526;
 
   --color-darkPrimary: #282a36;
@@ -133,8 +132,8 @@
   --color-darkSaveButton: #33ccff;
   --color-darkSaveButtonHover: #00aaff;
 
-  --color-darkCancelButton: #ffcc00;
-  --color-darkCancelButtonHover: #ffdb4d;
+  --color-darkCancelButton: #ffdb4d;
+  --color-darkCancelButtonHover: #ffcc00;
   --color-darkCancelButtonText: #1e1e2e;
 
   --color-darkAddButton: #66ff66;
@@ -149,11 +148,10 @@
   --color-darkDisabledButton: #282a36;
   --color-darkDisabledCard: #303341;
 
-  --color-darkProgress: #6421AF;
+  --color-darkProgress: #6421af;
 
   --color-errorText: #ff4444;
   --color-errorBackground: #330000;
 
-  --font-primary: 'Poppins', sans-serif;
-
+  --font-primary: "Poppins", sans-serif;
 }
