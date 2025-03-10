@@ -90,22 +90,22 @@ const WorkoutDetails = ({ workout }) => {
     };
 
     //?Styling for the workout
-    //workout card styles
-    const workoutCardStyle = `flex items-start max-w-screen rounded-lg font-Poppins ml-4 pb-5 pl-5 pt-5 flex-col shadow-md mb-5 transition-colors duration-200 ${isCompleted ? "bg-neutral-300 dark:bg-darkDisabledCard" : inProgress ? "bg-blue-200 dark:bg-darkProgress " : "bg-white dark:bg-darkSecondary"}`
+    // //workout card styles
+    // const workoutCardStyle = `flex items-start max-w-screen rounded-lg font-Poppins ml-4 pb-5 pl-5 pt-5 flex-col shadow-md mb-5 transition-colors duration-200 ${isCompleted ? "bg-neutral-300 dark:bg-darkDisabledCard" : inProgress ? "bg-blue-200 dark:bg-darkProgress " : "bg-white dark:bg-darkSecondary"}`
 
-    //error message styles
-    const errorMessageStyle = "w-1/2 p-2 mr-3 mb-4 text-red-500 dark:text-errorText border bg-red-100 dark:bg-errorBackground rounded-lg mt-4 flex justify-center items-center transition-colors duration-200"
+    // //error message styles
+    // const errorMessageStyle = `w-1/2 p-2 mr-3 mb-4 text-red-500 dark:text-errorText border bg-red-100 dark:bg-errorBackground rounded-lg mt-4 flex justify-center items-center transition-colors duration-200`
 
     //edit workouts input fields styles
     const editInputFieldStyle = `border p-1 rounded-lg bg-blue-100  dark:border-darkBorder mr-2 dark:bg-darkInputBackground dark:text-darkInputText transition-colors duration-200 ${inProgress ? "border-gray-400" : "border-gray-300"}`
 
-    //update workout button styles
-    const updateWorkoutButtonStyle = "p-1 rounded-lg bg-green-500 text-white hover:bg-green-600 active:bg-green-500 mr-2 size-10 cursor-pointer dark:bg-darkSaveButton dark:hover:bg-darkSaveButtonHover dark:active:bg-darkSaveButton dark:text-darkButtonText transition-colors duration-200"
-    //cancel update workout button styles
-    const cancelUpdateWorkoutButtonStyle = "p-1 rounded-full text-white mr-2 size-10 cursor-pointer bg-gray-400 hover:bg-gray-500 active:bg-gray-400 dark:bg-darkCancelButton dark:hover:bg-darkCancelButtonHover dark:active:bg-darkCancelButton dark:text-darkCancelButtonText transition-colors duration-200"
+    // //update workout button styles
+    // const updateWorkoutButtonStyle = `p-1 rounded-lg bg-green-500 text-white hover:bg-green-600 active:bg-green-500 mr-2 size-10 cursor-pointer dark:bg-darkSaveButton dark:hover:bg-darkSaveButtonHover dark:active:bg-darkSaveButton dark:text-darkButtonText transition-colors duration-200`
+    // //cancel update workout button styles
+    // const cancelUpdateWorkoutButtonStyle = `p-1 rounded-full text-white mr-2 size-10 cursor-pointer bg-gray-400 hover:bg-gray-500 active:bg-gray-400 dark:bg-darkCancelButton dark:hover:bg-darkCancelButtonHover dark:active:bg-darkCancelButton dark:text-darkCancelButtonText transition-colors duration-200`
 
-    //workout Title styles
-    const workoutTitleStyle = ` text-2xl font-extrabold transition-colors duration-200 ${isCompleted ? "text-neutral-800 dark:text-darkDisabledText cursor-not-allowed line-through" : " text-blue-600 hover:text-blue-500 dark:hover:text-darkTextPrimaryHover dark:text-darkTextPrimary  cursor-pointer "} `
+    // //workout Title styles
+    // const workoutTitleStyle = ` text-2xl font-extrabold transition-colors duration-200 ${isCompleted ? "text-neutral-800 dark:text-darkDisabledText cursor-not-allowed line-through" : " text-blue-600 hover:text-blue-500 dark:hover:text-darkTextPrimaryHover dark:text-darkTextPrimary  cursor-pointer "} `
 
     //workout load, reps, created at styles
     const workoutLoadRepsCreatedAtStyle = `transition-colors duration-200 ${isCompleted ? "text-neutral-800 dark:text-darkDisabledText cursor-not-allowed line-through" : "dark:text-darkTextSecondary"}`
@@ -119,18 +119,18 @@ const WorkoutDetails = ({ workout }) => {
     const workoutInProgressActiveDot4Style = "border border-green-500 dark:border-darkAddButtonHover w-1 h-2 bg-green-500 dark:bg-darkAddButtonHover rounded-full overflow-hidden"
     const workoutInProgressActiveDot5Style = "border border-green-500 dark:border-darkAddButtonHover w-1 h-3 bg-green-500 dark:bg-darkAddButtonHover rounded-full overflow-hidden"
 
-    //workout info container
-    const workoutInfoContainerStyle = `flex justify-between w-full pr-5 items-center transition-colors duration-200 ${isCompleted ? "text-neutral-800 dark:text-darkDisabledText cursor-not-allowed" : "dark:text-darkTextResult"}`
+    // //workout info container
+    // const workoutInfoContainerStyle = `flex justify-between w-full pr-5 items-center transition-colors duration-200 ${isCompleted ? "text-neutral-800 dark:text-darkDisabledText cursor-not-allowed" : "dark:text-darkTextResult"}`
 
-    //enable editing mode button
-    const enableEditModeButton = `rounded-lg p-2  transition-colors duration-200 size-10 ${isCompleted ? "text-white bg-neutral-400 dark:bg-darkDisabledButton dark:text-darkDisabledText cursor-not-allowed" : "text-white cursor-pointer bg-blue-600 hover:bg-blue-800 dark:bg-darkEditButton dark:hover:bg-darkEditButtonHover dark:text-darkButtonText "}`
+    // //enable editing mode button
+    // const enableEditModeButton = `rounded-lg p-2  transition-colors duration-200 size-10 ${isCompleted ? "text-white bg-neutral-400 dark:bg-darkDisabledButton dark:text-darkDisabledText cursor-not-allowed" : "text-white cursor-pointer bg-blue-600 hover:bg-blue-800 dark:bg-darkEditButton dark:hover:bg-darkEditButtonHover dark:text-darkButtonText "}`
 
     return (
-        <div className={workoutCardStyle}>
+        <div className={`flex items-start max-w-screen rounded-lg font-Poppins ml-4 pb-5 pl-5 pt-5 flex-col shadow-md mb-5 transition-colors duration-200 ${isCompleted ? "bg-neutral-300 dark:bg-darkDisabledCard" : inProgress ? "bg-blue-200 dark:bg-darkProgress " : "bg-white dark:bg-darkSecondary"}`}>
             {isEditing ? (
                 <div>
                     <div className="flex justify-center">
-                        {error && <p className={errorMessageStyle}>{error}</p>}
+                        {error && <p className={`w-1/2 p-2 mr-3 mb-4 text-red-500 dark:text-errorText border bg-red-100 dark:bg-errorBackground rounded-lg mt-4 flex justify-center items-center transition-colors duration-200`}>{error}</p>}
                     </div>
                     <div className="flex flex-wrap gap-2.5 justify-between">
                         <input className={editInputFieldStyle} placeholder="Workout Title" value={title} onChange={handleTitleOnChange} />
@@ -138,10 +138,10 @@ const WorkoutDetails = ({ workout }) => {
                         <input className={editInputFieldStyle} type="number" min='1' placeholder="Reps" value={reps} onChange={handleRepsOnChange} />
                         <p className="dark:text-darkTextResult transition-colors duration-200">Last updated: {formatDistanceToNow(new Date(workout.updatedAt), { addSuffix: true })}</p>
                         <div className="flex mr-3">
-                            <svg onClick={handleUpdate} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={updateWorkoutButtonStyle}>
+                            <svg onClick={handleUpdate} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={`p-1 rounded-lg bg-green-500 text-white hover:bg-green-600 active:bg-green-500 mr-2 size-10 cursor-pointer dark:bg-darkSaveButton dark:hover:bg-darkSaveButtonHover dark:active:bg-darkSaveButton dark:text-darkButtonText transition-colors duration-200`}>
                                 <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" />
                             </svg>
-                            <svg onClick={handleCancelEdit} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={cancelUpdateWorkoutButtonStyle}>
+                            <svg onClick={handleCancelEdit} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={`p-1 rounded-full text-white mr-2 size-10 cursor-pointer bg-gray-400 hover:bg-gray-500 active:bg-gray-400 dark:bg-darkCancelButton dark:hover:bg-darkCancelButtonHover dark:active:bg-darkCancelButton dark:text-darkCancelButtonText transition-colors duration-200`}>
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
                             </svg>
                         </div>
@@ -150,7 +150,7 @@ const WorkoutDetails = ({ workout }) => {
             ) : (
                 <>
                     <div className="flex">
-                        <h4 className={workoutTitleStyle} onClick={() => !isCompleted && navigate("/test", { state: { workout } })}>{workout.title}</h4>
+                        <h4 className={` text-2xl font-extrabold transition-colors duration-200 ${isCompleted ? "text-neutral-800 dark:text-darkDisabledText cursor-not-allowed line-through" : " text-blue-600 hover:text-blue-500 dark:hover:text-darkTextPrimaryHover dark:text-darkTextPrimary  cursor-pointer "} `} onClick={() => !isCompleted && navigate("/test", { state: { workout } })}>{workout.title}</h4>
                         {inProgress && <div className="flex items-center justify-center ml-2">
                             <span className={workoutInProgressAnimateDotStyle} style={{ animationDelay: "200ms" }}>
                                 <div className={workoutInProgressActiveDot1Style}>
@@ -181,13 +181,13 @@ const WorkoutDetails = ({ workout }) => {
                             </span>
                         </div>}
                     </div>
-                    <div className={workoutInfoContainerStyle}>
+                    <div className={`flex justify-between w-full pr-5 items-center transition-colors duration-200 ${isCompleted ? "text-neutral-800 dark:text-darkDisabledText cursor-not-allowed" : "dark:text-darkTextResult"}`}>
                         <p><strong className={workoutLoadRepsCreatedAtStyle}>Load (kg): </strong><span className={`${isCompleted ? "line-through" : ""}`}>{workout.load}</span></p>
                         <p><strong className={workoutLoadRepsCreatedAtStyle}>Reps: </strong><span className={`${isCompleted ? "line-through" : ""}`}>{workout.reps}</span></p>
                         <p><strong className={workoutLoadRepsCreatedAtStyle}>Created: </strong><span className={`${isCompleted ? "line-through" : ""}`}>{formatDistanceToNow(new Date(workout.createdAt), { addSuffix: true })}</span></p>
                         <div className="flex gap-2 mt-3">
                             <WorkoutStatus workout={workout} />
-                            <svg onClick={isCompleted ? null : handleEnableEdit} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={enableEditModeButton}>
+                            <svg onClick={isCompleted ? null : handleEnableEdit} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={`rounded-lg p-2  transition-colors duration-200 size-10 ${isCompleted ? "text-white bg-neutral-400 dark:bg-darkDisabledButton dark:text-darkDisabledText cursor-not-allowed" : "text-white cursor-pointer bg-blue-600 hover:bg-blue-800 dark:bg-darkEditButton dark:hover:bg-darkEditButtonHover dark:text-darkButtonText "}`}>
                                 <path strokeLinecap="round" strokeLinejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
                             </svg>
                             <DeleteWorkout workoutId={workout._id} user={user} dispatch={dispatch} />

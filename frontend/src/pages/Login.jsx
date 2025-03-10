@@ -38,8 +38,8 @@ const Login = () => {
     const showPasswordStyle = stylesLogin.showPassword
     const errorMessageStyle = stylesLogin.errorMessage
 
-    //login button style
-    const loginButtonStyle = `w-full ${isLoading ? "bg-gray-500 cursor-not-allowed" : "bg-green-600 hover:bg-green-500 active:bg-green-600"} text-white p-2 rounded transition-colors duration-200 cursor-pointer`
+    // //login button style
+    // const loginButtonStyle = `w-full ${isLoading ? "bg-gray-500 cursor-not-allowed" : "bg-green-600 hover:bg-green-500 active:bg-green-600"} text-white p-2 rounded transition-colors duration-200 cursor-pointer`
 
     return (
         <div className={loginPageStyle}>
@@ -74,7 +74,7 @@ const Login = () => {
                         </span>
                     </label>
                 </div>
-                <button className={loginButtonStyle}>{isLoading ? "Logging in..." : "Login"}</button>
+                <button className={`w-full ${isLoading ? "bg-gray-500 cursor-not-allowed" : "bg-green-600 hover:bg-green-500 active:bg-green-600"} text-white p-2 rounded transition-colors duration-200 cursor-pointer`}>{isLoading ? "Logging in..." : "Login"}</button>
                 {error && <p className={errorMessageStyle}>{error}</p>}
                 <div className="mt-4">
                     <p className="text-sm text-gray-600 dark:text-darkTextSecondary">Don't have an account?{" "}
