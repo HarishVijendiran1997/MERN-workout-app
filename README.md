@@ -1,7 +1,7 @@
-# MERN Workout App
+# MERN WorkoutX App
 
 ## Overview
-The **Workout Planner App** is a full-stack web application built using the **MERN (MongoDB, Express, React, Node.js) stack**. It allows users to manage their workout routines by adding, updating, and deleting workouts. The app includes authentication for secure user access and a theme toggle for both **light mode and dark mode**.
+The **WorkoutX App** is a full-stack web application built using the **MERN (MongoDB, Express, React, Node.js) stack**. It allows users to manage their workout routines by adding, updating, and deleting workouts. The app includes authentication for secure user access and a theme toggle for both **light mode and dark mode**.
 
 ## Features
 
