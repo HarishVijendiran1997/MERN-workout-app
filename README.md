@@ -23,6 +23,11 @@ The **WorkoutX App** is a full-stack web application built using the **MERN (Mon
 - **Light & Dark Mode**: Users can switch between light and dark themes.
 - **Persistent Theme**: Theme preference is stored in local storage, so it remains after refresh.
 
+### 📱 Responsive Design
+- **Mobile-Friendly UI**: Optimized for different screen sizes, ensuring a seamless experience on mobile, tablet, and desktop.
+- **Adaptive Layouts**: Uses Tailwind CSS grid and flex utilities to adjust layouts dynamically.
+- **Mobile-First Approach**: Ensures core functionalities work smoothly on smaller screens before scaling up.
+
 ### 🔔 Notifications
 - **Toast Notifications**: Provides feedback on user actions (e.g., successful login, errors, workout added, etc.).
 
@@ -80,7 +85,8 @@ npm start
 
 ## Future Enhancements
 - **AI-based Workout Recommendations**: Suggest workouts based on user history.
-- **Responsive Design**: Ensure a mobile-friendly UI for better accessibility.
+- **Enhanced Responsive Design**: Further optimizations for better user experience on all devices.
 
 ## Contributing
 Feel free to fork and contribute to this project by opening a pull request! 🚀
+
