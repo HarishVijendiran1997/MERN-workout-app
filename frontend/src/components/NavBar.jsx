@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { ThemeBtn } from "../components/ThemeBtn"
 import { useLogout } from "../../hooks/useLogout";
 import { useAuthContext } from "../../hooks/useAuthContext";
+import UserGuide from "./UserGuide";
 
 const NavBar = () => {
 
@@ -47,6 +48,7 @@ const NavBar = () => {
                             <Link to='/login' className={`rounded-lg p-1.5 text-white bg-green-600 hover:bg-green-500 active:bg-green-600 dark:bg-darkEditButton dark:hover:bg-darkEditButtonHover dark:active:bg-darkEditButton dark:text-darkButtonText transition duration-200 cursor-pointer`}>Login</Link>
                             <Link to='/signup' className={`rounded-lg p-1.5 text-white bg-green-600 hover:bg-green-500 active:bg-green-600 dark:bg-darkSaveButton dark:hover:bg-darkSaveButtonHover dark:active:bg-darkSaveButton dark:text-darkButtonText transition duration-200 cursor-pointer`}>Signup</Link>
                         </div>)}
+                        <UserGuide/>
                     <div className="md:static absolute right-4 top-4">
                         <ThemeBtn id="theme-toggle-btn"/>
                     </div>

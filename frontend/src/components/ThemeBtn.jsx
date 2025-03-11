@@ -10,8 +10,8 @@ export function ThemeBtn() {
             onClick={toggleTheme}
             className={`cursor-pointer p-1 rounded-full transition-colors duration-500 shadow-md border 
                 ${themeMode === "light" 
-                    ? "bg-dark hover:border-darkButtonText border-gray-600" 
-                    : "bg-white hover:bg-neutral-700 border-gray-300"
+                    ? "bg-dark  hover:border-darkButtonText border-gray-600" 
+                    : "bg-white group hover:bg-neutral-700 border-gray-300"
                 }`}
         >
             {themeMode === "light" ? (
@@ -36,7 +36,7 @@ export function ThemeBtn() {
                     viewBox="0 0 24 24" 
                     strokeWidth={1.5} 
                     stroke="currentColor" 
-                    className="md:size-6 size-8 text-black hover:text-white rounded-full"
+                    className="md:size-6 size-8 text-black group-hover:text-white rounded-full"
                 >
                     <path 
                         strokeLinecap="round" 
