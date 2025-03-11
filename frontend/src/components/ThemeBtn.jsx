@@ -20,7 +20,7 @@ export function ThemeBtn() {
                     viewBox="0 0 24 24" 
                     strokeWidth={1.5} 
                     stroke="currentColor" 
-                    className="size-6"
+                    className="md:size-6 size-8"
                 >
                     <path 
                         strokeLinecap="round" 
@@ -35,7 +35,7 @@ export function ThemeBtn() {
                     viewBox="0 0 24 24" 
                     strokeWidth={1.5} 
                     stroke="currentColor" 
-                    className="size-6 text-black hover:text-white rounded-full"
+                    className="md:size-6 size-8 text-black hover:text-white rounded-full"
                 >
                     <path 
                         strokeLinecap="round" 

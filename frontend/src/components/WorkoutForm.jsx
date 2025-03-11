@@ -112,7 +112,7 @@ const WorkoutForm = () => {
 
     return (
         <div>
-            <form onSubmit={handleSubmit} className={`max-w-lg mx-auto p-6 bg-white dark:bg-darkSecondary dark:text-darkInputText  shadow-md rounded-lg
+            <form onSubmit={handleSubmit} className={`max-w-lg mx-auto p-6 mb-4 md:mb-0 bg-white dark:bg-darkSecondary dark:text-darkInputText  shadow-md rounded-lg
 transition-colors duration-200`}>
                 <h2 className={`text-2xl font-bold text-blue-600 dark:text-darkTextPrimary mb-4 transition-colors duration-200`}>Add a new workout</h2>
 

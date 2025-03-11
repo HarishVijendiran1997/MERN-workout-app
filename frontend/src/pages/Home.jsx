@@ -54,7 +54,10 @@ const Home = () => {
     // const errorMessageStyle = `w-6/7 p-2 mb-4 text-2xl text-red-500 dark:text-errorText border bg-red-100 dark:bg-errorBackground rounded-lg mt-4 flex justify-center items-center transition-colors duration-200`
 
     return (
-        <div className={`grid grid-cols-[4fr_2fr] text-center bg-gray-200 dark:bg-darkPrimary w-full min-h-[calc(100vh-5.5rem)] pt-5 gap-4 transition-colors duration-200`}>
+        <div className={`sm:grid-cols-[4fr_2fr] grid grid-cols-1 text-center bg-gray-200 dark:bg-darkPrimary w-full min-h-[calc(100vh-5.5rem)] pt-5 gap-4 transition-colors duration-200`}>
+            <div className="px-4 order-first sm:order-last">
+                <WorkoutForm />
+            </div>
             <div className="px-4 flex flex-col">
                 {loading ? (
                     <div className="flex flex-grow justify-center items-center">
@@ -78,9 +81,6 @@ const Home = () => {
                         ))}
                     </>
                 )}
-            </div>
-            <div className="px-4">
-                <WorkoutForm />
             </div>
         </div>
     );
