@@ -51,16 +51,6 @@ const WorkoutStatus = ({ workout }) => {
     };
 
     //?styles for status update
-    // //Status title style
-    // const statusTitleStyle = `transition-colors duration-200 ${workout.status === "completed" ? "text-neutral-800 dark:text-darkDisabledText cursor-not-allowed line-through" : "dark:text-darkTextSecondary"}`
-
-    // //select dropdown styles
-    // const selectDropdownStyle = `flex text-center border border-gray-400 dark:border-darkBorder p-1 rounded-lg transition-colors duration-200 
-    //                     ${workout.status === "completed" ? "bg-green-400 text-neutral-700 dark:bg-darkAddButtonHover dark:text-darkInputText" : workout.status === "in progress" ? "bg-blue-400 text-neutral-800 dark:bg-darkTestButton dark:text-darkInputBackground " : "bg-white text-neutral-800 dark:bg-darkInputBackground dark:text-darkTextResult"}`
-
-    // //option default dropdown styles
-    // const optionDefaultDropdownStyle = `${workout.status === "completed" ? "bg-white  dark:bg-darkInputBackground" : workout.status === "in progress" ? "bg-white  dark:bg-darkInputBackground" : ""}`
-
     //option dropdown styles
     const optionDropdownStyle = `${workout.status === "completed" ? "bg-white dark:text-darkTextResult dark:bg-darkInputBackground" : workout.status === "in progress" ? "bg-white dark:text-darkTextResult dark:bg-darkInputBackground" : ""}`
 

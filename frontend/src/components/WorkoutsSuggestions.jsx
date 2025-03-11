@@ -27,16 +27,6 @@ const WorkoutSuggestions = ({ title, setTitle, emptyFields }) => {
         setShowDropdown(false);
     };
 
-    // //suggestions input field style
-    // const suggestionsInputStyle = `w-full p-2 mb-4 placeholder:text-gray-500 dark:placeholder:text-darkTextPlaceholder border dark:border-darkBorder rounded-lg dark:bg-darkInputBackground transition-colors duration-200 ${emptyFields.includes('reps') ? "border-red-500 dark:border-red-500" : "border-gray-300 dark:border-darkBorder"}`
-
-    // //dropdown styles
-    // const dropdownStyles = `absolute w-full bg-white border border-gray-300 dark:border-darkBorder rounded-lg shadow-md max-h-40 overflow-y-auto z-10 dark:bg-darkPrimary dark:text-darkTextResult transition-colors duration-150`
-
-    // //suggestion list item styles
-    // const suggestionItemStyle = `p-2 hover:bg-gray-200 cursor-pointer dark:hover:bg-darkTertiary transition-colors duration-150`
-
-
     return (
         <div className="relative w-full">
             <input

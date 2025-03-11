@@ -37,9 +37,6 @@ const Signup = () => {
     const showPasswordStyle = stylesSignup.showPassword
     const errorMessageStyle = stylesSignup.errorMessage
    
-    // //signup button style
-    // const signupButtonStyle = `w-full ${isLoading ? "bg-gray-500 cursor-not-allowed" : "bg-green-600 hover:bg-green-500 active:bg-green-600"} text-white p-2 rounded transition-colors duration-200 cursor-pointer`
-
 
     return (
         <div className={signupPageStyle}>

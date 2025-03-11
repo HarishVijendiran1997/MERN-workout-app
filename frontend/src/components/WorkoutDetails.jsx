@@ -90,22 +90,9 @@ const WorkoutDetails = ({ workout }) => {
     };
 
     //?Styling for the workout
-    // //workout card styles
-    // const workoutCardStyle = `flex items-start max-w-screen rounded-lg font-Poppins ml-4 pb-5 pl-5 pt-5 flex-col shadow-md mb-5 transition-colors duration-200 ${isCompleted ? "bg-neutral-300 dark:bg-darkDisabledCard" : inProgress ? "bg-blue-200 dark:bg-darkProgress " : "bg-white dark:bg-darkSecondary"}`
-
-    // //error message styles
-    // const errorMessageStyle = `w-1/2 p-2 mr-3 mb-4 text-red-500 dark:text-errorText border bg-red-100 dark:bg-errorBackground rounded-lg mt-4 flex justify-center items-center transition-colors duration-200`
 
     //edit workouts input fields styles
     const editInputFieldStyle = `border p-1 rounded-lg bg-blue-100  dark:border-darkBorder mr-2 dark:bg-darkInputBackground dark:text-darkInputText transition-colors duration-200 ${inProgress ? "border-gray-400" : "border-gray-300"}`
-
-    // //update workout button styles
-    // const updateWorkoutButtonStyle = `p-1 rounded-lg bg-green-500 text-white hover:bg-green-600 active:bg-green-500 mr-2 size-10 cursor-pointer dark:bg-darkSaveButton dark:hover:bg-darkSaveButtonHover dark:active:bg-darkSaveButton dark:text-darkButtonText transition-colors duration-200`
-    // //cancel update workout button styles
-    // const cancelUpdateWorkoutButtonStyle = `p-1 rounded-full text-white mr-2 size-10 cursor-pointer bg-gray-400 hover:bg-gray-500 active:bg-gray-400 dark:bg-darkCancelButton dark:hover:bg-darkCancelButtonHover dark:active:bg-darkCancelButton dark:text-darkCancelButtonText transition-colors duration-200`
-
-    // //workout Title styles
-    // const workoutTitleStyle = ` text-2xl font-extrabold transition-colors duration-200 ${isCompleted ? "text-neutral-800 dark:text-darkDisabledText cursor-not-allowed line-through" : " text-blue-600 hover:text-blue-500 dark:hover:text-darkTextPrimaryHover dark:text-darkTextPrimary  cursor-pointer "} `
 
     //workout load, reps, created at styles
     const workoutLoadRepsCreatedAtStyle = `transition-colors duration-200 ${isCompleted ? "text-neutral-800 dark:text-darkDisabledText cursor-not-allowed line-through" : "dark:text-darkTextSecondary"}`
@@ -118,12 +105,6 @@ const WorkoutDetails = ({ workout }) => {
     const workoutInProgressActiveDot3Style = "border border-green-500 dark:border-darkAddButtonHover w-1 h-2 bg-green-500 dark:bg-darkAddButtonHover rounded-full overflow-hidden"
     const workoutInProgressActiveDot4Style = "border border-green-500 dark:border-darkAddButtonHover w-1 h-2 bg-green-500 dark:bg-darkAddButtonHover rounded-full overflow-hidden"
     const workoutInProgressActiveDot5Style = "border border-green-500 dark:border-darkAddButtonHover w-1 h-3 bg-green-500 dark:bg-darkAddButtonHover rounded-full overflow-hidden"
-
-    // //workout info container
-    // const workoutInfoContainerStyle = `flex justify-between w-full pr-5 items-center transition-colors duration-200 ${isCompleted ? "text-neutral-800 dark:text-darkDisabledText cursor-not-allowed" : "dark:text-darkTextResult"}`
-
-    // //enable editing mode button
-    // const enableEditModeButton = `rounded-lg p-2  transition-colors duration-200 size-10 ${isCompleted ? "text-white bg-neutral-400 dark:bg-darkDisabledButton dark:text-darkDisabledText cursor-not-allowed" : "text-white cursor-pointer bg-blue-600 hover:bg-blue-800 dark:bg-darkEditButton dark:hover:bg-darkEditButtonHover dark:text-darkButtonText "}`
 
     return (
         <div className={`workout-item flex items-start  max-w-screen rounded-lg font-Poppins md:ml-4 pb-5 pr-5 pl-5 pt-5 flex-col shadow-md mb-5 transition-colors duration-200 ${isCompleted ? "bg-neutral-300 dark:bg-darkDisabledCard" : inProgress ? "bg-blue-200 dark:bg-darkProgress " : "bg-white dark:bg-darkSecondary"}`}>

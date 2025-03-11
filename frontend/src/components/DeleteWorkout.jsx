@@ -32,17 +32,6 @@ const DeleteWorkout = ({ workoutId, user, dispatch }) => {
         setDeleteConfirm(false);
         setIsDeleting(false);
     }
-
-    // //confirm delete button style
-    // const deleteButtonStyle = `text-white rounded-full p-2 cursor-pointer bg-red-500 hover:bg-red-600 
-    //         dark:text-darkButtonText dark:bg-darkDeleteButton dark:hover:bg-darkDeleteButtonHover 
-    //         transition-colors duration-200 size-10`
-
-    // //cancel delete button style
-    // const cancelDeleteButtonStyle = `px-4 py-2 dark:text-darkCancelButtonText bg-gray-400 hover:bg-gray-500 dark:bg-darkCancelButton dark:hover:bg-darkCancelButtonHover rounded-lg cursor-pointer transition-colors duration-200`
-
-    // //confirm delete button sty
-    // const confirmDeleteButtonStyle = `px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 dark:bg-darkDeleteButton dark:hover:bg-darkDeleteButtonHover transition-colors duration-200 cursor-pointer`
     
     return (
         <>

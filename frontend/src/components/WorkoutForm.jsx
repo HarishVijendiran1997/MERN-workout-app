@@ -91,25 +91,6 @@ const WorkoutForm = () => {
         setLoad(value)
     }
 
-//     //workout form style
-//     const addFormStyle = `max-w-lg mx-auto p-6 bg-white dark:bg-darkSecondary dark:text-darkInputText  shadow-md rounded-lg
-// transition-colors duration-200`
-
-//     //workout form title style
-//     const addFormTitleStyle = `text-2xl font-bold text-blue-600 dark:text-darkTextPrimary mb-4 transition-colors duration-200`
-
-//     //workout form load input style
-//     const addFormLoadInputStyle = `w-full p-2 mb-4 placeholder:text-gray-500 dark:placeholder:text-darkTextPlaceholder border dark:border-darkBorder rounded-lg dark:bg-darkInputBackground transition-colors duration-200 ${emptyFields.includes('load') ? "border-red-500 dark:border-red-500" : "border-gray-300 dark:border-darkBorder"}`
-//     //workout form reps input style
-//     const addFormRepsInputStyle = `w-full p-2 mb-4 placeholder:text-gray-500 dark:placeholder:text-darkTextPlaceholder border dark:border-darkBorder rounded-lg dark:bg-darkInputBackground transition-colors duration-200 ${emptyFields.includes('reps') ? "border-red-500 dark:border-red-500" : "border-gray-300 dark:border-darkBorder"}`
-//     //workout form submit button style
-//     const addFormSubmitButtonStyle = `
-//                     w-full bg-green-600 hover:bg-green-500 active:bg-green-600 cursor-pointer text-white p-2 rounded dark:text-ButtonText dark:bg-darkAddButton dark:hover:bg-darkAddButtonHover dark:active:bg-darkAddButton transition-colors duration-200`
-
-//     //workout form error message style
-//     const addFormErrorMessageStyle = `w-full p-2 mb-4 text-red-500 dark:text-errorText border bg-red-100 dark:bg-errorBackground rounded-lg mt-4 flex justify-center items-center transition-colors duration-200`
-
-
     return (
         <div>
             <form id="workout-form" onSubmit={handleSubmit} className={`max-w-lg mx-auto p-6 mb-4 md:mb-0 bg-white dark:bg-darkSecondary dark:text-darkInputText  shadow-md rounded-lg

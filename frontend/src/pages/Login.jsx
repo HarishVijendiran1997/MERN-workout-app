@@ -38,9 +38,6 @@ const Login = () => {
     const showPasswordStyle = stylesLogin.showPassword
     const errorMessageStyle = stylesLogin.errorMessage
 
-    // //login button style
-    // const loginButtonStyle = `w-full ${isLoading ? "bg-gray-500 cursor-not-allowed" : "bg-green-600 hover:bg-green-500 active:bg-green-600"} text-white p-2 rounded transition-colors duration-200 cursor-pointer`
-
     return (
         <div className={loginPageStyle}>
             <form onSubmit={handleSubmit} className={loginFormStyle} disabled={isLoading}>
