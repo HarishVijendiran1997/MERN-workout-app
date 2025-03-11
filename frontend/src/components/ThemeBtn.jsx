@@ -6,6 +6,7 @@ export function ThemeBtn() {
 
     return (
         <button
+            id='theme-toggle-btn'
             onClick={toggleTheme}
             className={`cursor-pointer p-1 rounded-full transition-colors duration-500 shadow-md border 
                 ${themeMode === "light" 

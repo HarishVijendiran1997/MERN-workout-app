@@ -126,7 +126,7 @@ const WorkoutDetails = ({ workout }) => {
     // const enableEditModeButton = `rounded-lg p-2  transition-colors duration-200 size-10 ${isCompleted ? "text-white bg-neutral-400 dark:bg-darkDisabledButton dark:text-darkDisabledText cursor-not-allowed" : "text-white cursor-pointer bg-blue-600 hover:bg-blue-800 dark:bg-darkEditButton dark:hover:bg-darkEditButtonHover dark:text-darkButtonText "}`
 
     return (
-        <div className={`flex items-start  max-w-screen rounded-lg font-Poppins md:ml-4 pb-5 pr-5 pl-5 pt-5 flex-col shadow-md mb-5 transition-colors duration-200 ${isCompleted ? "bg-neutral-300 dark:bg-darkDisabledCard" : inProgress ? "bg-blue-200 dark:bg-darkProgress " : "bg-white dark:bg-darkSecondary"}`}>
+        <div className={`workout-item flex items-start  max-w-screen rounded-lg font-Poppins md:ml-4 pb-5 pr-5 pl-5 pt-5 flex-col shadow-md mb-5 transition-colors duration-200 ${isCompleted ? "bg-neutral-300 dark:bg-darkDisabledCard" : inProgress ? "bg-blue-200 dark:bg-darkProgress " : "bg-white dark:bg-darkSecondary"}`}>
             {isEditing ? (
                 <div>
                     <div className="flex justify-center">
@@ -191,7 +191,7 @@ const WorkoutDetails = ({ workout }) => {
                                 <WorkoutStatus workout={workout} />
                             </div>
                             <div className="flex gap-2 ">
-                                <svg onClick={isCompleted ? null : handleEnableEdit} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={`rounded-lg p-2  transition-colors duration-200 size-10 ${isCompleted ? "text-white bg-neutral-400 dark:bg-darkDisabledButton dark:text-darkDisabledText cursor-not-allowed" : "text-white cursor-pointer bg-blue-600 hover:bg-blue-800 dark:bg-darkEditButton dark:hover:bg-darkEditButtonHover dark:text-darkButtonText "}`}>
+                                <svg onClick={isCompleted ? null : handleEnableEdit} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={`edit-workout-btn rounded-lg p-2  transition-colors duration-200 size-10 ${isCompleted ? "text-white bg-neutral-400 dark:bg-darkDisabledButton dark:text-darkDisabledText cursor-not-allowed" : "text-white cursor-pointer bg-blue-600 hover:bg-blue-800 dark:bg-darkEditButton dark:hover:bg-darkEditButtonHover dark:text-darkButtonText "}`}>
                                     <path strokeLinecap="round" strokeLinejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
                                 </svg>
                                 <DeleteWorkout workoutId={workout._id} user={user} dispatch={dispatch} />

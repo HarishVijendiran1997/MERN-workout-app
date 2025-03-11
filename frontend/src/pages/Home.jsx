@@ -58,7 +58,7 @@ const Home = () => {
             <div className="px-4 order-first sm:order-last">
                 <WorkoutForm />
             </div>
-            <div className="px-4 flex flex-col">
+            <div id="workout-list" className="px-4 flex flex-col">
                 {loading ? (
                     <div className="flex flex-grow justify-center items-center">
                         <div className="flex flex-col items-center">

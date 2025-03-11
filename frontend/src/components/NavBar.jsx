@@ -36,10 +36,10 @@ const NavBar = () => {
                     {user && (
                         <div className="flex gap-2 justify-between w-full">
                             <div>
-                                <span className="text-lg dark:text-darkTextUser transition-colors duration-200">{user?.email}</span>
+                                <span id="user-email" className="text-lg dark:text-darkTextUser transition-colors duration-200">{user?.email}</span>
                             </div>
                             <div>
-                                <button className={`rounded-lg p-1.5 text-white bg-green-600 hover:bg-green-500 active:bg-green-600 dark:bg-darkTestButton dark:hover:bg-darkTestButtonHover dark:active:bg-darkTestButton dark:text-darkButtonText transition duration-200 cursor-pointer`} onClick={logout}>Log out</button>
+                                <button id="logout-btn" className={`rounded-lg p-1.5 text-white bg-green-600 hover:bg-green-500 active:bg-green-600 dark:bg-darkTestButton dark:hover:bg-darkTestButtonHover dark:active:bg-darkTestButton dark:text-darkButtonText transition duration-200 cursor-pointer`} onClick={logout}>Log out</button>
                             </div>
                         </div>)}
                     {!user && (
@@ -48,7 +48,7 @@ const NavBar = () => {
                             <Link to='/signup' className={`rounded-lg p-1.5 text-white bg-green-600 hover:bg-green-500 active:bg-green-600 dark:bg-darkSaveButton dark:hover:bg-darkSaveButtonHover dark:active:bg-darkSaveButton dark:text-darkButtonText transition duration-200 cursor-pointer`}>Signup</Link>
                         </div>)}
                     <div className="md:static absolute right-4 top-4">
-                        <ThemeBtn />
+                        <ThemeBtn id="theme-toggle-btn"/>
                     </div>
                     {/* <div >
                         <Link to='/test' className="rounded-lg p-1.5 text-white bg-green-600 hover:bg-green-500 active:bg-green-600 dark:bg-darkTestButton dark:hover:bg-darkTestButtonHover dark:active:bg-darkTestButton dark:text-darkButtonText font-semibold transition duration-200">

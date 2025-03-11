@@ -112,7 +112,7 @@ const WorkoutForm = () => {
 
     return (
         <div>
-            <form onSubmit={handleSubmit} className={`max-w-lg mx-auto p-6 mb-4 md:mb-0 bg-white dark:bg-darkSecondary dark:text-darkInputText  shadow-md rounded-lg
+            <form id="workout-form" onSubmit={handleSubmit} className={`max-w-lg mx-auto p-6 mb-4 md:mb-0 bg-white dark:bg-darkSecondary dark:text-darkInputText  shadow-md rounded-lg
 transition-colors duration-200`}>
                 <h2 className={`text-2xl font-bold text-blue-600 dark:text-darkTextPrimary mb-4 transition-colors duration-200`}>Add a new workout</h2>
 
@@ -132,7 +132,7 @@ transition-colors duration-200`}>
                     value={reps}
                     placeholder="Reps"
                 />
-                <button className={`
+                <button id='add-workout-btn' className={`
                     w-full bg-green-600 hover:bg-green-500 active:bg-green-600 cursor-pointer text-white p-2 rounded dark:text-ButtonText dark:bg-darkAddButton dark:hover:bg-darkAddButtonHover dark:active:bg-darkAddButton transition-colors duration-200`} disabled={isSubmitting}>
                     {isSubmitting ? "Adding..." : "Add Workout"}
                 </button>

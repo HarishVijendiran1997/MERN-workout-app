@@ -9,6 +9,7 @@ import { useThemeContext } from "../hooks/useThemeContext.jsx";
 import Login from "./pages/Login.jsx"
 import Signup from "./pages/Signup.jsx"
 import { useAuthContext } from "../hooks/useAuthContext.jsx";
+import UserGuide from "./components/UserGuide.jsx";
 
 function AppContent() {
   const { user } = useAuthContext()
@@ -16,6 +17,7 @@ function AppContent() {
   return (
     <div className="font-primary min-h-screen flex flex-col">
       <BrowserRouter>
+        <UserGuide />
         <ToastContainer theme={themeMode} position="bottom-right" closeOnClick={true} transition={Slide} autoClose={3000} />
         <NavBar />
         <div className="flex flex-grow">
