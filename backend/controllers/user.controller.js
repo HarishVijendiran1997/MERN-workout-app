@@ -17,6 +17,7 @@ const loginUser = async (req, res) => {
       _id: user._id,
       email,
       token,
+      plan: user.plan,
     });
   } catch (error) {
     res.status(400).json({ message: error.message });
@@ -29,7 +30,15 @@ const signupUser = async (req, res) => {
   try {
     const user = await User.signup(email.toLowerCase(), password);
     const token = createToken(user._id);
-    res.status(200).json({ message: "Register User successful", email, token });
+    res
+      .status(200)
+      .json({
+        message: "Register User successful",
+        _id: user._id,
+        email,
+        token,
+        plan: user.plan,
+      });
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
@@ -38,11 +47,17 @@ const signupUser = async (req, res) => {
 //? Upgrade User
 const upgradeUser = async (req, res) => {
   const { id } = req.params;
-  const { plan } = req.body; // ✅ Get plan from request body
-
+  const { plan } = req.body;
   try {
     const user = await User.upgrade(id, plan);
-    res.status(200).json({ message: "User upgraded successfully", user });
+    const token = createToken(user._id);
+    res.status(200).json({
+      message: "User upgraded successfully",
+      _id: user._id,
+      email: user.email,
+      token,
+      plan: user.plan,
+    });
   } catch (error) {
     res.status(500).json({ message: error.message || "Server error" });
   }

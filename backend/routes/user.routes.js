@@ -9,5 +9,7 @@ router.post('/login', loginUser)
 //routes for signup
 router.post('/signup', signupUser)
 
+//routes for upgrading a user's account
 router.patch('/upgrade/:id', upgradeUser)
+
 export default router
