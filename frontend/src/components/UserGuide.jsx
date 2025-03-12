@@ -94,8 +94,8 @@ const UserGuide = () => {
             <button
                 id="start-tour-btn"
                 onClick={startTour}
-                className="absolute top-1 left-1 sm:absolute sm:bottom-5 sm:right-5 z-10 w-5 h-5 bg-blue-600 text-white text-[15px]
-                   flex items-center justify-center rounded-full shadow-lg 
+                className="absolute top-2 left-2 sm:absolute sm:bottom-5 sm:right-5 z-10 w-5 h-5 bg-blue-600 text-white text-[15px]
+                   flex items-center justify-center rounded-full shadow-lg border 
                    hover:bg-blue-700 transition text-xl font-extrabold cursor-pointer
                    dark:text-darkButtonText dark:bg-darkEditButton dark:hover:bg-darkEditButtonHover"
             >

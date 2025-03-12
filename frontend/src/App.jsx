@@ -10,6 +10,7 @@ import Login from "./pages/Login.jsx"
 import Signup from "./pages/Signup.jsx"
 import { useAuthContext } from "../hooks/useAuthContext.jsx";
 import UserGuide from "./components/UserGuide.jsx";
+import ScrollToTop from "./components/ScrollToTop.jsx";
 
 function AppContent() {
   const { user } = useAuthContext()
@@ -28,6 +29,7 @@ function AppContent() {
             <Route path="/signup" element={!user ? <Signup /> : <Navigate to="/" />} />
           </Routes>
         </div>
+        <ScrollToTop/>
       </BrowserRouter>
     </div>
   )
