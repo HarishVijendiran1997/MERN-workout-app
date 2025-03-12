@@ -10,6 +10,9 @@ export const useLogin = () => {
     const { dispatch } = useAuthContext()
 
     const login = async (email, password) => {
+        if (!navigator.onLine) {
+            return toast.error("No internet connection! Please check your network");
+        }
         setIsLoading(true)
         setError(null)
         try {
@@ -19,7 +22,7 @@ export const useLogin = () => {
             toast.success(response?.data?.message || "Success");
         } catch (error) {
             setError(error.response?.data?.message || "Login failed")
-        }finally{
+        } finally {
             setIsLoading(false)
         }
     }
