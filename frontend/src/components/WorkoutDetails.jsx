@@ -98,15 +98,6 @@ const WorkoutDetails = ({ workout }) => {
     //workout load, reps, created at styles
     const workoutLoadRepsCreatedAtStyle = `transition-colors duration-200 ${isCompleted ? "text-neutral-800 dark:text-darkDisabledText cursor-not-allowed line-through" : "dark:text-darkTextSecondary"}`
 
-    // //workout status in progress active dot animate styles
-    // const workoutInProgressAnimateDotStyle = "dark:text-darkAddButtonHover ml-1 py-2 animate-bounce translate-y-1"
-    // //workout status in progress active dot styles
-    // const workoutInProgressActiveDot1Style = "border border-green-500 dark:border-darkAddButtonHover w-1 h-3 bg-green-500 dark:bg-darkAddButtonHover rounded-full overflow-hidden"
-    // const workoutInProgressActiveDot2Style = "border border-green-500 dark:border-darkAddButtonHover w-1 h-2 bg-green-500 dark:bg-darkAddButtonHover rounded-full overflow-hidden"
-    // const workoutInProgressActiveDot3Style = "border border-green-500 dark:border-darkAddButtonHover w-1 h-2 bg-green-500 dark:bg-darkAddButtonHover rounded-full overflow-hidden"
-    // const workoutInProgressActiveDot4Style = "border border-green-500 dark:border-darkAddButtonHover w-1 h-2 bg-green-500 dark:bg-darkAddButtonHover rounded-full overflow-hidden"
-    // const workoutInProgressActiveDot5Style = "border border-green-500 dark:border-darkAddButtonHover w-1 h-3 bg-green-500 dark:bg-darkAddButtonHover rounded-full overflow-hidden"
-
     return (
         <div className={`workout-item flex items-start  max-w-screen rounded-lg font-Poppins md:ml-4 pb-5 pr-5 pl-5 pt-5 flex-col shadow-md mb-5 transition-colors duration-200 ${isCompleted ? "bg-neutral-300 dark:bg-darkDisabledCard" : inProgress ? "bg-blue-200 dark:bg-darkProgress " : "bg-white dark:bg-darkSecondary"}`}>
             {isEditing ? (
