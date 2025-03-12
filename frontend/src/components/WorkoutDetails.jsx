@@ -8,6 +8,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useAuthContext } from "../../hooks/useAuthContext"
 import DeleteWorkout from "./DeleteWorkout";
 import WorkoutStatus from "./WorkoutStatus";
+import InProgressLoader from "./InProgressLoader";
 
 const WorkoutDetails = ({ workout }) => {
 
@@ -97,14 +98,14 @@ const WorkoutDetails = ({ workout }) => {
     //workout load, reps, created at styles
     const workoutLoadRepsCreatedAtStyle = `transition-colors duration-200 ${isCompleted ? "text-neutral-800 dark:text-darkDisabledText cursor-not-allowed line-through" : "dark:text-darkTextSecondary"}`
 
-    //workout status in progress active dot animate styles
-    const workoutInProgressAnimateDotStyle = "dark:text-darkAddButtonHover ml-1 py-2 animate-bounce translate-y-1"
-    //workout status in progress active dot styles
-    const workoutInProgressActiveDot1Style = "border border-green-500 dark:border-darkAddButtonHover w-1 h-3 bg-green-500 dark:bg-darkAddButtonHover rounded-full overflow-hidden"
-    const workoutInProgressActiveDot2Style = "border border-green-500 dark:border-darkAddButtonHover w-1 h-2 bg-green-500 dark:bg-darkAddButtonHover rounded-full overflow-hidden"
-    const workoutInProgressActiveDot3Style = "border border-green-500 dark:border-darkAddButtonHover w-1 h-2 bg-green-500 dark:bg-darkAddButtonHover rounded-full overflow-hidden"
-    const workoutInProgressActiveDot4Style = "border border-green-500 dark:border-darkAddButtonHover w-1 h-2 bg-green-500 dark:bg-darkAddButtonHover rounded-full overflow-hidden"
-    const workoutInProgressActiveDot5Style = "border border-green-500 dark:border-darkAddButtonHover w-1 h-3 bg-green-500 dark:bg-darkAddButtonHover rounded-full overflow-hidden"
+    // //workout status in progress active dot animate styles
+    // const workoutInProgressAnimateDotStyle = "dark:text-darkAddButtonHover ml-1 py-2 animate-bounce translate-y-1"
+    // //workout status in progress active dot styles
+    // const workoutInProgressActiveDot1Style = "border border-green-500 dark:border-darkAddButtonHover w-1 h-3 bg-green-500 dark:bg-darkAddButtonHover rounded-full overflow-hidden"
+    // const workoutInProgressActiveDot2Style = "border border-green-500 dark:border-darkAddButtonHover w-1 h-2 bg-green-500 dark:bg-darkAddButtonHover rounded-full overflow-hidden"
+    // const workoutInProgressActiveDot3Style = "border border-green-500 dark:border-darkAddButtonHover w-1 h-2 bg-green-500 dark:bg-darkAddButtonHover rounded-full overflow-hidden"
+    // const workoutInProgressActiveDot4Style = "border border-green-500 dark:border-darkAddButtonHover w-1 h-2 bg-green-500 dark:bg-darkAddButtonHover rounded-full overflow-hidden"
+    // const workoutInProgressActiveDot5Style = "border border-green-500 dark:border-darkAddButtonHover w-1 h-3 bg-green-500 dark:bg-darkAddButtonHover rounded-full overflow-hidden"
 
     return (
         <div className={`workout-item flex items-start  max-w-screen rounded-lg font-Poppins md:ml-4 pb-5 pr-5 pl-5 pt-5 flex-col shadow-md mb-5 transition-colors duration-200 ${isCompleted ? "bg-neutral-300 dark:bg-darkDisabledCard" : inProgress ? "bg-blue-200 dark:bg-darkProgress " : "bg-white dark:bg-darkSecondary"}`}>
@@ -132,28 +133,7 @@ const WorkoutDetails = ({ workout }) => {
                 <>
                     <div className="flex">
                         <h4 className={` text-2xl font-extrabold transition-colors md:mb-0 mb-4 duration-200 ${isCompleted ? "text-neutral-800 dark:text-darkDisabledText cursor-not-allowed line-through" : " text-blue-600 hover:text-blue-500 dark:hover:text-darkTextPrimaryHover dark:text-darkTextPrimary  cursor-pointer "} `} onClick={() => !isCompleted && navigate("/test", { state: { workout } })}>{workout.title}</h4>
-                        {inProgress && <div className="flex items-center justify-center ml-2">
-                            <span className={workoutInProgressAnimateDotStyle} style={{ animationDelay: "200ms" }}>
-                                <div className={workoutInProgressActiveDot1Style}>
-                                </div>
-                            </span>
-                            <span className={workoutInProgressAnimateDotStyle} style={{ animationDelay: "400ms" }}>
-                                <div className={workoutInProgressActiveDot2Style}>
-                                </div>
-                            </span>
-                            <span className={workoutInProgressAnimateDotStyle} style={{ animationDelay: "600ms" }}>
-                                <div className={workoutInProgressActiveDot3Style}>
-                                </div>
-                            </span>
-                            <span className={workoutInProgressAnimateDotStyle} style={{ animationDelay: "800ms" }}>
-                                <div className={workoutInProgressActiveDot4Style}>
-                                </div>
-                            </span>
-                            <span className={workoutInProgressAnimateDotStyle} style={{ animationDelay: "1000ms" }}>
-                                <div className={workoutInProgressActiveDot5Style}>
-                                </div>
-                            </span>
-                        </div>}
+                        {inProgress && <InProgressLoader/>}
                         {isCompleted && <div className="flex items-center justify-center -translate-y-1">
                             <span className="text-blue-600 pt-2 pl-2 dark:text-darkAddButtonHover">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-6">

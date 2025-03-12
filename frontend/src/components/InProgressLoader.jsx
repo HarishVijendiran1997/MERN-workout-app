@@ -7,7 +7,7 @@ const workoutInProgressActiveDot3Style = "border border-green-500 dark:border-da
 const workoutInProgressActiveDot4Style = "border border-green-500 dark:border-darkAddButtonHover w-1 h-2 bg-green-500 dark:bg-darkAddButtonHover rounded-full overflow-hidden"
 const workoutInProgressActiveDot5Style = "border border-green-500 dark:border-darkAddButtonHover w-1 h-3 bg-green-500 dark:bg-darkAddButtonHover rounded-full overflow-hidden"
 
-const InProgressLoader = (<div className="flex items-center justify-center ml-2">
+const InProgressLoader = () => (<div className="flex items-center justify-center ml-2">
     <span className={workoutInProgressAnimateDotStyle} style={{ animationDelay: "200ms" }}>
         <div className={workoutInProgressActiveDot1Style}>
         </div>
