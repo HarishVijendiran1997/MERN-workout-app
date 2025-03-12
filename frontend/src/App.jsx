@@ -10,12 +10,13 @@ import { useAuthContext } from "../hooks/useAuthContext.jsx";
 import ScrollToTop from "./components/ScrollToTop.jsx";
 import UserGuide from "./components/UserGuide.jsx";
 import Loader from "./components/Loader.jsx";
-
+import Profile from "./pages/Profile.jsx";
 // Lazy-loaded components
 const Home = lazy(() => import("./pages/Home.jsx"));
 const Signup = lazy(() => import("./pages/Signup.jsx"));
 const Login = lazy(() => import("./pages/Login.jsx"));
 const Test = lazy(() => import("./pages/Test.jsx"));
+const Plans = lazy(() => import("./pages/Plans.jsx"));
 
 
 function AppContent() {
@@ -34,6 +35,8 @@ function AppContent() {
               <Route path="/login" element={!user ? <Login /> : <Navigate to="/" />} />
               <Route path="/signup" element={!user ? <Signup /> : <Navigate to="/" />} />
               <Route path="/test" element={user ? <Test /> : <Navigate to="/login" />} />
+              <Route path="/plans" element={user ? <Plans /> : <Navigate to="/login" />} />
+              <Route path="/profile" element={user ? <Profile /> : <Navigate to="/login" />} />
             </Routes>
           </Suspense>
         </div>

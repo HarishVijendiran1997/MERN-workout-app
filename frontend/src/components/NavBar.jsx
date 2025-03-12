@@ -26,11 +26,20 @@ const NavBar = () => {
                 <nav className="flex md:flex-row md:space-x-2 mt-5 md:mt-0 text-center">
                     {user && (
                         <div className="flex gap-2 justify-between w-full">
-                            <div>
-                                <span id="user-email" className="text-lg dark:text-darkTextUser transition-colors duration-200">{user?.email}</span>
-                            </div>
-                            <div>
-                                <button id="logout-btn" className={`rounded-lg p-1.5 text-white bg-green-600 hover:bg-green-500 active:bg-green-600 dark:bg-darkTestButton dark:hover:bg-darkTestButtonHover dark:active:bg-darkTestButton dark:text-darkButtonText transition duration-200 cursor-pointer`} onClick={logout}>Log out</button>
+                            <Link to="/profile">
+                                <div>
+                                    <span id="user-email" className="hover:underline cursor-pointer text-lg dark:text-darkTextUser transition-colors duration-200">{user?.email}</span>
+                                </div>
+                            </Link>
+                            <div className="flex gap-2">
+                                <div className="order-2">
+                                    <button id="logout-btn" className={`rounded-lg p-1.5 text-white bg-green-600 hover:bg-green-500 active:bg-green-600 dark:bg-darkTestButton dark:hover:bg-darkTestButtonHover dark:active:bg-darkTestButton dark:text-darkButtonText transition duration-200 cursor-pointer`} onClick={logout}>Log out</button>
+                                </div>
+                                <div className="sm:order-3">
+                                    <Link to="/plans">
+                                        <button className={`rounded-lg p-1.5 text-white dark:text-darkButtonText bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 border-1 hover:bg-gradient-to-r hover:from-orange-600 hover:via-pink-600 hover:to-purple-600 transition duration-800 cursor-pointer`} >Upgrade Plan</button>
+                                    </Link>
+                                </div>
                             </div>
                         </div>)}
                     {!user && (
