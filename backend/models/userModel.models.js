@@ -14,6 +14,11 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  plan: {
+    type: String,
+    enum: ["Basic", "Premium"],
+    default: "Basic",
+  },
 });
 
 userSchema.statics.signup = async function (email, password) {
@@ -44,7 +49,7 @@ userSchema.statics.signup = async function (email, password) {
   const salt = await bcrypt.genSalt(10);
   const hash = await bcrypt.hash(password, salt);
 
-  const user = await this.create({ email, password: hash });
+  const user = await this.create({ email, password: hash, plan: "Basic" });
 
   return user;
 };
@@ -60,10 +65,28 @@ userSchema.statics.login = async function (email, password) {
     throw new Error("Invalid email");
   }
   const isMatch = await bcrypt.compare(password, user.password);
-  
+
   if (!isMatch) {
     throw new Error("Invalid password");
   }
+  return user;
+};
+
+userSchema.statics.upgrade = async function (id, plan) {
+  if (!id || !plan) {
+    throw new Error("Please provide user ID and plan");
+  }
+
+  const user = await this.findOneAndUpdate(
+    { _id: id },
+    { plan },
+    { new: true }
+  );
+
+  if (!user) {
+    throw new Error("User not found");
+  }
+
   return user;
 };
 

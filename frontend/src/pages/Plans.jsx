@@ -1,7 +1,4 @@
-import { useNavigate } from "react-router-dom";
-
 const Plans = () => {
-    const navigate = useNavigate();
 
     return (
         <div className="w-full flex flex-col items-center justify-center bg-neutral-200 text-blue-900 dark:bg-darkPrimary dark:text-white">

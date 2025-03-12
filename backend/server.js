@@ -26,10 +26,10 @@ const PORT = process.env.PORT || 5000;
 app.use(express.json());
 
 //middleware to log the request path and method
-// app.use((req, res, next) => {
-//   console.log(req.path, req.method);
-//   next();
-// });
+app.use((req, res, next) => {
+  console.log(req.path, req.method);
+  next();
+});
 
 //? routes
 //routes for the workouts
