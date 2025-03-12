@@ -15,7 +15,7 @@ const Test = () => {
     },[workout])
 
     return (
-        <div className="w-full min-h-[calc(100vh-5.5rem)] dark:bg-darkPrimary">
+        <div className="w-full sm:min-h-[calc(100vh-5.5rem)] dark:bg-darkPrimary">
 
         <div className="flex flex-col justify-center items-center w-screen p-6 ">
             <h1 className="text-3xl font-bold text-blue-900 dark:text-darkTextPrimary mb-6">Workout Details</h1>

@@ -46,10 +46,10 @@ const Home = () => {
 
     return (
         <div className={`sm:grid-cols-[4fr_2fr] grid grid-cols-1 text-center bg-gray-200 dark:bg-darkPrimary w-full min-h-[calc(100vh-5.5rem)] pt-5 gap-4 transition-colors duration-200`}>
-            <div className="px-4 order-first sm:order-last">
+            <div className="px-6 sm:px-2 order-first sm:order-last">
                 <WorkoutForm />
             </div>
-            <div id="workout-list" className="px-4 flex flex-col">
+            <div id="workout-list" className="px-6 sm:px-2 flex flex-col">
                 {loading ? (
                     <div className="flex flex-grow justify-center items-center">
                         <div className="flex flex-col items-center">

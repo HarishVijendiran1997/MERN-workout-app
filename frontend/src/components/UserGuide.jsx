@@ -81,6 +81,7 @@ const UserGuide = () => {
                 continuous={true}
                 showProgress={true}
                 showSkipButton={true}
+                spotlightPadding={5}
                 styles={{
                     options: { zIndex: 10000 },
                     overlayLegacy: 'rgba(0, 0, 0, 0.8)',
