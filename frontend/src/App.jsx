@@ -17,7 +17,8 @@ const Signup = lazy(() => import("./pages/Signup.jsx"));
 const Login = lazy(() => import("./pages/Login.jsx"));
 const Test = lazy(() => import("./pages/Test.jsx"));
 const Plans = lazy(() => import("./pages/Plans.jsx"));
-const ForgotPassword = lazy(() =>import("./pages/ForgotPassword.jsx"));
+const ForgotPassword = lazy(() => import("./pages/ForgotPassword.jsx"));
+const ResetPassword = lazy(() => import("./pages/ResetPassword.jsx"));
 
 
 function AppContent() {
@@ -38,7 +39,8 @@ function AppContent() {
               <Route path="/test" element={user ? <Test /> : <Navigate to="/login" />} />
               <Route path="/plans" element={user ? <Plans /> : <Navigate to="/login" />} />
               <Route path="/profile" element={user ? <Profile /> : <Navigate to="/login" />} />
-              <Route path="/forgot-password" element={<ForgotPassword />} />
+              <Route path="/forgot-password" element={!user ? <ForgotPassword /> : <Navigate to="/login" />} />
+              <Route path="/reset-password/:token" element={!user ? <ResetPassword /> : <Navigate to="/login" />} />
             </Routes>
           </Suspense>
         </div>

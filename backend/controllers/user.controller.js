@@ -96,14 +96,23 @@ const forgotPassword = async (req, res) => {
 const resetPassword = async (req, res) => {
   const { token, newPassword, confirmPassword } = req.body;
 
-  if (newPassword!== confirmPassword) {
+  if (!token) {
+    return res.status(400).json({ message: "Token is required" });
+  }
+
+  if (!newPassword || !confirmPassword) {
+    return res.status(400).json({ message: "Passwords are required" });
+  }
+
+  if (newPassword !== confirmPassword) {
     return res.status(400).json({ message: "Passwords do not match" });
   }
-  
+
   try {
     const response = await User.resetPassword(token, newPassword);
     res.status(200).json(response);
   } catch (error) {
+    console.error("Backend Error:", error.message);
     res.status(400).json({ message: error.message || "Server error" });
   }
 };
