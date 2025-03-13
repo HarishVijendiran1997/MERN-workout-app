@@ -5,16 +5,16 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export const useUpgrade = () => {
-    const [error, setError] = useState(null)
-    const [isLoading, setIsLoading] = useState(false)
+    const [UpgradeError, setUpgradeError] = useState(null)
+    const [UpgradeIsLoading, setUpgradeIsLoading] = useState(false)
     const { user, dispatch } = useAuthContext()
 
     const upgrade = async (id, plan) => {
         if (!navigator.onLine) {
             return toast.error("No internet connection! Please check your network");
         }
-        setIsLoading(true)
-        setError(null)
+        setUpgradeIsLoading(true)
+        setUpgradeError(null)
         try {
             const response = await axios.patch(`http://localhost:4000/api/user/upgrade/${id}`, { plan }, {
                 headers: {
@@ -34,14 +34,14 @@ export const useUpgrade = () => {
             } else {
                 toast.error("Upgrade failed: No user data returned.");
             }
-            setError(null)
+            setUpgradeError(null)
         } catch (error) {
             toast.success(error.response?.data?.message || "Failed to upgrade to Premium account");
-            setError(error.response?.data?.message || "Failed to upgrade to Premium account")
+            setUpgradeError(error.response?.data?.message || "Failed to upgrade to Premium account")
         } finally {
-            setIsLoading(false)
+            setUpgradeIsLoading(false)
         }
     }
 
-    return { upgrade, error, isLoading }
+    return { upgrade, UpgradeError, UpgradeIsLoading }
 }

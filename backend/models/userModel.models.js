@@ -93,4 +93,22 @@ userSchema.statics.upgrade = async function (id, plan) {
   return user;
 };
 
+userSchema.statics.downgrade = async function (id, plan) {
+  if (!id || !plan) {
+    throw new Error("Please provide user ID and plan");
+  }
+
+  const user = await this.findOneAndUpdate(
+    { _id: id },
+    { plan },
+    { new: true }
+  );
+
+  if (!user) {
+    throw new Error("User not found");
+  }
+
+  return user;
+};
+
 export const User = mongoose.model("User", userSchema);

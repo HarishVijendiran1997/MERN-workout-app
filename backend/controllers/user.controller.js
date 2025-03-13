@@ -63,4 +63,23 @@ const upgradeUser = async (req, res) => {
   }
 };
 
-export { loginUser, signupUser, upgradeUser };
+//? Downgrade User
+const downgradeUser = async (req, res) => {
+  const { id } = req.params;
+  const { plan } = req.body;
+  try {
+    const user = await User.downgrade(id, plan);
+    const token = createToken(user._id);
+    res.status(200).json({
+      message: "User downgraded successfully",
+      _id: user._id,
+      email: user.email,
+      token,
+      plan: user.plan,
+    });
+  } catch (error) {
+    res.status(500).json({ message: error.message || "Server error" });
+  }
+};
+
+export { loginUser, signupUser, upgradeUser, downgradeUser };
