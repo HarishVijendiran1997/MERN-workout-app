@@ -44,7 +44,7 @@ const Plans = () => {
                 <div className="bg-neutral-300 hover:scale-110 duration-500 ease-in-out transition-transform dark:bg-darkTertiary p-8 m-2 rounded-lg shadow-lg flex flex-col items-center">
                     <h2 className="text-2xl font-bold mb-2 text-neutral-800 dark:text-darkTextPrimary">Basic Plan</h2>
                     <p className="text-neutral-700 dark:text-darkTextResult">Access limited features</p>
-                    <button onClick={handleDowngrade} disabled={downgradeIsLoading || user.plan === "Basic"} className={`px-5 py-2 mt-4 rounded-lg text-white transition${user?.plan === "Basic"
+                    <button onClick={handleDowngrade} disabled={downgradeIsLoading || user.plan === "Basic"} className={`px-5 py-2 mt-4 rounded-lg text-white transition-all duration-300 ${user?.plan === "Basic"
                         ? "bg-neutral-700 dark:bg-darkDisabledButton dark:text-darkDisabledText cursor-not-allowed"
                         : "bg-blue-500 px-5 py-2 mt-4 rounded-lg hover:bg-blue-600 dark:bg-darkAddButton dark:hover:bg-darkAddButtonHover dark:active:bg-darkAddButton cursor-pointer"
                         }`}>
@@ -59,7 +59,7 @@ const Plans = () => {
                     <p className="text-neutral-700 dark:text-darkTextResult">Unlock workout status feature</p>
                     <button
                         onClick={handleUpgrade} disabled={upgradeIsLoading || user.plan === "Premium"}
-                        className={`px-5 py-2 mt-4 rounded-lg text-white transition${user?.plan === "Premium"
+                        className={`px-5 py-2 mt-4 rounded-lg text-white transition-all duration-300 ${user?.plan === "Premium"
                             ? "bg-neutral-700 dark:bg-darkDisabledButton dark:text-darkDisabledText cursor-not-allowed"
                             : "bg-blue-500 px-5 py-2 mt-4 rounded-lg hover:bg-blue-600 dark:bg-darkAddButton dark:hover:bg-darkAddButtonHover dark:active:bg-darkAddButton cursor-pointer"
                             }`}

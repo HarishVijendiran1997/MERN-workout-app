@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { ThemeBtn } from "../components/ThemeBtn"
 import { useLogout } from "../../hooks/useLogout";
 import { useAuthContext } from "../../hooks/useAuthContext";
+import { FaCrown } from "react-icons/fa";
 
 const NavBar = () => {
 
@@ -27,8 +28,15 @@ const NavBar = () => {
                     {user && (
                         <div className="flex gap-2 justify-between w-full">
                             <Link to="/profile">
-                                <div>
-                                    <span id="user-email" className="hover:underline cursor-pointer text-lg dark:text-darkTextUser transition-colors duration-200">{user?.email}</span>
+                                <div className="flex gap-2">
+                                    <div className="-translate-y-4">
+
+                                        {user.plan === "Premium" ? (<FaCrown size={20} color="#FFA500" className="translate-y-5" />) : ""}
+                                    </div>
+                                    <div>
+
+                                        <span id="user-email" className="hover:underline cursor-pointer text-lg dark:text-darkTextUser transition-colors duration-200">{user?.email}</span>
+                                    </div>
                                 </div>
                             </Link>
                             <div className="flex gap-2">
@@ -37,7 +45,7 @@ const NavBar = () => {
                                 </div>
                                 <div className="sm:order-3">
                                     <Link to="/plans">
-                                        <button className={`rounded-lg p-1.5 text-white dark:text-darkButtonText bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 border-1 hover:bg-gradient-to-r hover:from-orange-600 hover:via-pink-600 hover:to-purple-600 transition duration-800 cursor-pointer`} >Upgrade Plan</button>
+                                        <button className={`rounded-lg p-1.5 text-white dark:text-darkButtonText bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 border-1 hover:bg-gradient-to-r hover:from-orange-600 hover:via-pink-600 hover:to-purple-600 transition duration-800 cursor-pointer`} >{user.plan==="Premium"?"Basic Plan":"Upgrade Plan"}</button>
                                     </Link>
                                 </div>
                             </div>
