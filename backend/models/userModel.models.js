@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import bcrypt from "bcrypt";
 import validator from "validator";
+import { Workout } from "../models/WorkoutModel.models.js";
 
 const userSchema = new mongoose.Schema({
   email: {
@@ -107,6 +108,11 @@ userSchema.statics.downgrade = async function (id, plan) {
   if (!user) {
     throw new Error("User not found");
   }
+
+  await Workout.updateMany(
+    { user_id: id, status: { $ne: "pending" } },
+    { status: "pending" },
+  );
 
   return user;
 };

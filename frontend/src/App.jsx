@@ -26,7 +26,7 @@ function AppContent() {
     <div className="font-primary min-h-screen flex flex-col">
       <BrowserRouter>
         {user && <UserGuide />}
-        <ToastContainer theme={themeMode} position="bottom-right" closeOnClick={true} transition={Slide} autoClose={3000} />
+        <ToastContainer limit={window.innerWidth <= 768 ? 0 : 3} theme={themeMode} position="bottom-right" closeOnClick={true} transition={Slide} autoClose={3000} />
         <NavBar className="relative" />
         <div className="flex flex-grow">
           <Suspense fallback={<Loader />}>
