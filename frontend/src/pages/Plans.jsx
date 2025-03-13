@@ -22,6 +22,7 @@ const Plans = () => {
             return;
         }
         await upgrade(user._id, "Premium");
+        navigate("/")
     }
 
     const handleDowngrade = async (e) => {
@@ -35,6 +36,7 @@ const Plans = () => {
             return;
         }
         await downgrade(user._id, "Basic");
+        navigate("/")
     }
 
     return (
@@ -51,7 +53,7 @@ const Plans = () => {
                         ? "bg-neutral-700 dark:bg-darkDisabledButton dark:text-darkDisabledText cursor-not-allowed"
                         : "bg-blue-500 px-5 py-2 mt-4 rounded-lg hover:bg-blue-600 dark:bg-darkAddButton dark:hover:bg-darkAddButtonHover dark:active:bg-darkAddButton cursor-pointer"
                         }`}>
-                        {user?.plan === "Basic" ? "Active" : downgradeIsLoading ? "Updating..." : "Activate Basic"}
+                        {user?.plan === "Basic" ? "Active" : downgradeIsLoading ? "Updating..." : "Switch back to Basic"}
                     </button>
                     {downgradeError && <p className="text-red-500">{downgradeError}</p>}
                 </div>

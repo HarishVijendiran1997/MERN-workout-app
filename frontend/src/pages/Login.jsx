@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { useLogin } from "../../hooks/useLogin"
 import stylesLogin from "../styles/login&signup.styles"
 
@@ -8,6 +8,7 @@ const Login = () => {
     const [password, setPassword] = useState('')
     const [showPassword, setShowPassword] = useState(false)
     const { login, isLoading, error } = useLogin()
+    const navigate = useNavigate()
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -57,19 +58,27 @@ const Login = () => {
                         </svg>
                     </div>
                 </div>
-                <div className="flex items-center space-x-2 my-4 px-2">
-                    <label className="flex items-center space-x-2 px-2 cursor-pointer">
-                        <input
-                            type="checkbox"
-                            id="showPassword"
-                            checked={showPassword}
-                            onChange={handleShowPassword}
-                            className={showPasswordStyle}
-                        />
-                        <span className="text-sm text-gray-600 dark:text-darkTextSecondary">
-                            Show password
-                        </span>
-                    </label>
+                <div className="flex justify-between">
+
+                    <div className="flex items-center space-x-2 my-4 px-2">
+                        <label className="flex items-center space-x-2 px-2 cursor-pointer">
+                            <input
+                                type="checkbox"
+                                id="showPassword"
+                                checked={showPassword}
+                                onChange={handleShowPassword}
+                                className={showPasswordStyle}
+                            />
+                            <span className="text-sm text-gray-600 dark:text-darkTextSecondary">
+                                Show password
+                            </span>
+                        </label>
+                    </div>
+                    <div className="flex items-center space-x-2 my-4 px-2">
+                            <span className="text-sm text-gray-600 dark:text-darkTextSecondary">
+                            <p className="hover:underline cursor-pointer hover:text-blue-500 dark:hover:text-darkTextResult" onClick={() => { navigate('/forgot-password') }}>Forgot Password?</p>
+                            </span>
+                    </div>
                 </div>
                 <button className={`w-full ${isLoading ? "bg-gray-500 cursor-not-allowed" : "bg-green-600 hover:bg-green-500 active:bg-green-600"} text-white p-2 rounded transition-colors duration-200 cursor-pointer`}>{isLoading ? "Logging in..." : "Login"}</button>
                 {error && <p className={errorMessageStyle}>{error}</p>}

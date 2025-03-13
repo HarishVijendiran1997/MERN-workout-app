@@ -50,7 +50,7 @@ const upgradeUser = async (req, res) => {
     const user = await User.upgrade(id, plan);
     const token = createToken(user._id);
     res.status(200).json({
-      message: "User upgraded successfully",
+      message: "Congratulations! Your account has been successfully upgraded.",
       _id: user._id,
       email: user.email,
       token,
@@ -69,7 +69,7 @@ const downgradeUser = async (req, res) => {
     const user = await User.downgrade(id, plan);
     const token = createToken(user._id);
     res.status(200).json({
-      message: "User downgraded successfully",
+      message: "You have successfully switched to a Basic plan.",
       _id: user._id,
       email: user.email,
       token,

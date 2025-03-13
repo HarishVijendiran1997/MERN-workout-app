@@ -14,13 +14,13 @@ const Profile = () => {
             <div className="sm:w-1/3 flex px-10">
                 {user &&
                     <div>
-                        <p className="text-neutral-800 text-lg mt-4 dark:text-darkTextResult"><strong className="dark:text-darkTextSecondary text-blue-900">User Email: </strong>{user.email}</p>
+                        <p className="text-neutral-800 text-lg mt-4 dark:text-darkTextResult"><strong className="dark:text-darkTextSecondary text-blue-900">Email: </strong>{user.email}</p>
                         <div className="flex gap-2">
-                            <p className="text-neutral-800 text-lg mt-4 dark:text-darkTextResult"><strong className="dark:text-darkTextSecondary text-blue-900">User Plan: </strong>{user.plan}</p>{user.plan === "Premium" && (
+                            <p className="text-neutral-800 text-lg mt-4 dark:text-darkTextResult"><strong className="dark:text-darkTextSecondary text-blue-900">Plan: </strong>{user.plan}</p>{user.plan === "Premium" && (
                                 <FaCrown size={20} color="#FFA500" className="translate-y-5" />
                             )}
                         </div>
-                        <p className="text-neutral-800 text-lg mt-4 dark:text-darkTextResult"><strong className="dark:text-darkTextSecondary text-blue-900">User ID: </strong>{user._id}</p>
+                        <p className="text-neutral-800 text-lg mt-4 dark:text-darkTextResult"><strong className="dark:text-darkTextSecondary text-blue-900">ID: </strong>{user._id}</p>
                     </div>
                 }
             </div>
