@@ -38,6 +38,10 @@ const UserGuide = () => {
             content: "Each workout is displayed here with its details.",
         },
         {
+            target: "#status-feature",
+            content: "You can only use the status feature if you upgrade to a Premium plan.",
+        },
+        {
             target: "#status-filter",
             content: "Use this filter to view workouts based on their status (Pending, In Progress, Completed).",
         },
@@ -51,11 +55,15 @@ const UserGuide = () => {
         },
         {
             target: "#user-email",
-            content: "Here is your email. You can check your logged-in account detail here",
+            content: "Click here to view the Profile.",
         },
         {
             target: "#logout-btn",
             content: "Click here to log out when you're done.",
+        },
+        {
+            target: "#premium-btn",
+            content: "Click here to upgrade to Premium for additional features or switch back to Basic anytime.",
         },
         {
             target: "#theme-toggle-btn",

@@ -144,7 +144,7 @@ const WorkoutDetails = ({ workout }) => {
                         <div className="flex md:gap-2 mt-3 w-full md:w-auto justify-between">
                             <div>
                                 {user.plan === "Premium" && (<WorkoutStatus workout={workout} />)}
-                                {user.plan === "Basic" && (<div onClick={() => { navigate("/plans") }} className="bg-blue-200 rounded-lg p-1 sm:w-xs w-3xs dark:bg-darkDisabledButton cursor-pointer">
+                                {user.plan === "Basic" && (<div onClick={() => { navigate("/plans") }} id="status-feature" className="bg-blue-200 rounded-lg p-1 sm:w-xs w-3xs dark:bg-darkDisabledButton cursor-pointer">
                                     <p className="text-xs">🔒 Upgrade to Premium to unlock the Workout Status feature</p>
                                 </div>
                                 )}
