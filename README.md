@@ -2,7 +2,7 @@
 
 ## Overview
 
-The **WorkoutX App** is a full-stack web application built using the **MERN (MongoDB, Express, React, Node.js) stack**. It allows users to manage their workout routines by adding, updating, and deleting workouts. The app includes authentication for secure user access and a theme toggle for both **light mode and dark mode**.
+The **WorkoutX App** is a full-stack web application built using the **MERN (MongoDB, Express, React, Node.js) stack**. It allows users to manage their workout routines by adding, updating, and deleting workouts. The app includes authentication for secure user access, a theme toggle for both **light mode and dark mode**, and a **subscription-based model** with free and premium features.
 
 ## Features
 
@@ -12,6 +12,7 @@ The **WorkoutX App** is a full-stack web application built using the **MERN (Mon
 - **Login**: Users can log in securely.
 - **Logout**: Users can log out from their account.
 - **JWT Authentication**: Secure API routes using JSON Web Tokens (JWT).
+- **Forgot Password**: Users can reset their password via email using **Nodemailer** and **crypto**.
 
 ### 💪 Workout Management
 
@@ -19,8 +20,19 @@ The **WorkoutX App** is a full-stack web application built using the **MERN (Mon
 - **Add Workouts**: Users can add new workout sessions with details like title, reps, and load.
 - **Edit Workouts**: Users can update existing workouts.
 - **Delete Workouts**: Users can remove workouts from their list.
-- **Workout Status**: Users can mark workouts as **Pending, In Progress, or Completed**.
+- **Workout Status** *(Premium Feature)*: Users can mark workouts as **Pending, In Progress, or Completed**.
 - **Workout Title Suggestions**: Provides a list of suggested workout titles based on common exercises.
+
+### 🎟️ Subscription Plans
+
+- **Basic Plan**: Free users can add, edit, and delete workouts.
+- **Premium Plan**: Premium users unlock the **Workout Status** feature and additional enhancements.
+- **Subscription Management**: Users can upgrade or cancel their plan.
+
+### 🎭 User Profile
+
+- **View Profile**: Users can see their profile information.
+- **Subscription Status**: Displays the current plan (Basic or Premium).
 
 ### 🎨 Theme Toggle
 
@@ -45,7 +57,7 @@ The **WorkoutX App** is a full-stack web application built using the **MERN (Mon
 
 ### ⚡ Performance & Optimization
 
-- **React Context API**: Manages global state for authentication and theme.
+- **React Context API**: Manages global state for authentication, theme, and subscription.
 - **Axios for API Requests**: Efficient API handling with error management.
 - **Modular Component Structure**: Code is structured for better readability and reusability.
 - **Error Handling**: Displays user-friendly error messages for internet connectivity issues and API failures.
@@ -56,7 +68,7 @@ The **WorkoutX App** is a full-stack web application built using the **MERN (Mon
 - **Backend**: Node.js, Express.js
 - **Database**: MongoDB (Mongoose ODM)
 - **Authentication**: JWT (JSON Web Token), bcrypt for password hashing
-- **Other Dependencies**: cors, dotenv, validator, nodemon, react-joyride, react-router-dom, date-fns, eslint, vite
+- **Other Dependencies**: cors, dotenv, validator, nodemailer, crypto, nodemon, react-router-dom, date-fns, eslint, vite
 
 ## Installation & Setup
 
@@ -91,6 +103,8 @@ Create a `.env` file in the backend directory and add:
 MONGO_URI=your_mongodb_connection_string
 SECRET=your_jwt_secret_key
 CLIENT_URL=http://localhost:3000
+EMAIL_USER=your_email@example.com
+EMAIL_PASS=your_email_password
 ```
 
 ### 4️⃣ Start the Application
@@ -114,7 +128,9 @@ npm start
 - **AI-based Workout Recommendations**: Suggest workouts based on user history.
 - **Enhanced Responsive Design**: Further optimizations for better user experience on all devices.
 - **Offline Mode**: Allow users to track workouts even without an internet connection.
+- **Leaderboard & Challenges**: Users can compete and track progress within a community.
 
 ## Contributing
 
 Feel free to fork and contribute to this project by opening a pull request! 🚀
+
