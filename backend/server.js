@@ -4,7 +4,7 @@ import cors from "cors";
 
 //importing the routes
 import workoutRoutes from "./routes/workouts.routes.js";
-import userRoutes from "./routes/user.routes.js"
+import userRoutes from "./routes/user.routes.js";
 
 //importing the database connection function
 import { connectToDatabase } from "./database/db.js";
@@ -39,12 +39,17 @@ app.use("/api/user", userRoutes);
 //? server
 //starting the server
 const startServer = async () => {
-  //connecting to the database before starting the server
-  await connectToDatabase();
-  //starting the server
-  app.listen(PORT, () => {
-    console.log(`Server started on ${PORT}`);
-  });
+  try {
+    //connecting to the database before starting the server
+    await connectToDatabase();
+    //starting the server
+    app.listen(PORT, () => {
+      console.log(`Server started on ${PORT}`);
+    });
+  } catch (error) {
+    console.error("Failed to connect to the database:", error.message);
+    process.exit(1);
+  }
 };
 
 //! starting the server

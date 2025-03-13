@@ -30,15 +30,13 @@ const signupUser = async (req, res) => {
   try {
     const user = await User.signup(email.toLowerCase(), password);
     const token = createToken(user._id);
-    res
-      .status(200)
-      .json({
-        message: "Register User successful",
-        _id: user._id,
-        email,
-        token,
-        plan: user.plan,
-      });
+    res.status(200).json({
+      message: "Register User successful",
+      _id: user._id,
+      email,
+      token,
+      plan: user.plan,
+    });
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
@@ -82,4 +80,35 @@ const downgradeUser = async (req, res) => {
   }
 };
 
-export { loginUser, signupUser, upgradeUser, downgradeUser };
+//? Forgot Password
+const forgotPassword = async (req, res) => {
+  const { email } = req.body;
+
+  try {
+    const response = await User.forgotPassword(email);
+    res.status(200).json(response);
+  } catch (error) {
+    res.status(400).json({ message: error.message || "Server error" });
+  }
+};
+
+//? Reset Password
+const resetPassword = async (req, res) => {
+  const { token, newPassword } = req.body;
+
+  try {
+    const response = await User.resetPassword(token, newPassword);
+    res.status(200).json(response);
+  } catch (error) {
+    res.status(400).json({ message: error.message || "Server error" });
+  }
+};
+
+export {
+  loginUser,
+  signupUser,
+  upgradeUser,
+  downgradeUser,
+  forgotPassword,
+  resetPassword,
+};

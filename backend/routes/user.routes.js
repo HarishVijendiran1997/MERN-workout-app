@@ -1,5 +1,5 @@
 import express from 'express';
-import { downgradeUser, loginUser, signupUser, upgradeUser } from '../controllers/user.controller.js';
+import { downgradeUser, loginUser, signupUser, upgradeUser, forgotPassword, resetPassword } from '../controllers/user.controller.js';
 
 const router = express.Router()
 
@@ -14,4 +14,10 @@ router.patch('/upgrade/:id', upgradeUser)
 
 //routes for downgrading a user's account
 router.patch('/downgrade/:id', downgradeUser)
+
+//route for requesting a password reset link
+router.post('/forgot-password', forgotPassword)
+
+//route for resetting password with a valid token
+router.patch('/reset-password', resetPassword)
 export default router

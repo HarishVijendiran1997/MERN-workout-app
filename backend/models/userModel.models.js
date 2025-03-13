@@ -1,5 +1,7 @@
 import mongoose from "mongoose";
 import bcrypt from "bcrypt";
+import crypto from "crypto";
+import nodemailer from "nodemailer";
 import validator from "validator";
 import { Workout } from "../models/WorkoutModel.models.js";
 
@@ -19,6 +21,14 @@ const userSchema = new mongoose.Schema({
     type: String,
     enum: ["Basic", "Premium"],
     default: "Basic",
+  },
+  resetPasswordToken: {
+    type: String,
+    default: null,
+  },
+  resetPasswordExpires: {
+    type: Date,
+    default: null,
   },
 });
 
@@ -111,10 +121,82 @@ userSchema.statics.downgrade = async function (id, plan) {
 
   await Workout.updateMany(
     { user_id: id, status: { $ne: "pending" } },
-    { status: "pending" },
+    { status: "pending" }
   );
 
   return user;
+};
+
+userSchema.statics.forgotPassword = async function (email) {
+  if (!email) {
+    throw new Error("Please provide a valid email");
+  }
+  const user = await this.findOne({ email });
+
+  if (!user) {
+    throw new Error("User with this email does not exist");
+  }
+
+  const resetToken = crypto.randomBytes(32).toString("hex");
+  user.resetPasswordToken = crypto
+    .createHash("sha256")
+    .update(resetToken)
+    .digest("hex");
+  user.resetPasswordExpires = Date.now() + 15 * 60 * 1000;
+
+  await user.save();
+
+  const resetURL = `${process.env.FRONTEND_URL}/reset-password/${resetToken}`;
+
+  //send email notification
+  const transporter = nodemailer.createTransport({
+    service: "Gmail",
+    auth: {
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS,
+    },
+  });
+
+  const mailOptions = {
+    from: process.env.EMAIL_USER,
+    to: user.email,
+    subject: "Password Reset Request",
+    html: `<p>You requested a password reset. Click <a href="${resetURL}">here</a> to reset your password.</p>`,
+  };
+
+  await transporter.sendMail(mailOptions);
+
+  return { message: "Password reset link sent to email." };
+};
+
+userSchema.statics.resetPassword = async function (token, newPassword) {
+  const hashedToken = crypto.createHash("sha256").update(token).digest("hex");
+  const user = await this.findOne({
+    resetPasswordToken: hashedToken,
+    resetPasswordExpires: { $gt: Date.now() },
+  });
+  if (!user) {
+    throw new Error("Password reset token is invalid or expired.");
+  }
+  if (newPassword.length < 8) {
+    throw new Error("Password should be at least 8 characters long");
+  }
+
+  if (!validator.isStrongPassword(newPassword)) {
+    throw new Error(
+      "Password should be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character"
+    );
+  }
+
+  const salt = await bcrypt.genSalt(10);
+  user.password = await bcrypt.hash(newPassword, salt);
+
+  user.resetPasswordToken = null;
+  user.resetPasswordExpires = null;
+
+  await user.save();
+
+  return { message: "Password reset successful." };
 };
 
 export const User = mongoose.model("User", userSchema);
