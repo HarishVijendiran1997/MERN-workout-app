@@ -1,5 +1,6 @@
 import axios from "axios";
 import { toast } from "react-toastify";
+import { showToast } from "../utils/toastHelper";
 import { useWorkoutsContext } from "../../hooks/useWorkoutsContext";
 import { useAuthContext } from "../../hooks/useAuthContext";
 
@@ -44,7 +45,8 @@ const WorkoutStatus = ({ workout }) => {
                 { headers: { Authorization: `Bearer ${user.token}` } }
             );
             dispatch({ type: "UPDATE_WORKOUT", payload: updateResponse.data.updateWorkout });
-            toast.success(`Workout status updated to ${newStatus}`);
+            // toast.success(`Workout status updated to ${newStatus}`);
+            showToast(`Workout status updated to ${newStatus}`,"success");
         } catch (error) {
             toast.error("Failed to update status!");
         }

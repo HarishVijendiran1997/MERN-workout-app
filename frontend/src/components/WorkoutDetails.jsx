@@ -9,6 +9,7 @@ import { useAuthContext } from "../../hooks/useAuthContext"
 import DeleteWorkout from "./DeleteWorkout";
 import WorkoutStatus from "./WorkoutStatus";
 import InProgressLoader from "./InProgressLoader";
+import { showToast } from "../utils/toastHelper";
 
 const WorkoutDetails = ({ workout }) => {
 
@@ -79,7 +80,8 @@ const WorkoutDetails = ({ workout }) => {
     //*enabling and disabling edit mode
     const handleEnableEdit = () => {
         setIsEditing(true);
-        toast.info("Editing Enabled", { autoClose: 2000, hideProgressBar: true, transition: Bounce });
+        // toast.info("Editing Enabled", { autoClose: 2000, hideProgressBar: true, transition: Bounce });
+        showToast("Editing Enabled", "info", { transition: Bounce });
     };
 
     const handleCancelEdit = () => {
@@ -87,7 +89,8 @@ const WorkoutDetails = ({ workout }) => {
         setTitle(workout.title);
         setLoad(workout.load);
         setReps(workout.reps);
-        toast.info("Editing canceled", { autoClose: 2000, hideProgressBar: true, transition: Bounce });
+        // toast.info("Editing canceled", { autoClose: 2000, hideProgressBar: true, transition: Bounce });
+        showToast("Editing canceled", "info", { transition: Bounce });
     };
 
     //?Styling for the workout
@@ -141,7 +144,7 @@ const WorkoutDetails = ({ workout }) => {
                         <div className="flex md:gap-2 mt-3 w-full md:w-auto justify-between">
                             <div>
                                 {user.plan === "Premium" && (<WorkoutStatus workout={workout} />)}
-                                {user.plan === "Basic" && (<div onClick={()=>{navigate("/plans")}} className="bg-blue-200 rounded-lg p-1 sm:w-xs w-3xs dark:bg-darkDisabledButton cursor-pointer">
+                                {user.plan === "Basic" && (<div onClick={() => { navigate("/plans") }} className="bg-blue-200 rounded-lg p-1 sm:w-xs w-3xs dark:bg-darkDisabledButton cursor-pointer">
                                     <p className="text-xs">🔒 Upgrade to Premium to unlock the Workout Status feature</p>
                                 </div>
                                 )}

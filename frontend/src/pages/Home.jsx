@@ -6,12 +6,12 @@ import { useWorkoutsContext } from "../../hooks/useWorkoutsContext.jsx";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useAuthContext } from "../../hooks/useAuthContext.jsx";
-
+import { showToast } from "../utils/toastHelper";
 const Home = () => {
     const { workouts, dispatch } = useWorkoutsContext();
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
-    const [showToast, setShowToast] = useState(true);
+    const [showingToast, setShowingToast] = useState(true);
     const { user } = useAuthContext();
 
     useEffect(() => {
@@ -25,9 +25,10 @@ const Home = () => {
                     }
                 });
                 dispatch({ type: "SET_WORKOUTS", payload: response.data.workouts });
-                if (showToast) {
-                    toast.info(response?.data?.message || "Workouts loaded successfully!", { position: "bottom-right" });
-                    setShowToast(false);
+                if (showingToast) {
+                    // toast.info(response?.data?.message || "Workouts loaded successfully!", { position: "bottom-right" });
+                    showToast(response?.data?.message || "Workouts loaded successfully!", "info");
+                    setShowingToast(false);
                 }
                 setError(null);
             } catch (error) {

@@ -3,6 +3,7 @@ import { useAuthContext } from "./useAuthContext"
 import axios from "axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { showToast } from "../src/utils/toastHelper";
 
 export const useLogin = () => {
     const [error, setError] = useState(null)
@@ -19,7 +20,10 @@ export const useLogin = () => {
             const response = await axios.post("http://localhost:4000/api/user/login", { email, password })
             localStorage.setItem("user", JSON.stringify(response.data))
             dispatch({ type: "LOGIN", payload: response.data })
-            toast.success(response?.data?.message || "Success");
+            // toast.success(response?.data?.message || "Success");
+            setTimeout(() => {
+                showToast(response?.data?.message || "Login successful!", "info");
+            }, 2000);
         } catch (error) {
             setError(error.response?.data?.message || "Login failed")
         } finally {
