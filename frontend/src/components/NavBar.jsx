@@ -45,7 +45,7 @@ const NavBar = () => {
                                 </div>
                                 <div className="sm:order-3">
                                     <Link to="/plans">
-                                        <button id="premium-btn" className={`rounded-lg p-1.5 text-white dark:text-darkButtonText bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 border-1 hover:bg-gradient-to-r hover:from-orange-600 hover:via-pink-600 hover:to-purple-600 transition duration-800 cursor-pointer`} >{user.plan==="Premium"?"Basic Plan":"Upgrade Plan"}</button>
+                                        <button id="premium-btn" className={`rounded-lg p-1.5 text-white dark:text-darkButtonText ${user.plan === "Premium" ? "bg-blue-600 dark:bg-darkEditButton" : "bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 border-1 hover:bg-gradient-to-r hover:from-orange-600 hover:via-pink-600 hover:to-purple-600"}  transition duration-200 cursor-pointer`} >{user.plan === "Basic" ? (<FaCrown size={20} color="#FFA500" className="inline mr-1" />) : ""}{user.plan === "Premium" ? "Basic Plan" : "Upgrade Plan"}</button>
                                     </Link>
                                 </div>
                             </div>

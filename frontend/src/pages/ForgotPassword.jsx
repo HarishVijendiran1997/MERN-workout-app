@@ -30,7 +30,7 @@ const ForgotPassword = () => {
                         <button
                             onClick={handleOk}
                             className={`
-                                px-5 bg-green-500 hover:bg-green-600 active:bg-green-500 cursor-pointer text-white p-2 rounded dark:text-ButtonText dark:bg-darkAddButton dark:hover:bg-darkAddButtonHover dark:active:bg-darkAddButton transition-colors duration-200`}>
+                                px-5 bg-green-600 hover:bg-green-500 active:bg-green-600 cursor-pointer text-white p-2 rounded dark:text-ButtonText dark:bg-darkAddButton dark:hover:bg-darkAddButtonHover dark:active:bg-darkAddButton transition-colors duration-200`}>
                             OK
                         </button>
                     </div>
