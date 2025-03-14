@@ -3,6 +3,8 @@ import { ThemeBtn } from "../components/ThemeBtn"
 import { useLogout } from "../../hooks/useLogout";
 import { useAuthContext } from "../../hooks/useAuthContext";
 import { FaCrown } from "react-icons/fa";
+import { FaUser } from 'react-icons/fa';
+
 
 const NavBar = () => {
 
@@ -31,7 +33,7 @@ const NavBar = () => {
                             <Link to="/profile">
                                 <div className="flex gap-2">
                                     <div className="-translate-y-4">
-                                        {user.plan === "Premium" ? (<FaCrown size={20} color="#FFA500" className="translate-y-5" />) : ""}
+                                        {user.plan === "Premium" ? (<FaCrown size={20} color="#FFA500" className="translate-y-5" />) : <FaUser size={20} color="#FFFFFF" className="translate-y-5" />}
                                     </div>
                                     <div>
                                         <span id="user-email" className="hover:underline cursor-pointer text-lg dark:text-darkTextUser transition-colors duration-200">{user?.username}</span>
