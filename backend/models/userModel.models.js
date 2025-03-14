@@ -95,6 +95,14 @@ userSchema.statics.signup = async function (
     plan: "Basic",
   });
 
+  await Workout.create({
+    title: "Sample Workout",
+    reps: 10,
+    load: 20,
+    status: "pending",
+    user_id: user._id,
+  })
+
   return user;
 };
 
