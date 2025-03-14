@@ -34,27 +34,27 @@ const userSchema = new mongoose.Schema({
 
 userSchema.statics.signup = async function (email, password) {
   if (!email || !password) {
-    throw new Error("Please provide email and password");
+    throw new Error("Email and password are required.");
   }
 
   if (!validator.isEmail(email)) {
-    throw new Error("Invalid email");
+    throw new Error("Please enter a valid email address.");
   }
 
   if (password.length < 8) {
-    throw new Error("Password should be at least 8 characters long");
+    throw new Error("Password must be at least 8 characters long.");
   }
 
   if (!validator.isStrongPassword(password)) {
     throw new Error(
-      "Password should be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character"
+      "Password must include at least 8 characters, one uppercase letter, one lowercase letter, one number, and one special character."
     );
   }
 
-  const exists = await this.findOne({ email });
+  const existingUser = await this.findOne({ email });
 
-  if (exists) {
-    throw new Error("Email already exists");
+  if (existingUser) {
+    throw new Error("An account with this email already exists.");
   }
 
   const salt = await bcrypt.genSalt(10);
@@ -67,18 +67,18 @@ userSchema.statics.signup = async function (email, password) {
 
 userSchema.statics.login = async function (email, password) {
   if (!email || !password) {
-    throw new Error("Please provide email and password");
+    throw new Error("Email and password are required.");
   }
 
   const user = await this.findOne({ email });
 
   if (!user) {
-    throw new Error("Invalid email");
+    throw new Error("No account found with this email.");
   }
   const isMatch = await bcrypt.compare(password, user.password);
 
   if (!isMatch) {
-    throw new Error("Invalid password");
+    throw new Error("Incorrect password. Please try again.");
   }
   return user;
 };
@@ -197,6 +197,25 @@ userSchema.statics.resetPassword = async function (token, newPassword) {
   await user.save();
 
   return { message: "Password reset successful." };
+};
+
+userSchema.statics.deleteAccount = async function (id) {
+  if (!id) {
+    throw new Error("Please provide user ID");
+  }
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    throw new Error("Invalid user ID");
+  }
+  // delete associated workouts
+  await Workout.deleteMany({ user_id: id });
+
+  // delete user
+  const user = await this.findByIdAndDelete(id);
+
+  if (!user) {
+    throw new Error("User not found");
+  }
+  return { message: "Account deleted successfully.", user: user };
 };
 
 export const User = mongoose.model("User", userSchema);

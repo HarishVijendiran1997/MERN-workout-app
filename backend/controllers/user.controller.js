@@ -117,6 +117,18 @@ const resetPassword = async (req, res) => {
   }
 };
 
+//?Delete User Account
+const deleteUserAccount = async (req, res) => {
+  const id = req.user._id;
+  try {
+    const response = await User.deleteAccount(id);
+    res.status(200).json(response);
+  } catch (error) {
+    console.error("Backend Error:", error.message);
+    res.status(500).json({ message: error.message || "Server error" });
+  }
+};
+
 export {
   loginUser,
   signupUser,
@@ -124,4 +136,5 @@ export {
   downgradeUser,
   forgotPassword,
   resetPassword,
+  deleteUserAccount,
 };
