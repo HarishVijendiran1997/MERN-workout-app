@@ -15,6 +15,8 @@ const loginUser = async (req, res) => {
     res.status(200).json({
       message: "User logged in successfully",
       _id: user._id,
+      fullName: user.fullName,
+      username: user.username,
       email,
       token,
       plan: user.plan,
@@ -26,20 +28,31 @@ const loginUser = async (req, res) => {
 
 //? Signup user
 const signupUser = async (req, res) => {
-  const { email, password, confirmPassword } = req.body;
-  if (!password || !confirmPassword) {
-    return res.status(400).json({ message: "Passwords are required" });
+  const { fullName, username, email, password, confirmPassword } = req.body;
+  if (!confirmPassword) {
+    return res.status(400).json({ message: "Confirm password are required." });
+  }
+
+  if (password.length < 8) {
+    return res.status(400).json({ message: "Password must be at least 8 characters long." });
   }
 
   if (password !== confirmPassword) {
-    return res.status(400).json({ message: "Passwords do not match" });
+    return res.status(400).json({ message: "Passwords do not match." });
   }
   try {
-    const user = await User.signup(email.toLowerCase(), password);
+    const user = await User.signup(
+      fullName,
+      username,
+      email.toLowerCase(),
+      password
+    );
     const token = createToken(user._id);
     res.status(200).json({
       message: "Register User successful",
       _id: user._id,
+      fullName,
+      username,
       email,
       token,
       plan: user.plan,
@@ -59,6 +72,8 @@ const upgradeUser = async (req, res) => {
     res.status(200).json({
       message: "Congratulations! Your account has been successfully upgraded.",
       _id: user._id,
+      fullName:user.fullName,
+      username:user.username,
       email: user.email,
       token,
       plan: user.plan,
@@ -78,6 +93,8 @@ const downgradeUser = async (req, res) => {
     res.status(200).json({
       message: "You have successfully switched to a Basic plan.",
       _id: user._id,
+      fullName:user.fullName,
+      username:user.username,
       email: user.email,
       token,
       plan: user.plan,

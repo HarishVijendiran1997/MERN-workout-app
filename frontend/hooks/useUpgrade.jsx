@@ -24,6 +24,8 @@ export const useUpgrade = () => {
             if (response.data) {
                 const updatedUser = {
                     _id: response.data._id,
+                    fullName: response.data.fullName,
+                    username: response.data.username,
                     email: response.data.email,
                     token: response.data.token,
                     plan: response.data.plan,

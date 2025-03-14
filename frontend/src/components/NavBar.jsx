@@ -30,12 +30,10 @@ const NavBar = () => {
                             <Link to="/profile">
                                 <div className="flex gap-2">
                                     <div className="-translate-y-4">
-
                                         {user.plan === "Premium" ? (<FaCrown size={20} color="#FFA500" className="translate-y-5" />) : ""}
                                     </div>
                                     <div>
-
-                                        <span id="user-email" className="hover:underline cursor-pointer text-lg dark:text-darkTextUser transition-colors duration-200">{user?.email}</span>
+                                        <span id="user-email" className="hover:underline cursor-pointer text-lg dark:text-darkTextUser transition-colors duration-200">{user?.username}</span>
                                     </div>
                                 </div>
                             </Link>

@@ -6,6 +6,20 @@ import validator from "validator";
 import { Workout } from "../models/WorkoutModel.models.js";
 
 const userSchema = new mongoose.Schema({
+  fullName: {
+    type: String,
+    required: true,
+    trim: true,
+    maxLength: 50,
+  },
+  username: {
+    type: String,
+    required: true,
+    unique: true,
+    lowercase: true,
+    trim: true,
+    maxLength: 30,
+  },
   email: {
     type: String,
     required: true,
@@ -32,17 +46,36 @@ const userSchema = new mongoose.Schema({
   },
 });
 
-userSchema.statics.signup = async function (email, password) {
-  if (!email || !password) {
-    throw new Error("Email and password are required.");
+userSchema.statics.signup = async function (
+  fullName,
+  username,
+  email,
+  password
+) {
+  if (!fullName || !username || !email || !password) {
+    throw new Error("All fields are required.");
   }
-
+  if (fullName.length < 3) {
+    throw new Error("Full name must be at least 3 characters long.");
+  }
+  if (!validator.isAlphanumeric(username)) {
+    throw new Error(
+      "Username must contain only letters and numbers (A-Z, a-z, 0-9). Example: user123"
+    );
+  }
+  const existingUsername = await this.findOne({ username });
+  if (existingUsername) {
+    throw new Error(
+      "This username is already taken. Please choose a different one."
+    );
+  }
   if (!validator.isEmail(email)) {
     throw new Error("Please enter a valid email address.");
   }
+  const existingUser = await this.findOne({ email });
 
-  if (password.length < 8) {
-    throw new Error("Password must be at least 8 characters long.");
+  if (existingUser) {
+    throw new Error("An account with this email already exists.");
   }
 
   if (!validator.isStrongPassword(password)) {
@@ -51,16 +84,16 @@ userSchema.statics.signup = async function (email, password) {
     );
   }
 
-  const existingUser = await this.findOne({ email });
-
-  if (existingUser) {
-    throw new Error("An account with this email already exists.");
-  }
-
   const salt = await bcrypt.genSalt(10);
   const hash = await bcrypt.hash(password, salt);
 
-  const user = await this.create({ email, password: hash, plan: "Basic" });
+  const user = await this.create({
+    fullName,
+    username,
+    email,
+    password: hash,
+    plan: "Basic",
+  });
 
   return user;
 };

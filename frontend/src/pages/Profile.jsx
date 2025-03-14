@@ -8,6 +8,7 @@ const Profile = () => {
     const { user } = useAuthContext();
     const navigate = useNavigate();
     const [isDeleting, setIsDeleting] = useState(false);
+    console.log(user);
 
     return (
         <div className="flex w-full flex-col items-center justify-center bg-neutral-200 dark:bg-darkPrimary text-blue-900 dark:text-darkTextPrimary relative">
@@ -19,6 +20,12 @@ const Profile = () => {
             <div className="sm:w-1/3 flex px-10">
                 {user &&
                     <div>
+                        <p className="text-neutral-800 text-lg mt-4 dark:text-darkTextResult">
+                            <strong className="dark:text-darkTextSecondary text-blue-900">FullName: </strong>{user.fullName}
+                        </p>
+                        <p className="text-neutral-800 text-lg mt-4 dark:text-darkTextResult">
+                            <strong className="dark:text-darkTextSecondary text-blue-900">Username: </strong>{user.username}
+                        </p>
                         <p className="text-neutral-800 text-lg mt-4 dark:text-darkTextResult">
                             <strong className="dark:text-darkTextSecondary text-blue-900">Email: </strong>{user.email}
                         </p>
