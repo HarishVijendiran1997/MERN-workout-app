@@ -129,9 +129,6 @@ userSchema.statics.upgrade = async function (id, plan) {
     throw new Error("Please provide user ID and plan");
   }
 
-  // if(plan === "Premium"){
-  //   throw new Error("Upgrade to Premium plan is not available");
-  // }
   const user = await this.findOneAndUpdate(
     { _id: id },
     { plan },

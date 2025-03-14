@@ -136,15 +136,15 @@ const WorkoutDetails = ({ workout }) => {
                             </span>
                         </div>}
                     </div>
-                    <div className={`md:flex-row md:justify-between flex flex-col items-start w-full md:pr-5 md:items-center transition-colors duration-200 ${isCompleted ? "text-neutral-800 dark:text-darkDisabledText cursor-not-allowed" : "dark:text-darkTextResult"}`}>
+                    <div className={`lg:flex-row md:justify-between flex flex-col items-start w-full md:pr-5 md:items-start lg:items-center transition-colors duration-200 ${isCompleted ? "text-neutral-800 dark:text-darkDisabledText cursor-not-allowed" : "dark:text-darkTextResult"}`}>
                         <p><strong className={workoutLoadRepsCreatedAtStyle}>Load (kg): </strong><span className={`${isCompleted ? "line-through" : ""}`}>{workout.load}</span></p>
                         <p><strong className={workoutLoadRepsCreatedAtStyle}>Reps: </strong><span className={`${isCompleted ? "line-through" : ""}`}>{workout.reps}</span></p>
                         <p><strong className={workoutLoadRepsCreatedAtStyle}>Created: </strong><span className={`${isCompleted ? "line-through" : ""}`}>{formatDistanceToNow(new Date(workout.createdAt), { addSuffix: true })}</span></p>
 
-                        <div className="flex md:gap-2 mt-3 w-full md:w-auto justify-between">
+                        <div className="flex md:gap-2 gap-2 mt-3 w-full md:w-auto justify-between">
                             <div>
                                 {user.plan === "Premium" && (<WorkoutStatus workout={workout} />)}
-                                {user.plan === "Basic" && (<div onClick={() => { navigate("/plans") }} id="status-feature" className="bg-blue-200 rounded-lg p-1 sm:w-xs w-3xs dark:bg-darkDisabledButton cursor-pointer">
+                                {user.plan === "Basic" && (<div onClick={() => { navigate("/plans") }} id="status-feature" className="bg-blue-200 rounded-lg p-1 sm:w-s lg:w-3xs w-s dark:bg-darkDisabledButton cursor-pointer">
                                     <p className="text-xs">🔒 Upgrade to Premium to unlock the Workout Status feature</p>
                                 </div>
                                 )}
