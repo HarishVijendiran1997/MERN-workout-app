@@ -8,6 +8,7 @@ export const useDeleteAccount = () => {
     const [error, setError] = useState(null)
     const [isLoading, setIsLoading] = useState(false)
     const { user, dispatch } = useAuthContext()
+    const [isDeleted, setIsDeleted] = useState(false)
 
     const deleteAcc = async () => {
 
@@ -21,6 +22,7 @@ export const useDeleteAccount = () => {
 
         setIsLoading(true)
         setError(null)
+        setIsDeleted(false)
 
         try {
             const response = await axios.delete(`http://localhost:4000/api/user/profile`, {
@@ -30,9 +32,11 @@ export const useDeleteAccount = () => {
             })
             if (response.status === 200) {
                 dispatch({ type: "DELETE" });
+                setIsDeleted(true);
                 localStorage.removeItem("user");
-                toast.success(response.data.message || "Your account has been deleted successfully. We’re sad to see you go! 😢");
+                toast.success(response.data.message || "Your account has been deleted successfully.");
             }
+
         } catch (error) {
             const errorMsg = (error.response?.data?.message || "Something went wrong. Please try again.")
             toast.error(errorMsg);
@@ -42,5 +46,5 @@ export const useDeleteAccount = () => {
         }
     }
 
-    return { deleteAcc, error, isLoading }
+    return { deleteAcc, error, isLoading, isDeleted, setIsDeleted }
 }
