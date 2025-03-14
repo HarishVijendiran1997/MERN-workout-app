@@ -4,22 +4,17 @@ export const AuthContext = createContext()
 
 export const authReducer = (state, action) => {
     switch (action.type) {
+        //merging similar cases
         case "LOGIN":
-            return {
-                user: action.payload
-            }
-        case "LOGOUT":
-            return {
-                user: null
-            }
         case "UPGRADE":
-            return {
-                user: action.payload
-            }
         case "DOWNGRADE":
-            return {
-                user: action.payload
-            }
+            return { user: action.payload }
+            
+        //merging similar cases
+        case "LOGOUT":
+        case "DELETE":
+            return { user: null }
+
         default:
             return state
     }
@@ -32,9 +27,14 @@ export const AuthContextProvider = ({ children }) => {
     })
 
     useEffect(() => {
-        const user = JSON.parse(localStorage.getItem('user'))
-        if (user) {
-            dispatch({ type: "LOGIN", payload: user })
+        const localStoredUser = localStorage.getItem('user')
+        if (localStoredUser) {
+            try {
+                const user = JSON.parse(localStoredUser);
+                dispatch({ type: "LOGIN", payload: user });
+            } catch (error) {
+                localStorage.removeItem("user");
+            }
         } else {
             dispatch({ type: "LOGOUT" })
         }

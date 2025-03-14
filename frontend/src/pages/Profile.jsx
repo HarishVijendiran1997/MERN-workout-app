@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useAuthContext } from "../../hooks/useAuthContext";
 import { FaCrown } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import { useDeleteAccount } from "../../hooks/useDeleteAccount";
 
 const Profile = () => {
     const { user } = useAuthContext();
@@ -9,12 +10,14 @@ const Profile = () => {
     const [isDeleting, setIsDeleting] = useState(false);
     const [countdown, setCountdown] = useState(5);
     const [isReady, setIsReady] = useState(false);
+    const { deleteAcc, isLoading, error } = useDeleteAccount()
 
     const deleteMode = () => {
         setIsDeleting(true)
         setCountdown(5);
         setIsReady(false);
     }
+
     const cancelDeleteMode = () => setIsDeleting(false)
 
     useEffect(() => {
@@ -25,6 +28,15 @@ const Profile = () => {
             setIsReady(true);
         }
     }, [isDeleting, countdown]);
+
+    const handleDelete = async () => {
+        if (!user) {
+            toast.error("You must be logged in to delete your account.");
+            return;
+        }
+        await deleteAcc()
+        navigate("/signup")
+    }
 
     return (
         <div className="flex w-full flex-col items-center justify-center bg-neutral-200 dark:bg-darkPrimary text-blue-900 dark:text-darkTextPrimary relative">
@@ -61,14 +73,15 @@ const Profile = () => {
                                     className={`px-4 py-2 text-white dark:text-darkCancelButtonText bg-gray-400 hover:bg-gray-500 dark:bg-darkCancelButton dark:hover:bg-darkCancelButtonHover rounded-lg cursor-pointer transition-colors duration-200`}>
                                     Cancel
                                 </button>
-                                <button onClick={() => { }} disabled={!isReady}
+                                <button onClick={handleDelete} disabled={!isReady || isLoading}
                                     className={`px-4 py-2 transition-colors duration-200 rounded-lg  
-                                        ${isReady
+                                        ${isReady || isLoading
                                             ? "bg-red-500 text-white hover:bg-red-600 dark:bg-darkDeleteButton dark:hover:bg-darkDeleteButtonHover cursor-pointer"
                                             : "bg-neutral-600 w-[100px] text-white dark:text-darkButtonText dark:bg-darkDisabledText cursor-not-allowed"
                                         }`}>
-                                    {isReady ? "Confirm" : countdown}
+                                    {isLoading ? "Deleting" : isReady ? "Confirm" : countdown}
                                 </button>
+                                {error && <p className={`w-full p-2 mb-4 text-red-500 dark:text-errorText border bg-red-100 dark:bg-errorBackground rounded-lg mt-4 flex justify-center items-center transition-colors duration-200`}>{error}</p>}
                             </div>
                         </div>
                     </div>
