@@ -102,7 +102,7 @@ Create a `.env` file in the backend directory and add:
 ```
 MONGO_URI=your_mongodb_connection_string
 SECRET=your_jwt_secret_key
-CLIENT_URL=http://localhost:3000
+FRONTEND_URL=http://localhost:3000
 EMAIL_USER=your_email@example.com
 EMAIL_PASS=your_email_password
 ```
