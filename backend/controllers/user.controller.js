@@ -26,7 +26,14 @@ const loginUser = async (req, res) => {
 
 //? Signup user
 const signupUser = async (req, res) => {
-  const { email, password } = req.body;
+  const { email, password, confirmPassword } = req.body;
+  if (!password || !confirmPassword) {
+    return res.status(400).json({ message: "Passwords are required" });
+  }
+
+  if (password !== confirmPassword) {
+    return res.status(400).json({ message: "Passwords do not match" });
+  }
   try {
     const user = await User.signup(email.toLowerCase(), password);
     const token = createToken(user._id);
