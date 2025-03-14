@@ -22,6 +22,8 @@ The **WorkoutX App** is a full-stack web application built using the **MERN (Mon
 - **Delete Workouts**: Users can remove workouts from their list.
 - **Workout Status** *(Premium Feature)*: Users can mark workouts as **Pending, In Progress, or Completed**.
 - **Workout Title Suggestions**: Provides a list of suggested workout titles based on common exercises.
+- **Sample Workout for Intro Guide**: New users can access a pre-configured sample workout to get started.
+- **Delete Account Option**: Users can permanently delete their account from settings.
 
 ### 🎟️ Subscription Plans
 
