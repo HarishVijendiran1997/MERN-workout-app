@@ -25,7 +25,7 @@ const NameEditor = ({ label, value, setValue }) => {
                                 type="text"
                                 value={tempValue}
                                 onChange={(e) => setTempValue(e.target.value)}
-                                className="bg-gray-300 p-1 ml-1 rounded-lg dark:text-darkTextPrimary outline-none"
+                                className="bg-gray-300 dark:bg-darkSecondary p-1 ml-1 rounded-lg dark:text-darkTextPrimary outline-none"
                             />
                         </p>
                     </div>
