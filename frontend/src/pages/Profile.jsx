@@ -3,12 +3,15 @@ import { useAuthContext } from "../../hooks/useAuthContext";
 import { FaCrown } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import DeleteAccountModel from "../components/DeleteAccountModel";
+import NameEditor from "../components/NameEditor";
 
 const Profile = () => {
     const { user } = useAuthContext();
     const navigate = useNavigate();
     const [isDeleting, setIsDeleting] = useState(false);
     console.log(user);
+    const [fullName, setFullName] = useState(user?.fullName || "");
+    const [username, setUsername] = useState(user?.username || "");
 
     return (
         <div className="flex w-full flex-col items-center justify-center bg-neutral-200 dark:bg-darkPrimary text-blue-900 dark:text-darkTextPrimary relative">
@@ -17,15 +20,17 @@ const Profile = () => {
                 Back
             </button>
             <h1 className="text-3xl font-bold">Profile Page</h1>
-            <div className="sm:w-1/3 flex px-10">
+            <div className="sm:w-1/2 flex justify-center">
                 {user &&
                     <div>
-                        <p className="text-neutral-800 text-lg mt-4 dark:text-darkTextResult">
+                        {/* <p className="text-neutral-800 text-lg mt-4 dark:text-darkTextResult">
                             <strong className="dark:text-darkTextSecondary text-blue-900">FullName: </strong>{user.fullName}
-                        </p>
-                        <p className="text-neutral-800 text-lg mt-4 dark:text-darkTextResult">
+                        </p> */}
+                        {/* <p className="text-neutral-800 text-lg mt-4 dark:text-darkTextResult">
                             <strong className="dark:text-darkTextSecondary text-blue-900">Username: </strong>{user.username}
-                        </p>
+                            </p> */}
+                        <NameEditor label="Full Name: " value={fullName} setValue={setFullName} />
+                        <NameEditor label="Username: " value={username} setValue={setUsername} />
                         <p className="text-neutral-800 text-lg mt-4 dark:text-darkTextResult">
                             <strong className="dark:text-darkTextSecondary text-blue-900">Email: </strong>{user.email}
                         </p>
