@@ -101,7 +101,39 @@ userSchema.statics.signup = async function (
     load: 20,
     status: "pending",
     user_id: user._id,
-  })
+  });
+
+  const transporter = nodemailer.createTransport({
+    service: "Gmail",
+    auth: {
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS,
+    },
+  });
+
+  const mailOptions = {
+    from: `"WorkoutX Support" <${process.env.EMAIL_USER}>`,
+    to: user.email,
+    subject: "Welcome to WorkoutX! 🎉",
+    html: `
+      <div style="font-family: Arial, sans-serif; max-width: 500px; padding: 20px;">
+        <h2>Welcome to WorkoutX, ${user.fullName || "User"}! 💪</h2>
+        <p>Thanks for signing up! You're now part of WorkoutX, where you can track workouts, stay motivated, and achieve your fitness goals.</p>
+        <p>Get started by exploring the app and setting up your workout plan.</p>
+        <p style="text-align: center;">
+          <a href="${
+            process.env.FRONTEND_URL
+          }" style="background-color: #007bff; color: #fff; padding: 10px 15px; text-decoration: none; border-radius: 5px;">
+            Go to WorkoutX
+          </a>
+        </p>
+        <p>If you need any help, feel free to reach out to our support team.</p>
+        <p>— The WorkoutX Team</p>
+      </div>
+    `,
+  };
+
+  await transporter.sendMail(mailOptions);
 
   return user;
 };
@@ -180,7 +212,7 @@ userSchema.statics.forgotPassword = async function (email) {
     .createHash("sha256")
     .update(resetToken)
     .digest("hex");
-  user.resetPasswordExpires = Date.now() + 15 * 60 * 1000;
+  user.resetPasswordExpires = Date.now() + 20 * 60 * 1000;
 
   await user.save();
 
@@ -196,13 +228,56 @@ userSchema.statics.forgotPassword = async function (email) {
   });
 
   const mailOptions = {
-    from: process.env.EMAIL_USER,
+    from: `"WorkoutX Support" <${process.env.EMAIL_USER}>`,
     to: user.email,
-    subject: "Password Reset Request",
-    html: `<p>You requested a password reset. Click <a href="${resetURL}">here</a> to reset your password.</p>`,
+    subject: "Reset Your WorkoutX Password",
+    html: `
+      <div style="font-family: Arial, sans-serif; max-width: 500px; padding: 20px; border: 1px solid #ddd; border-radius: 8px;">
+        <h2 style="color: #333;">Password Reset Request</h2>
+        <p>Hello ${user.fullName || "User"},</p>
+        <p>We received a request to reset your password for your WorkoutX account. If you made this request, please click the button below to reset your password:</p>
+        <p style="text-align: center;">
+          <a href="${resetURL}" style="background-color: #007bff; color: #fff; padding: 10px 20px; text-decoration: none; border-radius: 5px; display: inline-block;">
+            Reset Password
+          </a>
+        </p>
+        <p>If you did not request a password reset, you can safely ignore this email. Your password will remain unchanged.</p>
+        <p>For security reasons, this link will expire in 20 minutes.</p>
+        <hr>
+        <p style="font-size: 12px; color: #777;">If you need further assistance, please contact our support team.</p>
+        <p style="font-size: 12px; color: #777;">— WorkoutX Team</p>
+      </div>
+    `,
   };
 
   await transporter.sendMail(mailOptions);
+  // Looking to send emails in production? Check out our Email API/SMTP product!
+  // const transport = nodemailer.createTransport({
+  //   host: "smtp.mailtrap.io",
+  //   port: 2525,
+  //   auth: {
+  //     user: "6d796400c29bab",
+  //     pass: "2a33fb13b6e857",
+  //   },
+  // });
+  // const sender = {
+  //   address: "hello@example.com",
+  //   name: "Mailtrap Test",
+  // };
+  // const recipients = [
+  //   "harish.vijendiran@gmail.com",
+  // ];
+
+  // transport
+  //   .sendMail({
+  //     from: sender,
+  //     to: recipients,
+  //     subject: "You are awesome!",
+  //     text: "Congrats for sending test email with Mailtrap!",
+  //     category: "Integration Test",
+  //     sandbox: true
+  //   })
+  //   .then(console.log, console.error);
 
   return { message: "Password reset link sent to email." };
 };
@@ -253,6 +328,33 @@ userSchema.statics.deleteAccount = async function (id) {
   if (!user) {
     throw new Error("User not found");
   }
+
+  const transporter = nodemailer.createTransport({
+    service: "Gmail",
+    auth: {
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS,
+    },
+  });
+
+  const mailOptions = {
+    from: `"WorkoutX Support" <${process.env.EMAIL_USER}>`,
+    to: user.email,
+    subject: "Your WorkoutX Account Has Been Deleted",
+    html: `
+      <div style="font-family: Arial, sans-serif; max-width: 500px; padding: 20px;">
+        <h2>Account Deletion Confirmation</h2>
+        <p>Hello ${user.fullName || "User"},</p>
+        <p>Your WorkoutX account has been successfully deleted as per your request.</p>
+        <p>We’re sorry to see you go! If this was a mistake or you change your mind, feel free to sign up again anytime.</p>
+        <p>If you didn’t request this, please contact our support team immediately.</p>
+        <p>— The WorkoutX Team</p>
+      </div>
+    `,
+  };
+
+  await transporter.sendMail(mailOptions);
+
   return { message: "Account deleted successfully.", user: user };
 };
 
