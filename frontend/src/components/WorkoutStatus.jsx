@@ -17,7 +17,7 @@ const WorkoutStatus = ({ workout }) => {
 
         try {
             if (newStatus === "in progress") {
-                const response = await axios.get("http://localhost:4000/api/workouts", {
+                const response = await axios.get("${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/workouts", {
                     headers: {
                         Authorization: `Bearer ${user.token}`
                     }
@@ -27,7 +27,7 @@ const WorkoutStatus = ({ workout }) => {
 
                 if (currentlyInProgress && currentlyInProgress._id !== workout._id) {
                     await axios.patch(
-                        `http://localhost:4000/api/workouts/${currentlyInProgress._id}`,
+                        `${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/workouts/${currentlyInProgress._id}`,
                         { status: "pending" },
                         { headers: { Authorization: `Bearer ${user.token}` } }
                     );
@@ -40,7 +40,7 @@ const WorkoutStatus = ({ workout }) => {
             }
 
             const updateResponse = await axios.patch(
-                `http://localhost:4000/api/workouts/${workout._id}`,
+                `${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/workouts/${workout._id}`,
                 { status: newStatus },
                 { headers: { Authorization: `Bearer ${user.token}` } }
             );

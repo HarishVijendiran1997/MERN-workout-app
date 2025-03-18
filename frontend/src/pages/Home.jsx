@@ -19,7 +19,7 @@ const Home = () => {
 
         const fetchWorkouts = async () => {
             try {
-                const response = await axios.get("http://localhost:4000/api/workouts", {
+                const response = await axios.get(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/workouts`, {
                     headers: {
                         Authorization: `Bearer ${user.token}`
                     }

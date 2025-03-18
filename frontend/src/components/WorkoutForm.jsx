@@ -45,7 +45,7 @@ const WorkoutForm = () => {
         setEmptyFields([]);
 
         try {
-            const response = await axios.post("http://localhost:4000/api/workouts/", {
+            const response = await axios.post(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/workouts/`, {
                 title,
                 load: Number(load),
                 reps: Number(reps)

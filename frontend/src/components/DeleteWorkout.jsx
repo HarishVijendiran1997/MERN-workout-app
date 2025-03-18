@@ -17,7 +17,7 @@ const DeleteWorkout = ({ workoutId, user, dispatch }) => {
         setIsDeleting(true);
         try {
             console.log("Deleting workout with ID:", workoutId);
-            const response = await axios.delete(`http://localhost:4000/api/workouts/${workoutId}`, {
+            const response = await axios.delete(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/workouts/${workoutId}`, {
                 headers: {
                     Authorization: `Bearer ${user.token}`
                 }

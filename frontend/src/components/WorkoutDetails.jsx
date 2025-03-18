@@ -47,7 +47,7 @@ const WorkoutDetails = ({ workout }) => {
         }
 
         try {
-            const response = await axios.patch(`http://localhost:4000/api/workouts/${workout._id}`, {
+            const response = await axios.patch(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/workouts/${workout._id}`, {
                 title,
                 load: Number(load),
                 reps: Number(reps)

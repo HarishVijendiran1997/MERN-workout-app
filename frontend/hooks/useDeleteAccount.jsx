@@ -25,7 +25,7 @@ export const useDeleteAccount = () => {
         setIsDeleted(false)
 
         try {
-            const response = await axios.delete(`http://localhost:4000/api/user/profile`, {
+            const response = await axios.delete(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/user/profile`, {
                 headers: {
                     Authorization: `Bearer ${user.token}`
                 }

@@ -21,7 +21,7 @@ export const useResetPassword = () => {
         setResetOk(false);
 
         try {
-            const response = await axios.patch(`http://localhost:4000/api/user/reset-password/`, {
+            const response = await axios.patch(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/user/reset-password/`, {
                 newPassword, 
                 confirmPassword, 
                 token

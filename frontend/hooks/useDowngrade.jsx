@@ -16,7 +16,7 @@ export const useDowngrade = () => {
         setDowngradeIsLoading(true)
         setDowngradeError(null)
         try {
-            const response = await axios.patch(`http://localhost:4000/api/user/downgrade/${id}`, { plan }, {
+            const response = await axios.patch(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/user/downgrade/${id}`, { plan }, {
                 headers: {
                     Authorization: `Bearer ${user.token}`
                 }

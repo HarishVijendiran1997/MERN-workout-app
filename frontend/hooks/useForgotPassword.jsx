@@ -22,7 +22,7 @@ export const useForgotPassword = () => {
         setIsLoading(true)
         setError(null)
         try {
-            const response = await axios.post(`http://localhost:4000/api/user/forgot-password/`, { email })
+            const response = await axios.post(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/user/forgot-password/`, { email })
             if(response.status===200) {
                 setSuccess(response.data?.message || "Check your email for password reset instructions");
                 setSentMail(true)

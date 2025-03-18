@@ -16,7 +16,7 @@ export const useUpgrade = () => {
         setUpgradeIsLoading(true)
         setUpgradeError(null)
         try {
-            const response = await axios.patch(`http://localhost:4000/api/user/upgrade/${id}`, { plan }, {
+            const response = await axios.patch(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/user/upgrade/${id}`, { plan }, {
                 headers: {
                     Authorization: `Bearer ${user.token}`
                 }
