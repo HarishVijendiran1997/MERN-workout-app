@@ -17,7 +17,7 @@ const WorkoutStatus = ({ workout }) => {
 
         try {
             if (newStatus === "in progress") {
-                const response = await axios.get("${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/workouts", {
+                const response = await axios.get(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/workouts`, {
                     headers: {
                         Authorization: `Bearer ${user.token}`
                     }
