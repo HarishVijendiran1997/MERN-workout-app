@@ -114,6 +114,7 @@ userSchema.statics.signup = async function (
   const mailOptions = {
     from: `"WorkoutX Support" <${process.env.EMAIL_USER}>`,
     to: user.email,
+    replyTo: "harish.practicemail@gmail.com",
     subject: "Welcome to WorkoutX! 🎉",
     html: `
       <div style="font-family: Arial, sans-serif; max-width: 500px; padding: 20px;">
@@ -127,7 +128,7 @@ userSchema.statics.signup = async function (
             Go to WorkoutX
           </a>
         </p>
-        <p>If you need any help, feel free to reach out to our support team.</p>
+        <p>If you need any help, Don't hesitate to reach out to our support team.</p>
         <p>— The WorkoutX Team</p>
       </div>
     `,
@@ -230,12 +231,13 @@ userSchema.statics.forgotPassword = async function (email) {
   const mailOptions = {
     from: `"WorkoutX Support" <${process.env.EMAIL_USER}>`,
     to: user.email,
+    replyTo: "harish.practicemail@gmail.com",
     subject: "Reset Your WorkoutX Password",
     html: `
       <div style="font-family: Arial, sans-serif; max-width: 500px; padding: 20px; border: 1px solid #ddd; border-radius: 8px;">
         <h2 style="color: #333;">Password Reset Request</h2>
         <p>Hello ${user.fullName || "User"},</p>
-        <p>We received a request to reset your password for your WorkoutX account. If you made this request, please click the button below to reset your password:</p>
+        <p>We received a request to reset your password for your WorkoutX account. If you made this request, You use button below to reset your password:</p>
         <p style="text-align: center;">
           <a href="${resetURL}" style="background-color: #007bff; color: #fff; padding: 10px 20px; text-decoration: none; border-radius: 5px; display: inline-block;">
             Reset Password
@@ -340,13 +342,14 @@ userSchema.statics.deleteAccount = async function (id) {
   const mailOptions = {
     from: `"WorkoutX Support" <${process.env.EMAIL_USER}>`,
     to: user.email,
+    replyTo: "harish.practicemail@gmail.com",
     subject: "Your WorkoutX Account Has Been Deleted",
     html: `
       <div style="font-family: Arial, sans-serif; max-width: 500px; padding: 20px;">
         <h2>Account Deletion Confirmation</h2>
         <p>Hello ${user.fullName || "User"},</p>
         <p>Your WorkoutX account has been successfully deleted as per your request.</p>
-        <p>We’re sorry to see you go! If this was a mistake or you change your mind, feel free to sign up again anytime.</p>
+        <p>We’re sorry to see you go! If this was a mistake or you change your mind, You are welcome to sign up again anytime.</p>
         <p>If you didn’t request this, please contact our support team immediately.</p>
         <p>— The WorkoutX Team</p>
       </div>

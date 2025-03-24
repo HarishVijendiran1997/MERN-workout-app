@@ -25,7 +25,7 @@ const ForgotPassword = () => {
             {sentMail && (
                 <div className="fixed inset-0 flex items-center justify-center backdrop-blur-lg bg-black/80 z-10">
                     <div className="sm:w-1/2 w-3/4 bg-white dark:bg-darkSecondary p-6 rounded-lg shadow-lg transition-colors duration-200">
-                        <h2 className="text-lg font-bold text-blue-900 dark:text-darkTextPrimary">Please check your email!</h2>
+                        <h2 className="text-lg font-bold text-blue-900 dark:text-darkTextPrimary">Please check your email inbox/spam !</h2>
                         <p className="text-lg my-5 font-semibold dark:text-darkTextSecondary transition-colors duration-200">{success}</p>
                         <button
                             onClick={handleOk}
