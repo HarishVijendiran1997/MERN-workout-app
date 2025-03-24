@@ -15,6 +15,7 @@ dotenv.config();
 //declaring the express app
 const app = express();
 
+
 //cors configuration to allow only the frontend to access the api
 app.use(cors({ origin: process.env.FRONTEND_URL }));
 
@@ -36,6 +37,13 @@ app.use((req, res, next) => {
 //routes for the workouts
 app.use("/api/workouts", workoutRoutes);
 app.use("/api/user", userRoutes);
+
+const __dirname = path.resolve();
+app.use(express.static(path.join(__dirname, "dist")));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "dist", "index.html"));
+});
 
 //? server
 //starting the server
