@@ -1,6 +1,6 @@
 const commonLoginSignupStyles = {
-  page: `flex text-center bg-gray-200 dark:bg-darkPrimary w-full pt-5 transition-colors duration-200`,
-  form: `max-w-md mx-auto my-auto p-6 bg-white dark:bg-darkSecondary dark:text-darkInputText  shadow-md rounded-lg
+  page: `flex justify-center items-center text-center bg-gray-200 dark:bg-darkPrimary w-full pt-5 transition-colors duration-200`,
+  form: `max-w-full mx-auto p-6 bg-white dark:bg-darkSecondary dark:text-darkInputText  shadow-md rounded-lg
 transition-colors duration-200 py-10`,
   title: `text-2xl font-bold text-blue-600 dark:text-darkTextPrimary transition-colors duration-200 mb-8`,
   email: `w-full p-2 mb-4 border  rounded-lg placeholder:text-gray-500 dark:placeholder:text-darkTextPlaceholder dark:bg-darkInputBackground transition-colors duration-200`,

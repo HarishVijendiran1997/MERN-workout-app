@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { useAuthContext } from "../../hooks/useAuthContext";
 import { FaCrown } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
@@ -9,14 +9,13 @@ const Profile = () => {
     const { user } = useAuthContext();
     const navigate = useNavigate();
     const [isDeleting, setIsDeleting] = useState(false);
-    console.log(user);
     const [fullName, setFullName] = useState(user?.fullName || "");
     const [username, setUsername] = useState(user?.username || "");
 
     return (
         <div className="flex w-full flex-col items-center justify-center bg-neutral-200 dark:bg-darkPrimary text-blue-900 dark:text-darkTextPrimary relative">
-            <button className="text-white absolute top-5 left-5 cursor-pointer bg-blue-900 hover:bg-blue-950 dark:bg-darkTertiary dark:hover:bg-darkSecondary rounded-lg p-2"
-                onClick={() => navigate("/")}>
+            <button type="button" className="text-white absolute top-5 left-5 cursor-pointer bg-blue-900 hover:bg-blue-950 dark:bg-darkTertiary dark:hover:bg-darkSecondary rounded-lg p-2"
+                onClick={() => navigate("/",{ replace: true })}>
                 Back
             </button>
             <h1 className="text-3xl font-bold">Profile Page</h1>

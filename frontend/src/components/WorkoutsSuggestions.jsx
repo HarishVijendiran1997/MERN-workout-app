@@ -30,6 +30,7 @@ const WorkoutSuggestions = ({ title, setTitle, emptyFields }) => {
     return (
         <div className="relative w-full">
             <input
+                name="workout-title"
                 type="text"
                 value={title}
                 onChange={handleTitleChange}

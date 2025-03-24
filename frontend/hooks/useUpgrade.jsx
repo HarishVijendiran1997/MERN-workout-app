@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { useAuthContext } from "./useAuthContext"
 import axios from "axios";
 import { toast } from "react-toastify";
@@ -8,6 +8,9 @@ export const useUpgrade = () => {
     const [UpgradeError, setUpgradeError] = useState(null)
     const [UpgradeIsLoading, setUpgradeIsLoading] = useState(false)
     const { user, dispatch } = useAuthContext()
+    const headers = useMemo(() => ({
+            Authorization: `Bearer ${user.token}`
+        }), [user])
 
     const upgrade = async (id, plan) => {
         if (!navigator.onLine) {
@@ -17,9 +20,7 @@ export const useUpgrade = () => {
         setUpgradeError(null)
         try {
             const response = await axios.patch(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/user/upgrade/${id}`, { plan }, {
-                headers: {
-                    Authorization: `Bearer ${user.token}`
-                }
+                headers
             })
             if (response.data) {
                 const updatedUser = {

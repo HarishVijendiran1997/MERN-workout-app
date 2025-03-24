@@ -15,8 +15,8 @@ const ForgotPassword = () => {
 
     const handleOk = () => {
         setSentMail(false);
-        navigate('/login')
         setSuccess("")
+        navigate('/login')
     };
 
     return (
@@ -44,6 +44,7 @@ const ForgotPassword = () => {
                     <div className="flex flex-col gap-2">
                         <div className="relative min-w-sm">
                             <input
+                                name="email"
                                 type="email"
                                 placeholder="Email"
                                 value={email}
@@ -75,6 +76,10 @@ const ForgotPassword = () => {
                         {isLoading ? "Sending reset link..." : "Send reset link"}
                     </button>
                     {error && <p className={stylesForgotPassword.errorMessage}>{error}</p>}
+                    <button type="button" className="text-white mt-4 cursor-pointer bg-gray-400 hover:bg-blue-950 dark:bg-darkTertiary dark:hover:bg-darkSecondary rounded-lg p-2"
+                        onClick={() => navigate("/")}>
+                        Back
+                    </button>
                 </form>
             )}
         </div>

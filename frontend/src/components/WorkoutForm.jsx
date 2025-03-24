@@ -98,8 +98,9 @@ transition-colors duration-200`}>
                 <h2 className={`text-2xl font-bold text-blue-600 dark:text-darkTextPrimary mb-4 transition-colors duration-200`}>Add a new workout</h2>
 
                 <WorkoutSuggestions emptyFields={emptyFields} title={title} setTitle={setTitle} />
+                
                 {/* Load Input */}
-                <input className={`w-full p-2 mb-4 placeholder:text-gray-500 dark:placeholder:text-darkTextPlaceholder border dark:border-darkBorder rounded-lg dark:bg-darkInputBackground transition-colors duration-200 ${emptyFields.includes('load') ? "border-red-500 dark:border-red-500" : "border-gray-300 dark:border-darkBorder"}`}
+                <input name="load" className={`w-full p-2 mb-4 placeholder:text-gray-500 dark:placeholder:text-darkTextPlaceholder border dark:border-darkBorder rounded-lg dark:bg-darkInputBackground transition-colors duration-200 ${emptyFields.includes('load') ? "border-red-500 dark:border-red-500" : "border-gray-300 dark:border-darkBorder"}`}
                     type="number"
                     onChange={handleLoadChange}
                     value={load}
@@ -107,7 +108,7 @@ transition-colors duration-200`}>
                 />
 
                 {/* Reps Input */}
-                <input className={`w-full p-2 mb-4 placeholder:text-gray-500 dark:placeholder:text-darkTextPlaceholder border dark:border-darkBorder rounded-lg dark:bg-darkInputBackground transition-colors duration-200 ${emptyFields.includes('reps') ? "border-red-500 dark:border-red-500" : "border-gray-300 dark:border-darkBorder"}`}
+                <input name="reps" className={`w-full p-2 mb-4 placeholder:text-gray-500 dark:placeholder:text-darkTextPlaceholder border dark:border-darkBorder rounded-lg dark:bg-darkInputBackground transition-colors duration-200 ${emptyFields.includes('reps') ? "border-red-500 dark:border-red-500" : "border-gray-300 dark:border-darkBorder"}`}
                     type="number"
                     onChange={handleRepsChange}
                     value={reps}

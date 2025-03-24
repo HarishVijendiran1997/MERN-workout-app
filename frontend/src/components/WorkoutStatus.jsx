@@ -63,7 +63,7 @@ const WorkoutStatus = ({ workout }) => {
             </div>
             <div>
                 <select
-                    id="status-filter"
+                    name="status-filter"
                     className={`cursor-pointer flex text-center border border-gray-400 dark:border-darkBorder p-1 rounded-lg transition-colors duration-200 
                         ${workout.status === "completed" ? "bg-green-400 text-neutral-700 dark:bg-darkAddButtonHover dark:text-darkInputText" : workout.status === "in progress" ? "bg-blue-400 text-neutral-800 dark:bg-darkTestButton dark:text-darkInputBackground " : "bg-white text-neutral-800 dark:bg-darkInputBackground dark:text-darkTextResult"}`}
                     value={workout.status}

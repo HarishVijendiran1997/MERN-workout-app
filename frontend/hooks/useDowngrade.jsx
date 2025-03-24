@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { useAuthContext } from "./useAuthContext"
 import axios from "axios";
 import { toast } from "react-toastify";
@@ -8,7 +8,9 @@ export const useDowngrade = () => {
     const [downgradeError, setDowngradeError] = useState(null)
     const [downgradeIsLoading, setDowngradeIsLoading] = useState(false)
     const { user, dispatch } = useAuthContext()
-
+    const headers = useMemo(() => ({
+            Authorization: `Bearer ${user.token}`
+        }), [user])
     const downgrade = async (id, plan) => {
         if (!navigator.onLine) {
             return toast.error("No internet connection! Please check your network");
@@ -17,9 +19,7 @@ export const useDowngrade = () => {
         setDowngradeError(null)
         try {
             const response = await axios.patch(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/user/downgrade/${id}`, { plan }, {
-                headers: {
-                    Authorization: `Bearer ${user.token}`
-                }
+                headers
             })
             if (response.data) {
                 const updatedUser = {

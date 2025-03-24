@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { useAuthContext } from "./useAuthContext"
 import axios from "axios";
 import { toast } from "react-toastify";
@@ -9,6 +9,10 @@ export const useDeleteAccount = () => {
     const [isLoading, setIsLoading] = useState(false)
     const { user, dispatch } = useAuthContext()
     const [isDeleted, setIsDeleted] = useState(false)
+
+    const headers = useMemo(() => ({
+            Authorization: `Bearer ${user.token}`
+        }), [user])
 
     const deleteAcc = async () => {
 
@@ -26,9 +30,7 @@ export const useDeleteAccount = () => {
 
         try {
             const response = await axios.delete(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/user/profile`, {
-                headers: {
-                    Authorization: `Bearer ${user.token}`
-                }
+                headers
             })
             if (response.status === 200) {
                 dispatch({ type: "DELETE" });

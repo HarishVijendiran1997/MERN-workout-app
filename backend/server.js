@@ -17,7 +17,8 @@ const app = express();
 
 
 //cors configuration to allow only the frontend to access the api
-app.use(cors({ origin: process.env.FRONTEND_URL }));
+// app.use(cors({ origin: process.env.FRONTEND_URL }));
+app.use(cors());
 
 //defining the port
 const PORT = process.env.PORT || 5000;
@@ -27,10 +28,10 @@ const PORT = process.env.PORT || 5000;
 app.use(express.json());
 
 //middleware to log the request path and method
-app.use((req, res, next) => {
-  console.log(req.path, req.method);
-  next();
-});
+// app.use((req, res, next) => {
+//   console.log(req.path, req.method);
+//   next();
+// });
 
 
 //? routes
