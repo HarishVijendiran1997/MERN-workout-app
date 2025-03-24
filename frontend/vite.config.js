@@ -9,5 +9,6 @@ export default defineConfig({
   //customized the port
   server: {
     port: 3000,
+    host:true
   },
 });
