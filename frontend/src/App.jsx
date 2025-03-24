@@ -1,6 +1,6 @@
 // Importing necessary components
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
-import { lazy, Suspense,useMemo } from "react";
+import { lazy, Suspense, useMemo } from "react";
 import { ThemeContextProvider } from "../contexts/ThemeContext.jsx";
 import { useThemeContext } from "../hooks/useThemeContext.jsx";
 import { useAuthContext } from "../hooks/useAuthContext.jsx";
@@ -26,7 +26,7 @@ function AppContent() {
   const { themeMode } = useThemeContext()
   const MemoizedToastContainer = useMemo(() => (
     <ToastContainer
-      limit={window.innerWidth <= 768 ? 0 : 3}
+      limit={window.innerWidth <= 768 ? 0 : 3} 
       theme={themeMode}
       position="bottom-right"
       closeOnClick={true}
@@ -36,24 +36,24 @@ function AppContent() {
   ), [themeMode]);
   return (
     <div className="font-primary min-h-screen flex flex-col">
-        {user && <UserGuide />}
-        {MemoizedToastContainer}
-        <NavBar className="relative" />
-        <div className="flex flex-grow">
-          <Suspense fallback={<Loader />}>
-            <Routes>
-              <Route path="/" element={user ? <Home /> : <Navigate to="/login" />} />
-              <Route path="/login" element={!user ? <Login /> : <Navigate to="/" />} />
-              <Route path="/signup" element={!user ? <Signup /> : <Navigate to="/" />} />
-              <Route path="/test" element={user ? <Test /> : <Navigate to="/login" />} />
-              <Route path="/plans" element={user ? <Plans /> : <Navigate to="/login" />} />
-              <Route path="/profile" element={user ? <Profile /> : <Navigate to="/signup" />} />
-              <Route path="/forgot-password" element={!user ? <ForgotPassword /> : <Navigate to="/login" />} />
-              <Route path="/reset-password/:token" element={!user ? <ResetPassword /> : <Navigate to="/login" />} />
-            </Routes>
-          </Suspense>
-        </div>
-        <ScrollToTop />
+      {user && <UserGuide />}
+      {MemoizedToastContainer}
+      <NavBar className="relative" />
+      <div className="flex flex-grow">
+        <Suspense fallback={<Loader />}>
+          <Routes>
+            <Route path="/" element={user ? <Home /> : <Navigate to="/login" />} />
+            <Route path="/login" element={!user ? <Login /> : <Navigate to="/" />} />
+            <Route path="/signup" element={!user ? <Signup /> : <Navigate to="/" />} />
+            <Route path="/test" element={user ? <Test /> : <Navigate to="/login" />} />
+            <Route path="/plans" element={user ? <Plans /> : <Navigate to="/login" />} />
+            <Route path="/profile" element={user ? <Profile /> : <Navigate to="/signup" />} />
+            <Route path="/forgot-password" element={!user ? <ForgotPassword /> : <Navigate to="/login" />} />
+            <Route path="/reset-password/:token" element={!user ? <ResetPassword /> : <Navigate to="/login" />} />
+          </Routes>
+        </Suspense>
+      </div>
+      <ScrollToTop />
     </div >
   )
 }
