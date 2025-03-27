@@ -38,7 +38,6 @@ const loginUser = async (req, res) => {
 
 //? Signup user
 const signupUser = async (req, res) => {
-  console.time("Signup Execution Time");
   const { fullName, username, email, password, confirmPassword } = req.body;
   if (!confirmPassword) {
     return res.status(400).json({ message: "Confirm password are required." });
@@ -54,14 +53,12 @@ const signupUser = async (req, res) => {
     return res.status(400).json({ message: "Passwords do not match." });
   }
   try {
-    console.time("User Creation Time");
     const user = await User.signup(
       fullName,
       username,
       email.toLowerCase(),
       password
     );
-    console.time("Token Generation Time");
     const token = createToken(user._id);
     res.status(200).json({
       message: "Register User successful",
@@ -73,13 +70,10 @@ const signupUser = async (req, res) => {
       plan: user.plan,
     });
 
-    console.time("Email sent");
     setImmediate(() => sendWelcomeEmail(user.email, user.fullName));
-    console.timeEnd("Email sent");
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
-  console.timeEnd("Signup Execution Time");
 };
 
 //? Upgrade User

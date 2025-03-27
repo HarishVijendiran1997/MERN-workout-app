@@ -21,7 +21,7 @@ const app = express();
 app.use(cors());
 
 //defining the port
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 4000;
 
 //? middleware
 //middleware to parse the request body

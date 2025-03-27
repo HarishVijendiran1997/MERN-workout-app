@@ -59,7 +59,6 @@ userSchema.statics.signup = async function (
   if (!fullName || !username || !email || !password) {
     throw new Error("All fields are required.");
   }
-  console.time("Username Validation");
   if (fullName.length < 3) {
     throw new Error("Full name must be at least 3 characters long.");
   }
@@ -68,41 +67,29 @@ userSchema.statics.signup = async function (
       "Username must contain only letters and numbers (A-Z, a-z, 0-9). Example: user123"
     );
   }
-  console.timeEnd("Username Validation");
 
   const [existingUser, existingEmail] = await Promise.all([
     this.findOne({ username }),
     this.findOne({ email }),
   ]);
-  console.time("Check Existing Username");
   if (existingUser) {
     throw new Error(
       "This username is already taken. Please choose a different one."
     );
   }
-  console.timeEnd("Check Existing Username");
 
-  console.time("Email Validation");
   if (!validator.isEmail(email)) {
     throw new Error("Please enter a valid email address.");
   }
-  console.timeEnd("Email Validation");
-  console.time("Check Existing Email");
   if (existingEmail) {
     throw new Error("An account with this email already exists.");
   }
-  console.timeEnd("Check Existing Email");
-
-  console.time("Password Strength Validation");
   if (!validator.isStrongPassword(password)) {
     throw new Error(
       "Password must include at least 8 characters, one uppercase letter, one lowercase letter, one number, and one special character."
     );
   }
 
-  console.timeEnd("Password Strength Validation");
-
-  console.time("Password Hashing");
   const salt = await bcrypt.genSalt(6);
   const hash = await bcrypt.hash(password, salt);
   console.timeEnd("Password Hashing");
@@ -129,9 +116,6 @@ userSchema.statics.signup = async function (
 
   console.timeEnd("Total Signup Time");
 
-  console.log(
-    "----------------------------------------------------------------"
-  );
   return user;
 };
 
