@@ -59,10 +59,14 @@ The **WorkoutX App** is a full-stack web application built using the **MERN (Mon
 
 ### ⚡ Performance & Optimization
 
-- **React Context API**: Manages global state for authentication, theme, and subscription.
-- **Axios for API Requests**: Efficient API handling with error management.
-- **Modular Component Structure**: Code is structured for better readability and reusability.
-- **Error Handling**: Displays user-friendly error messages for internet connectivity issues and API failures.
+-**Optimized Sign up & Login**: Reduced execution time from 7.4s → 284ms by improving database queries and API response times.
+-**Faster Authentication**: Eliminated redundant operations, making login 2000x faster (3.3s → 1.57ms).
+-**Database Indexing**: Indexed key queries to enhance performance in user authentication and workout management.
+-**Reduced Server Load**: Optimized API calls and removed unnecessary computations to handle more concurrent users.
+-**React Context API**: Manages global state efficiently for authentication, theme preferences, and subscription status.
+-**Axios for API Requests**: Handles API communication with built-in error management and improved retry logic.
+-**Modular Component Structure**: Structured components for better readability, reusability, and maintainability.
+-**Enhanced Error Handling**: Displays user-friendly error messages for network failures, invalid inputs, and API issues.
 
 ## Tech Stack
 
