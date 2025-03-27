@@ -1,4 +1,5 @@
 import { User } from "../models/userModel.models.js";
+import { sendWelcomeEmail } from "../services/emailServices.js";
 import jwt from "jsonwebtoken";
 
 //? Generate JWT token
@@ -8,10 +9,17 @@ const createToken = (_id) => {
 
 //?Login user
 const loginUser = async (req, res) => {
+  console.time("Login Execution Time");
   const { email, password } = req.body;
   try {
+    console.time("User Authentication Time");
     const user = await User.login(email.toLowerCase(), password);
+    console.timeEnd("User Authentication Time");
+
+    console.time("Token Generation Time");
     const token = createToken(user._id);
+    console.timeEnd("Token Generation Time");
+
     res.status(200).json({
       message: "User logged in successfully",
       _id: user._id,
@@ -24,29 +32,36 @@ const loginUser = async (req, res) => {
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
+  console.timeEnd("Login Execution Time");
+  console.log("---------------------------------------");
 };
 
 //? Signup user
 const signupUser = async (req, res) => {
+  console.time("Signup Execution Time");
   const { fullName, username, email, password, confirmPassword } = req.body;
   if (!confirmPassword) {
     return res.status(400).json({ message: "Confirm password are required." });
   }
 
   if (password.length < 8) {
-    return res.status(400).json({ message: "Password must be at least 8 characters long." });
+    return res
+      .status(400)
+      .json({ message: "Password must be at least 8 characters long." });
   }
 
   if (password !== confirmPassword) {
     return res.status(400).json({ message: "Passwords do not match." });
   }
   try {
+    console.time("User Creation Time");
     const user = await User.signup(
       fullName,
       username,
       email.toLowerCase(),
       password
     );
+    console.time("Token Generation Time");
     const token = createToken(user._id);
     res.status(200).json({
       message: "Register User successful",
@@ -57,9 +72,14 @@ const signupUser = async (req, res) => {
       token,
       plan: user.plan,
     });
+
+    console.time("Email sent");
+    setImmediate(() => sendWelcomeEmail(user.email, user.fullName));
+    console.timeEnd("Email sent");
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
+  console.timeEnd("Signup Execution Time");
 };
 
 //? Upgrade User
@@ -72,8 +92,8 @@ const upgradeUser = async (req, res) => {
     res.status(200).json({
       message: "Congratulations! Your account has been successfully upgraded.",
       _id: user._id,
-      fullName:user.fullName,
-      username:user.username,
+      fullName: user.fullName,
+      username: user.username,
       email: user.email,
       token,
       plan: user.plan,
@@ -93,8 +113,8 @@ const downgradeUser = async (req, res) => {
     res.status(200).json({
       message: "You have successfully switched to a Basic plan.",
       _id: user._id,
-      fullName:user.fullName,
-      username:user.username,
+      fullName: user.fullName,
+      username: user.username,
       email: user.email,
       token,
       plan: user.plan,
